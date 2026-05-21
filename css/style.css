@@ -289,94 +289,65 @@ body {
   transform: scale(1.2);
 
 }
-.question-card {
+/* =========================================
+   PRE SURVEY LAYOUT
+========================================= */
 
-  background: #ffffff;
+.survey-card {
 
-  border: 1px solid #e4e7ec;
+  max-width: 1050px;
 
-  border-radius: 14px;
+  margin: 40px auto;
 
-  padding: 28px;
+  background: #FFFFFF;
 
-  margin-top: 28px;
+  border: 1px solid #E4E7EC;
 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 18px;
 
-}
+  padding: 55px;
 
-.question-title {
-
-  font-size: 22px;
-
-  font-weight: 600;
-
-  color: #1f2937;
-
-  margin-bottom: 24px;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.05);
 
 }
 
-.radio-option {
+/* =========================================
+   QUESTION CARDS
+========================================= */
 
-  display: flex;
-
-  align-items: center;
-
-  gap: 14px;
-
-  margin-bottom: 18px;
-
-  font-size: 18px;
-
-  color: #344054;
-
-  cursor: pointer;
-
-}
-
-.radio-option input[type="radio"] {
-
-  transform: scale(1.2);
-
-}
-
-.button-container {
-
-  display: flex;
-
-  justify-content: center;
-
-  margin-top: 40px;
-
-}
 .question-card {
 
   background: #ffffff;
 
   border: 1px solid #e5e7eb;
 
-  border-radius: 14px;
+  border-radius: 12px;
 
-  padding: 28px;
+  padding: 22px 26px;
 
-  margin-top: 28px;
+  margin-top: 22px;
 
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  box-shadow:
+    0 1px 4px rgba(0,0,0,0.04);
 
 }
 
 .question-title {
 
-  font-size: 22px;
+  font-size: 20px;
 
   font-weight: 600;
 
   color: #1f2937;
 
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 
 }
+
+/* =========================================
+   RADIO OPTIONS
+========================================= */
 
 .radio-option {
 
@@ -384,11 +355,11 @@ body {
 
   align-items: center;
 
-  gap: 14px;
+  gap: 12px;
 
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 
-  font-size: 18px;
+  font-size: 17px;
 
   color: #374151;
 
@@ -398,9 +369,13 @@ body {
 
 .radio-option input[type="radio"] {
 
-  transform: scale(1.2);
+  transform: scale(1.15);
 
 }
+
+/* =========================================
+   BUTTON CONTAINER
+========================================= */
 
 .button-container {
 
@@ -408,6 +383,6 @@ body {
 
   justify-content: center;
 
-  margin-top: 40px;
+  margin-top: 35px;
 
 }
