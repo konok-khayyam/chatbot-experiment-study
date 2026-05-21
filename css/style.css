@@ -221,3 +221,50 @@ body {
   font-size: 16px;
 
 }
+.question-block {
+
+  margin-bottom: 32px;
+
+}
+
+.question-label {
+
+  display: block;
+
+  margin-bottom: 12px;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  color: #2F3440;
+
+}
+
+.survey-input {
+
+  width: 100%;
+
+  padding: 16px;
+
+  font-size: 17px;
+
+  border-radius: 10px;
+
+  border: 1px solid #D0D5DD;
+
+  background: #FFFFFF;
+
+  color: #2F3440;
+
+  box-sizing: border-box;
+
+}
+
+.survey-input:focus {
+
+  outline: none;
+
+  border-color: #4F6480;
+
+}
