@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Chat Interaction</title>
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css"/>
 
   <style>
 
@@ -83,8 +83,6 @@
       justify-content: space-between;
 
       padding: 0 30px;
-
-      flex-shrink: 0;
     }
 
     .chat-title {
@@ -169,8 +167,6 @@
       padding: 22px 24px;
 
       background: #FFFFFF;
-
-      flex-shrink: 0;
     }
 
     .input-wrapper {
@@ -221,12 +217,97 @@
       font-size: 22px;
 
       cursor: pointer;
-
-      transition: 0.2s ease;
     }
 
     .send-button:hover {
       background: #3E526B;
+    }
+
+    .send-button:disabled {
+      background: #B8C1CC;
+      cursor: not-allowed;
+    }
+
+    /* MODAL */
+
+    .modal-overlay {
+
+      position: fixed;
+      inset: 0;
+
+      background: rgba(0,0,0,0.45);
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      z-index: 9999;
+
+    }
+
+    .modal-card {
+
+      width: 90%;
+      max-width: 520px;
+
+      background: white;
+
+      border-radius: 18px;
+
+      padding: 40px;
+
+      text-align: center;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+    }
+
+    .modal-title {
+
+      font-size: 32px;
+      font-weight: 700;
+
+      margin-bottom: 20px;
+
+      color: #2F3440;
+
+    }
+
+    .modal-text {
+
+      font-size: 18px;
+      line-height: 1.7;
+
+      color: #667085;
+
+      margin-bottom: 35px;
+
+    }
+
+    .continue-button {
+
+      background: #4F6480;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 12px;
+
+      padding: 16px 32px;
+
+      font-size: 18px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+    }
+
+    .continue-button:hover {
+
+      background: #3E526B;
+
     }
 
     @media (max-width: 768px) {
@@ -239,10 +320,6 @@
         height: calc(100vh - 90px);
       }
 
-      .chat-header {
-        padding: 0 18px;
-      }
-
       .chat-title {
         font-size: 24px;
       }
@@ -253,10 +330,6 @@
 
       .message-bubble {
         max-width: 90%;
-        font-size: 16px;
-      }
-
-      .chat-input {
         font-size: 16px;
       }
 
@@ -290,7 +363,7 @@
         </div>
 
         <div class="timer-box" id="timer">
-          03:00
+          00:30
         </div>
 
       </div>
@@ -299,7 +372,7 @@
 
         <div class="message-row bot-row">
           <div class="message-bubble bot-message">
-            Hello! Thank you for participating in this study. Please interact naturally with the chatbot.
+            Hello! Thank you for participating in this study.
           </div>
         </div>
 
@@ -322,6 +395,35 @@
         </div>
 
       </div>
+
+    </div>
+
+  </div>
+
+  <!-- COMPLETION MODAL -->
+
+  <div class="modal-overlay" id="completionModal">
+
+    <div class="modal-card">
+
+      <div class="modal-title">
+        Interaction Complete
+      </div>
+
+      <div class="modal-text">
+        Thank you for completing the interaction phase.
+
+        <br><br>
+
+        Please continue to the final survey section.
+      </div>
+
+      <button
+        class="continue-button"
+        onclick="goToPostSurvey()"
+      >
+        Continue
+      </button>
 
     </div>
 
@@ -375,7 +477,11 @@
 
       row.classList.add("message-row");
 
-      row.classList.add(sender === "user" ? "user-row" : "bot-row");
+      row.classList.add(
+        sender === "user"
+          ? "user-row"
+          : "bot-row"
+      );
 
       const bubble = document.createElement("div");
 
@@ -413,7 +519,7 @@
 
     // TIMER
 
-    let totalSeconds = 180;
+    let totalSeconds = 30;
 
     const timerElement = document.getElementById("timer");
 
@@ -423,8 +529,8 @@
       const seconds = totalSeconds % 60;
 
       timerElement.textContent =
-        String(minutes).padStart(2, '0') +
-        ":" +
+        String(minutes).padStart(2, '0')
+        + ":" +
         String(seconds).padStart(2, '0');
 
       totalSeconds--;
@@ -433,11 +539,20 @@
 
         clearInterval(countdown);
 
-        window.location.href = "post-survey.html";
+        userInput.disabled = true;
+        sendButton.disabled = true;
+
+        document.getElementById("completionModal").style.display = "flex";
 
       }
 
     }, 1000);
+
+    function goToPostSurvey() {
+
+      window.location.href = "post-survey.html";
+
+    }
 
   </script>
 
