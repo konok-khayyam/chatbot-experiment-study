@@ -3,346 +3,891 @@
 
 <head>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
 
-    <title>Chat Interaction</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-    <link rel="stylesheet" href="css/style.css" />
+  <title>Chat Interaction</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  />
+
+  <style>
+
+    body {
+
+      margin: 0;
+      padding: 0;
+
+      background: #F6F7FB;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: #2F3440;
+
+      overflow: hidden;
+
+    }
+
+    .chat-page {
+
+      height: 100vh;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      padding: 28px;
+
+      box-sizing: border-box;
+
+    }
+
+    /* =========================================
+       PROGRESS
+    ========================================= */
+
+    .progress-wrapper {
+
+      width: 100%;
+      max-width: 1100px;
+
+      margin-bottom: 18px;
+
+    }
+
+    .progress-bar {
+
+      width: 100%;
+      height: 10px;
+
+      background: #E4E7EC;
+
+      border-radius: 999px;
+
+      overflow: hidden;
+
+    }
+
+    .progress-fill {
+
+      width: 80%;
+      height: 100%;
+
+      background: #4F6480;
+
+    }
+
+    .progress-text {
+
+      margin-top: 10px;
+
+      color: #667085;
+
+      font-size: 15px;
+
+    }
+
+    /* =========================================
+       CHAT CONTAINER
+    ========================================= */
+
+    .chat-container {
+
+      width: 100%;
+      max-width: 1100px;
+
+      height: calc(100vh - 110px);
+
+      background: #FFFFFF;
+
+      border: 1px solid #E4E7EC;
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 2px 10px rgba(0,0,0,0.05);
+
+      display: flex;
+
+      flex-direction: column;
+
+      overflow: hidden;
+
+    }
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    .chat-header {
+
+      height: 88px;
+
+      border-bottom: 1px solid #ECEFF3;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 0 32px;
+
+      background: #FFFFFF;
+
+    }
+
+    .header-left {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 6px;
+
+    }
+
+    .chat-title {
+
+      font-size: 30px;
+
+      font-weight: 700;
+
+      color: #2F3440;
+
+    }
+
+    .chat-subtitle {
+
+      font-size: 16px;
+
+      color: #667085;
+
+    }
+
+    .timer-box {
+
+      background: #EEF2F6;
+
+      color: #2F3440;
+
+      padding: 12px 18px;
+
+      border-radius: 12px;
+
+      font-size: 22px;
+
+      font-weight: 700;
+
+      min-width: 95px;
+
+      text-align: center;
+
+    }
+
+    /* =========================================
+       CHAT AREA
+    ========================================= */
+
+    .chat-messages {
+
+      flex: 1;
+
+      overflow-y: auto;
+
+      padding: 30px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 24px;
+
+      background: #FCFCFD;
+
+    }
+
+    .message-row {
+
+      display: flex;
+
+      width: 100%;
+
+    }
+
+    .bot-row {
+
+      justify-content: flex-start;
+
+    }
+
+    .user-row {
+
+      justify-content: flex-end;
+
+    }
+
+    .message-bubble {
+
+      max-width: 72%;
+
+      padding: 18px 22px;
+
+      border-radius: 18px;
+
+      font-size: 18px;
+
+      line-height: 1.7;
+
+      word-wrap: break-word;
+
+    }
+
+    .bot-message {
+
+      background: #EEF2F6;
+
+      color: #2F3440;
+
+      border-bottom-left-radius: 6px;
+
+    }
+
+    .user-message {
+
+      background: #D8C3B5;
+
+      color: #2F3440;
+
+      border-bottom-right-radius: 6px;
+
+    }
+
+    /* =========================================
+       INPUT AREA
+    ========================================= */
+
+    .chat-input-area {
+
+      border-top: 1px solid #ECEFF3;
+
+      padding: 22px 24px;
+
+      background: #FFFFFF;
+
+    }
+
+    .input-wrapper {
+
+      display: flex;
+
+      align-items: flex-end;
+
+      gap: 14px;
+
+    }
+
+    .chat-input {
+
+      flex: 1;
+
+      resize: none;
+
+      border: 1px solid #D0D5DD;
+
+      border-radius: 14px;
+
+      padding: 16px 18px;
+
+      font-size: 17px;
+
+      background: #FFFFFF;
+
+      color: #2F3440;
+
+      outline: none;
+
+      min-height: 28px;
+
+      max-height: 140px;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    }
+
+    .chat-input:focus {
+
+      border-color: #4F6480;
+
+    }
+
+    .send-button {
+
+      width: 58px;
+      height: 58px;
+
+      border: none;
+
+      border-radius: 14px;
+
+      background: #4F6480;
+
+      color: white;
+
+      font-size: 22px;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+
+    }
+
+    .send-button:hover {
+
+      background: #3E526B;
+
+    }
+
+    .send-button:disabled {
+
+      background: #B8C1CC;
+
+      cursor: not-allowed;
+
+    }
+
+    /* =========================================
+       MODAL
+    ========================================= */
+
+    .modal-overlay {
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,0.45);
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 9999;
+
+    }
+
+    .modal-card {
+
+      width: 90%;
+
+      max-width: 520px;
+
+      background: white;
+
+      border-radius: 18px;
+
+      padding: 40px;
+
+      text-align: center;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.15);
+
+    }
+
+    .modal-title {
+
+      font-size: 32px;
+
+      font-weight: 700;
+
+      margin-bottom: 20px;
+
+      color: #2F3440;
+
+    }
+
+    .modal-text {
+
+      font-size: 18px;
+
+      line-height: 1.7;
+
+      color: #667085;
+
+      margin-bottom: 35px;
+
+    }
+
+    .continue-button {
+
+      background: #4F6480;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 12px;
+
+      padding: 16px 32px;
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+
+    }
+
+    .continue-button:hover {
+
+      background: #3E526B;
+
+    }
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 768px) {
+
+      .chat-page {
+
+        padding: 14px;
+
+      }
+
+      .chat-container {
+
+        height: calc(100vh - 90px);
+
+      }
+
+      .chat-title {
+
+        font-size: 24px;
+
+      }
+
+      .chat-subtitle {
+
+        display: none;
+
+      }
+
+      .timer-box {
+
+        font-size: 18px;
+
+      }
+
+      .message-bubble {
+
+        max-width: 90%;
+
+        font-size: 16px;
+
+      }
+
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-    <div class="page-container">
+  <div class="chat-page">
 
-        <!-- Progress -->
+    <!-- Progress -->
 
-        <div class="progress-wrapper">
+    <div class="progress-wrapper">
 
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 80%;"></div>
-            </div>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
 
-            <div class="progress-text">
-                Step 4 of 5
-            </div>
-
-        </div>
-
-        <!-- Main Card -->
-
-        <div class="content-card chat-page-card">
-
-            <!-- Header -->
-
-            <div class="chat-header">
-
-                <div>
-
-                    <h1 class="page-title">
-                        Chat Interaction
-                    </h1>
-
-                    <p class="page-description">
-                        Please interact with the chatbot naturally.
-                        The interaction will end automatically after the timer finishes.
-                    </p>
-
-                </div>
-
-                <div class="timer-box" id="timer">
-                    00:30
-                </div>
-
-            </div>
-
-            <!-- Chat Container -->
-
-            <div class="chat-container">
-
-                <div class="chat-messages" id="chatMessages">
-
-                    <div class="bot-message-wrapper">
-
-                        <div class="bot-avatar">
-                            AI
-                        </div>
-
-                        <div class="bot-message">
-                            Hello! How are you feeling today?
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Input -->
-
-                <div class="chat-input-container">
-
-                    <input
-                        type="text"
-                        id="chatInput"
-                        class="chat-input"
-                        placeholder="Type your message..."
-                    />
-
-                    <button
-                        id="sendButton"
-                        class="send-button"
-                    >
-                        Send
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
+      <div class="progress-text">
+        Step 4 of 5
+      </div>
 
     </div>
 
-    <!-- Time End Modal -->
+    <!-- Chat Container -->
 
-    <div class="modal-overlay" id="endModal">
+    <div class="chat-container">
 
-        <div class="modal-card">
+      <!-- Header -->
 
-            <h2>
-                Conversation Finished
-            </h2>
+      <div class="chat-header">
 
-            <p>
-                Thank you for interacting with the chatbot.
-                Please continue to complete the final questionnaire.
-            </p>
+        <div class="header-left">
 
-            <button
-                class="primary-button"
-                id="continueButton"
-            >
-                Continue
-            </button>
+          <div class="chat-title">
+            Chat Interaction
+          </div>
+
+          <div class="chat-subtitle">
+            Please interact naturally with the chatbot.
+          </div>
 
         </div>
 
+        <div class="timer-box" id="timer">
+          00:30
+        </div>
+
+      </div>
+
+      <!-- Messages -->
+
+      <div
+        class="chat-messages"
+        id="chatMessages"
+      >
+
+        <div class="message-row bot-row">
+
+          <div class="message-bubble bot-message">
+
+            Hello! Thank you for participating in this study.
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Input -->
+
+      <div class="chat-input-area">
+
+        <div class="input-wrapper">
+
+          <textarea
+            id="userInput"
+            class="chat-input"
+            placeholder="Type your message..."
+          ></textarea>
+
+          <button
+            class="send-button"
+            id="sendButton"
+          >
+            ↑
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <script>
+  </div>
 
-        /*
-        ==========================================
-        SESSION STORAGE
-        ==========================================
-        */
+  <!-- COMPLETION MODAL -->
 
-        if (!localStorage.getItem("sessionId")) {
+  <div
+    class="modal-overlay"
+    id="completionModal"
+  >
 
-            localStorage.setItem(
-                "sessionId",
-                crypto.randomUUID()
-            );
+    <div class="modal-card">
 
-        }
+      <div class="modal-title">
+        Interaction Complete
+      </div>
 
-        /*
-        ==========================================
-        TIMER
-        ==========================================
-        */
+      <div class="modal-text">
 
-        let totalSeconds = 30;
+        Thank you for completing the interaction phase.
 
-        const timerElement =
-            document.getElementById("timer");
+        <br><br>
 
-        const modal =
-            document.getElementById("endModal");
+        Please continue to the final survey section.
 
-        const continueButton =
-            document.getElementById("continueButton");
+      </div>
 
-        const timerInterval = setInterval(() => {
+      <button
+        class="continue-button"
+        onclick="goToPostSurvey()"
+      >
+        Continue
+      </button>
 
-            totalSeconds--;
+    </div>
 
-            const minutes =
-                String(Math.floor(totalSeconds / 60))
-                .padStart(2, "0");
+  </div>
 
-            const seconds =
-                String(totalSeconds % 60)
-                .padStart(2, "0");
+  <script>
 
-            timerElement.innerText =
-                `${minutes}:${seconds}`;
+    /*
+    ==========================================
+    WEBHOOK
+    ==========================================
+    */
 
-            if (totalSeconds <= 0) {
+    const webhookUrl =
+      "https://n8n.media.tuwien.ac.at/webhook/553640ac-4edf-461a-aa03-916374ecae33";
 
-                clearInterval(timerInterval);
+    /*
+    ==========================================
+    SESSION STORAGE
+    ==========================================
+    */
 
-                modal.style.display = "flex";
+    if (!localStorage.getItem("sessionId")) {
 
-            }
+      localStorage.setItem(
+        "sessionId",
+        crypto.randomUUID()
+      );
 
-        }, 1000);
+    }
 
-        continueButton.addEventListener("click", () => {
+    /*
+    ==========================================
+    ELEMENTS
+    ==========================================
+    */
 
-            window.location.href =
-                "post-survey.html";
+    const sendButton =
+      document.getElementById("sendButton");
 
-        });
+    const userInput =
+      document.getElementById("userInput");
 
-        /*
-        ==========================================
-        CHAT
-        ==========================================
-        */
+    const chatMessages =
+      document.getElementById("chatMessages");
 
-        const chatMessages =
-            document.getElementById("chatMessages");
+    /*
+    ==========================================
+    SEND MESSAGE
+    ==========================================
+    */
 
-        const chatInput =
-            document.getElementById("chatInput");
+    async function sendMessage() {
 
-        const sendButton =
-            document.getElementById("sendButton");
+      const message =
+        userInput.value.trim();
 
-        function appendUserMessage(message) {
+      if (!message) return;
 
-            const wrapper =
-                document.createElement("div");
+      addMessage(message, "user");
 
-            wrapper.className =
-                "user-message-wrapper";
+      userInput.value = "";
 
-            wrapper.innerHTML = `
-                <div class="user-message">
-                    ${message}
-                </div>
-            `;
+      try {
 
-            chatMessages.appendChild(wrapper);
+        const response = await fetch(
+          webhookUrl,
+          {
 
-            scrollToBottom();
+            method: "POST",
 
-        }
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
 
-        function appendBotMessage(message) {
+            body: JSON.stringify({
 
-            const wrapper =
-                document.createElement("div");
+              chatInput: message,
 
-            wrapper.className =
-                "bot-message-wrapper";
+              metadata: {
 
-            wrapper.innerHTML = `
-                <div class="bot-avatar">
-                    AI
-                </div>
+                condition:
+                  localStorage.getItem("condition")
+                  || "condition_1",
 
-                <div class="bot-message">
-                    ${message}
-                </div>
-            `;
+                sessionId:
+                  localStorage.getItem("sessionId")
 
-            chatMessages.appendChild(wrapper);
+              }
 
-            scrollToBottom();
+            })
 
-        }
-
-        function scrollToBottom() {
-
-            chatMessages.scrollTop =
-                chatMessages.scrollHeight;
-
-        }
-
-        async function sendMessage() {
-
-            const message =
-                chatInput.value.trim();
-
-            if (!message) return;
-
-            appendUserMessage(message);
-
-            chatInput.value = "";
-
-            try {
-
-                const response = await fetch(
-                    "https://n8n.media.tuwien.ac.at/webhook/553640ac-4edf-461a-aa03-916374ecae33",
-                    {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body: JSON.stringify({
-
-                            chatInput: message,
-
-                            metadata: {
-
-                                condition:
-                                    localStorage.getItem("condition")
-                                    || "condition_1",
-
-                                sessionId:
-                                    localStorage.getItem("sessionId")
-
-                            }
-
-                        })
-
-                    }
-                );
-
-                const data =
-                    await response.json();
-
-                appendBotMessage(data.text);
-
-            }
-
-            catch (error) {
-
-                appendBotMessage(
-                    "Something went wrong. Please try again."
-                );
-
-                console.error(error);
-
-            }
-
-        }
-
-        sendButton.addEventListener(
-            "click",
-            sendMessage
+          }
         );
 
-        chatInput.addEventListener(
-            "keypress",
-            function (e) {
+        const data =
+          await response.json();
 
-                if (e.key === "Enter") {
-
-                    sendMessage();
-
-                }
-
-            }
+        addMessage(
+          data.text || "No response received.",
+          "bot"
         );
 
-    </script>
+      }
+
+      catch (error) {
+
+        addMessage(
+          "Error connecting to chatbot.",
+          "bot"
+        );
+
+        console.error(error);
+
+      }
+
+    }
+
+    /*
+    ==========================================
+    ADD MESSAGE
+    ==========================================
+    */
+
+    function addMessage(text, sender) {
+
+      const row =
+        document.createElement("div");
+
+      row.classList.add("message-row");
+
+      row.classList.add(
+
+        sender === "user"
+          ? "user-row"
+          : "bot-row"
+
+      );
+
+      const bubble =
+        document.createElement("div");
+
+      bubble.classList.add("message-bubble");
+
+      bubble.classList.add(
+
+        sender === "user"
+          ? "user-message"
+          : "bot-message"
+
+      );
+
+      bubble.textContent = text;
+
+      row.appendChild(bubble);
+
+      chatMessages.appendChild(row);
+
+      chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+
+    }
+
+    /*
+    ==========================================
+    EVENTS
+    ==========================================
+    */
+
+    sendButton.addEventListener(
+      "click",
+      sendMessage
+    );
+
+    userInput.addEventListener(
+      "keypress",
+      function(e) {
+
+        if (
+          e.key === "Enter"
+          &&
+          !e.shiftKey
+        ) {
+
+          e.preventDefault();
+
+          sendMessage();
+
+        }
+
+      }
+    );
+
+    /*
+    ==========================================
+    TIMER
+    ==========================================
+    */
+
+    let totalSeconds = 30;
+
+    const timerElement =
+      document.getElementById("timer");
+
+    const countdown =
+      setInterval(() => {
+
+        const minutes =
+          Math.floor(totalSeconds / 60);
+
+        const seconds =
+          totalSeconds % 60;
+
+        timerElement.textContent =
+
+          String(minutes).padStart(2, '0')
+
+          + ":"
+
+          +
+
+          String(seconds).padStart(2, '0');
+
+        totalSeconds--;
+
+        if (totalSeconds < 0) {
+
+          clearInterval(countdown);
+
+          userInput.disabled = true;
+
+          sendButton.disabled = true;
+
+          document.getElementById(
+            "completionModal"
+          ).style.display = "flex";
+
+        }
+
+      }, 1000);
+
+    /*
+    ==========================================
+    REDIRECT
+    ==========================================
+    */
+
+    function goToPostSurvey() {
+
+      window.location.href =
+        "post-survey.html";
+
+    }
+
+  </script>
 
 </body>
 
