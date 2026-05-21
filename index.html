@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
+
+  <title>Consent Form</title>
+
+  <link rel="stylesheet"
+        href="css/style.css" />
+
+</head>
+
+<body>
+
+  <div class="page-container">
+
+    <!-- Progress -->
+
+    <div class="progress-wrapper">
+
+      <div class="progress-bar">
+
+        <div class="progress-fill"
+             style="width: 16%">
+        </div>
+
+      </div>
+
+      <p class="progress-text">
+        Step 1 of 6
+      </p>
+
+    </div>
+
+    <!-- Card -->
+
+    <div class="content-card">
+
+      <h1 class="page-title">
+        Consent Form
+      </h1>
+
+      <p class="page-description">
+
+        You are invited to participate in a research study
+        investigating interactions with conversational AI systems.
+
+      </p>
+
+      <div class="consent-section">
+
+        <h3>
+          Before participating, please note:
+        </h3>
+
+        <ul>
+
+          <li>
+            Your participation is voluntary.
+          </li>
+
+          <li>
+            You may stop participation at any time.
+          </li>
+
+          <li>
+            Your responses will be anonymized.
+          </li>
+
+          <li>
+            The interaction data may be analyzed
+            for research purposes.
+          </li>
+
+          <li>
+            The study includes interaction
+            with an AI chatbot.
+          </li>
+
+        </ul>
+
+      </div>
+
+      <!-- Checkbox -->
+
+      <label class="checkbox-wrapper">
+
+        <input type="checkbox"
+               id="consentCheckbox" />
+
+        <span>
+          I have read the information above and
+          agree to participate in this study.
+        </span>
+
+      </label>
+
+      <!-- Button -->
+
+      <button id="continueBtn"
+              class="primary-button"
+              disabled>
+
+        Continue
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // =====================================
+    // PROLIFIC PARAMETERS
+    // =====================================
+
+    const urlParams =
+      new URLSearchParams(window.location.search);
+
+    const prolificPID =
+      urlParams.get("PROLIFIC_PID");
+
+    const studyID =
+      urlParams.get("STUDY_ID");
+
+    const sessionID =
+      urlParams.get("SESSION_ID");
+
+    // Save them locally
+
+    if (prolificPID) {
+
+      localStorage.setItem(
+        "PROLIFIC_PID",
+        prolificPID
+      );
+
+    }
+
+    if (studyID) {
+
+      localStorage.setItem(
+        "STUDY_ID",
+        studyID
+      );
+
+    }
+
+    if (sessionID) {
+
+      localStorage.setItem(
+        "SESSION_ID",
+        sessionID
+      );
+
+    }
+
+    // =====================================
+    // CONSENT LOGIC
+    // =====================================
+
+    const checkbox =
+      document.getElementById(
+        "consentCheckbox"
+      );
+
+    const button =
+      document.getElementById(
+        "continueBtn"
+      );
+
+    checkbox.addEventListener(
+      "change",
+      () => {
+
+        button.disabled =
+          !checkbox.checked;
+
+      }
+    );
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        localStorage.setItem(
+          "consentGiven",
+          "true"
+        );
+
+        // timestamp
+
+        localStorage.setItem(
+          "consentTimestamp",
+          new Date().toISOString()
+        );
+
+        // move to video page
+
+        window.location.href =
+          "video.html";
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
