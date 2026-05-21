@@ -17,183 +17,228 @@
 
 <body>
 
-  <!-- PROGRESS -->
+  <div class="page-container">
 
-  <div class="progress-container">
+    <!-- PROGRESS -->
 
-    <div class="progress-bar"
-         style="width: 50%;">
+    <div class="progress-wrapper">
+
+      <div class="progress-bar">
+
+        <div class="progress-fill"
+             style="width: 50%;">
+        </div>
+
+      </div>
+
+      <p class="progress-text">
+        Step 3 of 6
+      </p>
+
     </div>
 
-  </div>
+    <!-- MAIN CARD -->
 
-  <p class="step-text">
-    Step 3 of 6
-  </p>
+    <div class="survey-card">
 
-  <!-- MAIN SURVEY CARD -->
+      <h1 class="page-title">
+        Pre-Survey
+      </h1>
 
-  <div class="survey-card">
+      <p class="page-description">
 
-    <h1 class="page-title">
-      Pre-Survey
-    </h1>
+        Please answer the following questions before interacting with the chatbot.
 
-    <p class="page-description">
+      </p>
 
-      Please answer the following questions before interacting with the chatbot.
+      <form id="preSurveyForm">
 
-    </p>
+        <!-- AGE -->
 
-    <form id="preSurveyForm">
+        <div class="question-card">
 
-      <!-- AGE -->
+          <p class="question-title">
+            Age Range
+          </p>
 
-      <div class="question-card">
+          <label class="radio-option">
+            <input type="radio"
+                   name="age"
+                   value="18-24"
+                   required>
+            18–24
+          </label>
 
-        <p class="question-title">
-          Age Range
-        </p>
+          <label class="radio-option">
+            <input type="radio"
+                   name="age"
+                   value="25-34">
+            25–34
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="age"
-                 value="18-24"
-                 required>
-          18–24
-        </label>
+          <label class="radio-option">
+            <input type="radio"
+                   name="age"
+                   value="35-44">
+            35–44
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="age"
-                 value="25-34">
-          25–34
-        </label>
+          <label class="radio-option">
+            <input type="radio"
+                   name="age"
+                   value="45-54">
+            45–54
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="age"
-                 value="35-44">
-          35–44
-        </label>
+          <label class="radio-option">
+            <input type="radio"
+                   name="age"
+                   value="55+">
+            55+
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="age"
-                 value="45-54">
-          45–54
-        </label>
+        </div>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="age"
-                 value="55+">
-          55+
-        </label>
+        <!-- GENDER -->
 
-      </div>
+        <div class="question-card">
 
-      <!-- GENDER -->
+          <p class="question-title">
+            Gender
+          </p>
 
-      <div class="question-card">
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Male"
+                   required>
+            Male
+          </label>
 
-        <p class="question-title">
-          Gender
-        </p>
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Female">
+            Female
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="gender"
-                 value="Male"
-                 required>
-          Male
-        </label>
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Non-binary">
+            Non-binary
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="gender"
-                 value="Female">
-          Female
-        </label>
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Prefer not to say">
+            Prefer not to say
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="gender"
-                 value="Non-binary">
-          Non-binary
-        </label>
+        </div>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="gender"
-                 value="Prefer not to say">
-          Prefer not to say
-        </label>
+        <!-- EDUCATION -->
 
-      </div>
+        <div class="question-card">
 
-      <!-- EDUCATION -->
+          <p class="question-title">
+            Highest Education Level
+          </p>
 
-      <div class="question-card">
+          <label class="radio-option">
+            <input type="radio"
+                   name="education"
+                   value="High school"
+                   required>
+            High school
+          </label>
 
-        <p class="question-title">
-          Highest Education Level
-        </p>
+          <label class="radio-option">
+            <input type="radio"
+                   name="education"
+                   value="Bachelor">
+            Bachelor's degree
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="education"
-                 value="High school"
-                 required>
-          High school
-        </label>
+          <label class="radio-option">
+            <input type="radio"
+                   name="education"
+                   value="Master">
+            Master's degree
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="education"
-                 value="Bachelor">
-          Bachelor's degree
-        </label>
+          <label class="radio-option">
+            <input type="radio"
+                   name="education"
+                   value="PhD">
+            PhD
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="education"
-                 value="Master">
-          Master's degree
-        </label>
+          <label class="radio-option">
+            <input type="radio"
+                   name="education"
+                   value="Other">
+            Other
+          </label>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="education"
-                 value="PhD">
-          PhD
-        </label>
+        </div>
 
-        <label class="radio-option">
-          <input type="radio"
-                 name="education"
-                 value="Other">
-          Other
-        </label>
+        <!-- AI FAMILIARITY -->
 
-      </div>
+        <div class="question-card">
 
-      <!-- AI -->
+          <p class="question-title">
+            How familiar are you with AI chatbots?
+          </p>
 
-      <!-- BUTTON -->
+          <label class="radio-option">
+            <input type="radio"
+                   name="aiFamiliarity"
+                   value="Not familiar"
+                   required>
+            Not familiar
+          </label>
 
-      <div class="button-container">
+          <label class="radio-option">
+            <input type="radio"
+                   name="aiFamiliarity"
+                   value="Slightly familiar">
+            Slightly familiar
+          </label>
 
-        <button type="submit"
-                class="primary-button">
+          <label class="radio-option">
+            <input type="radio"
+                   name="aiFamiliarity"
+                   value="Moderately familiar">
+            Moderately familiar
+          </label>
 
-          Continue
+          <label class="radio-option">
+            <input type="radio"
+                   name="aiFamiliarity"
+                   value="Very familiar">
+            Very familiar
+          </label>
 
-        </button>
+        </div>
 
-      </div>
+        <!-- BUTTON -->
 
-    </form>
+        <div class="button-container">
+
+          <button type="submit"
+                  class="primary-button">
+
+            Continue
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
 
   </div>
 
