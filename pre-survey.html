@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
+
+  <title>Pre-Survey</title>
+
+  <link rel="stylesheet"
+        href="css/style.css" />
+
+</head>
+
+<body>
+
+  <div class="page-container">
+
+    <!-- Progress -->
+
+    <div class="progress-wrapper">
+
+      <div class="progress-bar">
+
+        <div class="progress-fill"
+             style="width: 48%">
+        </div>
+
+      </div>
+
+      <p class="progress-text">
+        Step 3 of 6
+      </p>
+
+    </div>
+
+    <!-- Main Card -->
+
+    <div class="content-card">
+
+      <h1 class="page-title">
+        Pre-Survey
+      </h1>
+
+      <p class="page-description">
+
+        Please answer the following demographic questions
+        before interacting with the chatbot.
+
+      </p>
+
+      <!-- FORM -->
+
+      <form id="preSurveyForm">
+
+        <!-- AGE -->
+
+        <div class="question-block">
+
+          <label class="question-label">
+            Age Range
+          </label>
+
+          <select id="age"
+                  class="survey-input"
+                  required>
+
+            <option value="">
+              Select your age range
+            </option>
+
+            <option value="18-24">
+              18–24
+            </option>
+
+            <option value="25-34">
+              25–34
+            </option>
+
+            <option value="35-44">
+              35–44
+            </option>
+
+            <option value="45-54">
+              45–54
+            </option>
+
+            <option value="55+">
+              55+
+            </option>
+
+          </select>
+
+        </div>
+
+        <!-- GENDER -->
+
+        <div class="question-block">
+
+          <label class="question-label">
+            Gender
+          </label>
+
+          <select id="gender"
+                  class="survey-input"
+                  required>
+
+            <option value="">
+              Select your gender
+            </option>
+
+            <option value="Male">
+              Male
+            </option>
+
+            <option value="Female">
+              Female
+            </option>
+
+            <option value="Non-binary">
+              Non-binary
+            </option>
+
+            <option value="Prefer not to say">
+              Prefer not to say
+            </option>
+
+          </select>
+
+        </div>
+
+        <!-- EDUCATION -->
+
+        <div class="question-block">
+
+          <label class="question-label">
+            Highest Education Level
+          </label>
+
+          <select id="education"
+                  class="survey-input"
+                  required>
+
+            <option value="">
+              Select education level
+            </option>
+
+            <option value="High school">
+              High school
+            </option>
+
+            <option value="Bachelor">
+              Bachelor's degree
+            </option>
+
+            <option value="Master">
+              Master's degree
+            </option>
+
+            <option value="PhD">
+              PhD
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+        <!-- AI EXPERIENCE -->
+
+        <div class="question-block">
+
+          <label class="question-label">
+            How familiar are you with AI chatbots?
+          </label>
+
+          <select id="aiFamiliarity"
+                  class="survey-input"
+                  required>
+
+            <option value="">
+              Select an option
+            </option>
+
+            <option value="Not familiar">
+              Not familiar
+            </option>
+
+            <option value="Slightly familiar">
+              Slightly familiar
+            </option>
+
+            <option value="Moderately familiar">
+              Moderately familiar
+            </option>
+
+            <option value="Very familiar">
+              Very familiar
+            </option>
+
+          </select>
+
+        </div>
+
+        <!-- BUTTON -->
+
+        <button type="submit"
+                class="primary-button">
+
+          Continue
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // =====================================
+    // FORM SUBMISSION
+    // =====================================
+
+    document.getElementById(
+      "preSurveyForm"
+    ).addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        // Collect answers
+
+        const preSurveyData = {
+
+          age:
+            document.getElementById("age").value,
+
+          gender:
+            document.getElementById("gender").value,
+
+          education:
+            document.getElementById("education").value,
+
+          aiFamiliarity:
+            document.getElementById("aiFamiliarity").value,
+
+          timestamp:
+            new Date().toISOString()
+
+        };
+
+        // Save locally
+
+        localStorage.setItem(
+          "preSurveyData",
+          JSON.stringify(preSurveyData)
+        );
+
+        // Go to chatbot page
+
+        window.location.href =
+          "chat.html";
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
