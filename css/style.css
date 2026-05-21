@@ -268,3 +268,24 @@ body {
   border-color: #4F6480;
 
 }
+.radio-option {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 14px;
+
+  font-size: 17px;
+
+  color: #344054;
+
+}
+
+.radio-option input[type="radio"] {
+
+  transform: scale(1.2);
+
+}
