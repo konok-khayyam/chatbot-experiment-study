@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Chat Interaction</title>
+
+  <link rel="stylesheet"
+        href="css/style.css">
+
+  <style>
+
+    /* =========================================
+       CHAT PAGE LAYOUT
+    ========================================= */
+
+    .chat-page-card {
+
+      max-width: 1050px;
+
+      margin: 40px auto;
+
+      background: #FFFFFF;
+
+      border: 1px solid #E4E7EC;
+
+      border-radius: 18px;
+
+      padding: 50px;
+
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.05);
+
+    }
+
+    .chat-header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 25px;
+
+    }
+
+    .chat-timer {
+
+      background: #EEF2F6;
+
+      color: #2F3440;
+
+      padding: 10px 18px;
+
+      border-radius: 12px;
+
+      font-size: 18px;
+
+      font-weight: 700;
+
+      border: 1px solid #E4E7EC;
+
+    }
+
+    /* =========================================
+       CHAT CONTAINER
+    ========================================= */
+
+    #n8n-chat {
+
+      width: 100%;
+
+      height: 650px;
+
+      border-radius: 16px;
+
+      overflow: hidden;
+
+      border: 1px solid #E4E7EC;
+
+    }
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 768px) {
+
+      .chat-page-card {
+
+        padding: 25px;
+
+      }
+
+      #n8n-chat {
+
+        height: 600px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="page-container">
+
+    <!-- PROGRESS -->
+
+    <div class="progress-wrapper">
+
+      <div class="progress-bar">
+
+        <div class="progress-fill"
+             style="width: 66%;">
+        </div>
+
+      </div>
+
+      <p class="progress-text">
+        Step 4 of 6
+      </p>
+
+    </div>
+
+    <!-- MAIN CHAT CARD -->
+
+    <div class="chat-page-card">
+
+      <!-- HEADER -->
+
+      <div class="chat-header">
+
+        <div>
+
+          <h1 class="page-title">
+            Chat Interaction
+          </h1>
+
+          <p class="page-description">
+
+            Please interact with the chatbot naturally.
+            The conversation will end automatically after the timer finishes.
+
+          </p>
+
+        </div>
+
+        <!-- TIMER -->
+
+        <div id="studyTimer"
+             class="chat-timer">
+
+          03:00
+
+        </div>
+
+      </div>
+
+      <!-- CHAT -->
+
+      <div id="n8n-chat"></div>
+
+    </div>
+
+  </div>
+
+  <!-- N8N CHAT -->
+
+  <script type="module">
+
+    import Chatbot from
+      "https://cdn.n8nchatui.com/v1/embed.js";
+
+    /* =========================================
+       RANDOM CONDITION
+    ========================================= */
+
+    let condition =
+      localStorage.getItem("condition");
+
+    if (!condition) {
+
+      condition =
+        Math.floor(Math.random() * 4) + 1;
+
+      localStorage.setItem(
+        "condition",
+        condition
+      );
+
+    }
+
+    /* =========================================
+       PARTICIPANT IDS
+    ========================================= */
+
+    const prolificPID =
+      localStorage.getItem(
+        "PROLIFIC_PID"
+      );
+
+    const sessionID =
+      localStorage.getItem(
+        "SESSION_ID"
+      );
+
+    const studyID =
+      localStorage.getItem(
+        "STUDY_ID"
+      );
+
+    /* =========================================
+       CHAT START TIME
+    ========================================= */
+
+    localStorage.setItem(
+      "chatStartTime",
+      new Date().toISOString()
+    );
+
+    /* =========================================
+       CHATBOT INIT
+    ========================================= */
+
+    Chatbot.init({
+
+      target: "#n8n-chat",
+
+      n8nChatUrl:
+        "https://n8n.media.tuwien.ac.at/webhook/553640ac-4edf-461a-aa03-916374ecae33",
+
+      metadata: {
+
+        prolificPID:
+          prolificPID,
+
+        sessionID:
+          sessionID,
+
+        studyID:
+          studyID,
+
+        condition:
+          condition
+
+      },
+
+      theme: {
+
+        chatWindow: {
+
+          showTitle: false,
+
+          height: 650,
+
+          width: "100%",
+
+          backgroundColor:
+            "#FFFFFF",
+
+          borderRadiusStyle:
+            "rounded",
+
+          avatarSize: 42,
+
+          messageBorderRadius: 10,
+
+          fontSize: 18,
+
+          starterPromptFontSize: 15,
+
+          clearChatOnReload: false,
+
+          showScrollbar: true,
+
+          welcomeMessage:
+            "Hello! Thank you for participating in this study.",
+
+          botMessage: {
+
+            backgroundColor:
+              "#EEF2F6",
+
+            textColor:
+              "#2F3440",
+
+            showAvatar: true,
+
+            avatarSrc:
+              "https://www.svgrepo.com/show/334455/bot.svg",
+
+            showCopyToClipboardIcon: false
+
+          },
+
+          userMessage: {
+
+            backgroundColor:
+              "#D8C3B5",
+
+            textColor:
+              "#2F3440",
+
+            showAvatar: true,
+
+            avatarSrc:
+              "https://www.svgrepo.com/show/532363/user-alt-1.svg"
+
+          },
+
+          textInput: {
+
+            placeholder:
+              "Type your message...",
+
+            backgroundColor:
+              "#FFFFFF",
+
+            textColor:
+              "#1E1E1F",
+
+            sendButtonColor:
+              "#4F6480",
+
+            maxChars: 300,
+
+            maxCharsWarningMessage:
+              "Character limit exceeded.",
+
+            autoFocus: true,
+
+            enableInputHistory: true,
+
+            borderRadius: 10,
+
+            sendButtonBorderRadius: 10
+
+          }
+
+        }
+
+      }
+
+    });
+
+    /* =========================================
+       TIMER
+    ========================================= */
+
+    let totalTime = 180;
+
+    const timer =
+      document.getElementById(
+        "studyTimer"
+      );
+
+    const countdown =
+      setInterval(() => {
+
+        totalTime--;
+
+        const minutes =
+          String(
+            Math.floor(totalTime / 60)
+          ).padStart(2, "0");
+
+        const seconds =
+          String(
+            totalTime % 60
+          ).padStart(2, "0");
+
+        timer.innerText =
+          `${minutes}:${seconds}`;
+
+        /* END CHAT */
+
+        if (totalTime <= 0) {
+
+          clearInterval(countdown);
+
+          localStorage.setItem(
+            "chatEndTime",
+            new Date().toISOString()
+          );
+
+          document.getElementById(
+            "n8n-chat"
+          ).innerHTML = `
+
+            <div style="
+              height:100%;
+              display:flex;
+              flex-direction:column;
+              justify-content:center;
+              align-items:center;
+              text-align:center;
+              padding:40px;
+              font-family:Arial;
+            ">
+
+              <h2 style="
+                color:#2F3440;
+                margin-bottom:20px;
+              ">
+                Conversation Completed
+              </h2>
+
+              <p style="
+                font-size:18px;
+                color:#667085;
+                line-height:1.7;
+                max-width:600px;
+              ">
+
+                Thank you for participating in the conversation.
+
+                You will now continue to the next section of the study.
+
+              </p>
+
+            </div>
+
+          `;
+
+          /* REDIRECT */
+
+          setTimeout(() => {
+
+            window.location.href =
+              "post-survey.html";
+
+          }, 4000);
+
+        }
+
+      }, 1000);
+
+  </script>
+
+</body>
+
+</html>
