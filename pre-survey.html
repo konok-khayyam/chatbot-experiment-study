@@ -3,296 +3,252 @@
 
 <head>
 
-  <meta charset="UTF-8">
+    <meta charset="UTF-8" />
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
 
-  <title>Pre-Survey</title>
+    <title>Pre-Survey</title>
 
-  <link rel="stylesheet"
-        href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    />
 
 </head>
 
 <body>
 
-  <div class="page-container">
+    <div class="page-container">
 
-    <!-- PROGRESS -->
+        <!-- Progress -->
 
-    <div class="progress-wrapper">
+        <div class="progress-wrapper">
 
-      <div class="progress-bar">
+            <div class="progress-bar">
+                <div
+                    class="progress-fill"
+                    style="width: 60%;"
+                ></div>
+            </div>
 
-        <div class="progress-fill"
-             style="width: 60%;">
+            <div class="progress-text">
+                Step 3 of 5
+            </div>
+
         </div>
 
-      </div>
+        <!-- Main Card -->
 
-      <p class="progress-text">
-        Step 3 of 5
-      </p>
+        <div class="content-card">
+
+            <h1 class="page-title">
+                Pre-Survey
+            </h1>
+
+            <p class="page-description">
+                Please answer the following questions
+                before interacting with the chatbot.
+            </p>
+
+            <!-- AGE -->
+
+            <div class="question-card">
+
+                <div class="question-title">
+                    Age Range
+                </div>
+
+                <label class="radio-option">
+                    <input type="radio" name="age" />
+                    18–24
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="age" />
+                    25–34
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="age" />
+                    35–44
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="age" />
+                    45–54
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="age" />
+                    55+
+                </label>
+
+            </div>
+
+            <!-- GENDER -->
+
+            <div class="question-card">
+
+                <div class="question-title">
+                    Gender
+                </div>
+
+                <label class="radio-option">
+                    <input type="radio" name="gender" />
+                    Male
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="gender" />
+                    Female
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="gender" />
+                    Non-binary
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="gender" />
+                    Prefer not to say
+                </label>
+
+            </div>
+
+            <!-- EDUCATION -->
+
+            <div class="question-card">
+
+                <div class="question-title">
+                    Highest Education Level
+                </div>
+
+                <label class="radio-option">
+                    <input type="radio" name="education" />
+                    High school
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="education" />
+                    Bachelor's degree
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="education" />
+                    Master's degree
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="education" />
+                    PhD
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="education" />
+                    Other
+                </label>
+
+            </div>
+
+            <!-- FAMILIARITY -->
+
+            <div class="question-card">
+
+                <div class="question-title">
+                    How familiar are you with AI chatbots?
+                </div>
+
+                <label class="radio-option">
+                    <input type="radio" name="familiarity" />
+                    Not familiar
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="familiarity" />
+                    Slightly familiar
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="familiarity" />
+                    Moderately familiar
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="familiarity" />
+                    Very familiar
+                </label>
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <div class="button-container">
+
+                <button
+                    class="primary-button"
+                    id="continueButton"
+                >
+                    Continue
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <!-- MAIN CARD -->
+    <script>
 
-    <div class="survey-card">
+        /*
+        ==========================================
+        RANDOM CONDITION ASSIGNMENT
+        ==========================================
+        */
 
-      <h1 class="page-title">
-        Pre-Survey
-      </h1>
+        const conditions = [
 
-      <p class="page-description">
+            "condition_1",
 
-        Please answer the following questions before interacting with the chatbot.
+            "condition_2",
 
-      </p>
+            "condition_3",
 
-      <form id="preSurveyForm">
+            "condition_4"
 
-        <!-- AGE -->
+        ];
 
-        <div class="question-card">
+        const randomCondition =
 
-          <p class="question-title">
-            Age Range
-          </p>
+            conditions[
+                Math.floor(
+                    Math.random() * conditions.length
+                )
+            ];
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="age"
-                   value="18-24"
-                   required>
-            18–24
-          </label>
+        localStorage.setItem(
+            "condition",
+            randomCondition
+        );
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="age"
-                   value="25-34">
-            25–34
-          </label>
+        /*
+        ==========================================
+        CONTINUE BUTTON
+        ==========================================
+        */
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="age"
-                   value="35-44">
-            35–44
-          </label>
+        document
+            .getElementById("continueButton")
+            .addEventListener("click", () => {
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="age"
-                   value="45-54">
-            45–54
-          </label>
+                window.location.href =
+                    "chat.html";
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="age"
-                   value="55+">
-            55+
-          </label>
+            });
 
-        </div>
-
-        <!-- GENDER -->
-
-        <div class="question-card">
-
-          <p class="question-title">
-            Gender
-          </p>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Male"
-                   required>
-            Male
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Female">
-            Female
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Non-binary">
-            Non-binary
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Prefer not to say">
-            Prefer not to say
-          </label>
-
-        </div>
-
-        <!-- EDUCATION -->
-
-        <div class="question-card">
-
-          <p class="question-title">
-            Highest Education Level
-          </p>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="education"
-                   value="High school"
-                   required>
-            High school
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="education"
-                   value="Bachelor">
-            Bachelor's degree
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="education"
-                   value="Master">
-            Master's degree
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="education"
-                   value="PhD">
-            PhD
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="education"
-                   value="Other">
-            Other
-          </label>
-
-        </div>
-
-        <!-- AI FAMILIARITY -->
-
-        <div class="question-card">
-
-          <p class="question-title">
-            How familiar are you with AI chatbots?
-          </p>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="aiFamiliarity"
-                   value="Not familiar"
-                   required>
-            Not familiar
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="aiFamiliarity"
-                   value="Slightly familiar">
-            Slightly familiar
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="aiFamiliarity"
-                   value="Moderately familiar">
-            Moderately familiar
-          </label>
-
-          <label class="radio-option">
-            <input type="radio"
-                   name="aiFamiliarity"
-                   value="Very familiar">
-            Very familiar
-          </label>
-
-        </div>
-
-        <!-- BUTTON -->
-
-        <div class="button-container">
-
-          <button type="submit"
-                  class="primary-button">
-
-            Continue
-
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
-
-  </div>
-
-  <!-- JS -->
-
-  <script>
-
-    document
-      .getElementById("preSurveyForm")
-      .addEventListener(
-        "submit",
-        function(event) {
-
-          event.preventDefault();
-
-          const preSurveyData = {
-
-            age:
-              document.querySelector(
-                'input[name="age"]:checked'
-              ).value,
-
-            gender:
-              document.querySelector(
-                'input[name="gender"]:checked'
-              ).value,
-
-            education:
-              document.querySelector(
-                'input[name="education"]:checked'
-              ).value,
-
-            aiFamiliarity:
-              document.querySelector(
-                'input[name="aiFamiliarity"]:checked'
-              ).value,
-
-            timestamp:
-              new Date().toISOString()
-
-          };
-
-          localStorage.setItem(
-            "preSurveyData",
-            JSON.stringify(preSurveyData)
-          );
-
-          window.location.href =
-            "chat.html";
-
-        }
-      );
-
-  </script>
+    </script>
 
 </body>
 
