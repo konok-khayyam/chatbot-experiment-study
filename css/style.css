@@ -197,3 +197,27 @@ body {
   }
 
 }
+.video-wrapper {
+
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  border: 1px solid #ECEFF3;
+
+  background: #000;
+
+}
+
+.video-status {
+
+  margin-bottom: 35px;
+
+  color: #667085;
+
+  font-size: 16px;
+
+}
