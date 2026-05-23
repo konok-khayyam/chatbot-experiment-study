@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
 
   <meta name="viewport"
-        content="width=device-width, initial-scale=1.0"/>
+        content="width=device-width, initial-scale=1.0" />
 
   <title>Consent Form</title>
 
@@ -174,7 +174,7 @@
     let sessionId =
 
       localStorage.getItem(
-        "sessionId"
+        "session_id"
       );
 
     if (!sessionId) {
@@ -183,7 +183,7 @@
         generateSessionId();
 
       localStorage.setItem(
-        "sessionId",
+        "session_id",
         sessionId
       );
 
