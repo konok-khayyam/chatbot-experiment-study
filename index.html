@@ -117,49 +117,82 @@
   <script>
 
     // =====================================
+    // GENERATE SESSION ID
+    // =====================================
+
+    function generateSessionId() {
+
+      return (
+        "session-" +
+        Math.random()
+          .toString(36)
+          .substring(2, 10) +
+        "-" +
+        Date.now()
+      );
+
+    }
+
+    // =====================================
     // PROLIFIC PARAMETERS
     // =====================================
 
     const urlParams =
-      new URLSearchParams(window.location.search);
+      new URLSearchParams(
+        window.location.search
+      );
 
     const prolificPID =
-      urlParams.get("PROLIFIC_PID");
+      urlParams.get("PROLIFIC_PID")
+      || "test_pid";
 
     const studyID =
-      urlParams.get("STUDY_ID");
+      urlParams.get("STUDY_ID")
+      || "test_study";
 
-    const sessionID =
-      urlParams.get("SESSION_ID");
+    const prolificSessionID =
+      urlParams.get("SESSION_ID")
+      || "test_session";
 
-    // Save them locally
+    // =====================================
+    // CREATE SESSION
+    // =====================================
 
-    if (prolificPID) {
+    let sessionId =
+      localStorage.getItem(
+        "sessionId"
+      );
+
+    if (!sessionId) {
+
+      sessionId =
+        generateSessionId();
 
       localStorage.setItem(
-        "PROLIFIC_PID",
-        prolificPID
+        "sessionId",
+        sessionId
       );
 
     }
 
-    if (studyID) {
+    // =====================================
+    // SAVE PROLIFIC DATA
+    // =====================================
 
-      localStorage.setItem(
-        "STUDY_ID",
-        studyID
-      );
+    localStorage.setItem(
+      "PROLIFIC_PID",
+      prolificPID
+    );
 
-    }
+    localStorage.setItem(
+      "STUDY_ID",
+      studyID
+    );
 
-    if (sessionID) {
-
-      localStorage.setItem(
-        "SESSION_ID",
-        sessionID
-      );
-
-    }
+    localStorage.setItem(
+      "PROLIFIC_SESSION_ID",
+      prolificSessionID
+    );
 
     // =====================================
     // CONSENT LOGIC
@@ -185,26 +218,93 @@
       }
     );
 
+    // =====================================
+    // SAVE CONSENT DATA
+    // =====================================
+
     button.addEventListener(
       "click",
-      () => {
+      async () => {
+
+        button.disabled = true;
+
+        const consentTimestamp =
+          new Date().toISOString();
 
         localStorage.setItem(
           "consentGiven",
           "true"
         );
 
-        // timestamp
-
         localStorage.setItem(
           "consentTimestamp",
-          new Date().toISOString()
+          consentTimestamp
         );
 
-        // move to video page
+        try {
 
-        window.location.href =
-          "video.html";
+          const response =
+            await fetch(
+              "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body: JSON.stringify({
+
+                  session_id:
+                    sessionId,
+
+                  prolific_pid:
+                    prolificPID,
+
+                  study_id:
+                    studyID,
+
+                  prolific_session_id:
+                    prolificSessionID,
+
+                  consent: true
+
+                })
+
+              }
+            );
+
+          const data =
+            await response.json();
+
+          console.log(
+            "Consent saved:",
+            data
+          );
+
+          // Redirect only after successful save
+
+          window.location.href =
+            "video.html";
+
+        }
+
+        catch (error) {
+
+          console.error(
+            "Consent save error:",
+            error
+          );
+
+          alert(
+            "Error saving consent data. Please try again."
+          );
+
+          button.disabled = false;
+
+        }
 
       }
     );
