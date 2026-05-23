@@ -200,27 +200,29 @@
 
     </div>
 
-    <script>
+  <script>
 
-        /*
-        ==========================================
-        RANDOM CONDITION ASSIGNMENT
-        ==========================================
-        */
+    /*
+    ==========================================
+    RANDOM CONDITION ASSIGNMENT
+    ==========================================
+    */
 
-        const conditions = [
+    const conditions = [
 
-            "condition_1",
+        "condition_1",
+        "condition_2",
+        "condition_3",
+        "condition_4"
 
-            "condition_2",
+    ];
 
-            "condition_3",
+    let assignedCondition =
+        localStorage.getItem("condition");
 
-            "condition_4"
+    if (!assignedCondition) {
 
-        ];
-
-        const randomCondition =
+        assignedCondition =
 
             conditions[
                 Math.floor(
@@ -230,26 +232,134 @@
 
         localStorage.setItem(
             "condition",
-            randomCondition
+            assignedCondition
         );
 
-        /*
-        ==========================================
-        CONTINUE BUTTON
-        ==========================================
-        */
+    }
 
-        document
-            .getElementById("continueButton")
-            .addEventListener("click", () => {
+    /*
+    ==========================================
+    CONTINUE BUTTON
+    ==========================================
+    */
+
+    document
+        .getElementById("continueButton")
+        .addEventListener("click", async () => {
+
+            // =========================
+            // GET ANSWERS
+            // =========================
+
+            const age =
+                document.querySelector(
+                    'input[name="age"]:checked'
+                )?.parentElement.textContent.trim();
+
+            const gender =
+                document.querySelector(
+                    'input[name="gender"]:checked'
+                )?.parentElement.textContent.trim();
+
+            const education =
+                document.querySelector(
+                    'input[name="education"]:checked'
+                )?.parentElement.textContent.trim();
+
+            const familiarity =
+                document.querySelector(
+                    'input[name="familiarity"]:checked'
+                )?.parentElement.textContent.trim();
+
+            // =========================
+            // VALIDATION
+            // =========================
+
+            if (
+                !age ||
+                !gender ||
+                !education ||
+                !familiarity
+            ) {
+
+                alert(
+                    "Please answer all questions before continuing."
+                );
+
+                return;
+
+            }
+
+            // =========================
+            // STORE LOCALLY
+            // =========================
+
+            localStorage.setItem("age", age);
+            localStorage.setItem("gender", gender);
+            localStorage.setItem("education", education);
+            localStorage.setItem("familiarity", familiarity);
+
+            try {
+
+                // =========================
+                // SEND TO N8N
+                // =========================
+
+                await fetch(
+                    "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            action: "save_pre_survey",
+
+                            session_id:
+                                localStorage.getItem("session_id"),
+
+                            condition:
+                                localStorage.getItem("condition"),
+
+                            age: age,
+
+                            gender: gender,
+
+                            education: education,
+
+                            familiarity: familiarity
+
+                        })
+
+                    }
+                );
+
+                // =========================
+                // MOVE TO CHAT PAGE
+                // =========================
 
                 window.location.href =
                     "chat.html";
 
-            });
+            }
 
-    </script>
+            catch (error) {
 
+                console.error(error);
+
+                alert(
+                    "Error saving survey data."
+                );
+
+            }
+
+        });
+
+</script>
 </body>
 
 </html>
