@@ -2,12 +2,15 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
 
   <title>Post Survey</title>
 
-  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet"
+        href="css/style.css"/>
 
 </head>
 
@@ -20,7 +23,9 @@
     <div class="progress-wrapper">
 
       <div class="progress-bar">
-        <div class="progress-fill" style="width: 100%;"></div>
+        <div class="progress-fill"
+             style="width: 100%;">
+        </div>
       </div>
 
       <div class="progress-text">
@@ -50,27 +55,37 @@
         </div>
 
         <label class="radio-option">
-          <input type="radio" name="q1">
+          <input type="radio"
+                 name="q1"
+                 value="Strongly disagree">
           Strongly disagree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q1">
+          <input type="radio"
+                 name="q1"
+                 value="Disagree">
           Disagree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q1">
+          <input type="radio"
+                 name="q1"
+                 value="Neutral">
           Neutral
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q1">
+          <input type="radio"
+                 name="q1"
+                 value="Agree">
           Agree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q1">
+          <input type="radio"
+                 name="q1"
+                 value="Strongly agree">
           Strongly agree
         </label>
 
@@ -85,27 +100,37 @@
         </div>
 
         <label class="radio-option">
-          <input type="radio" name="q2">
+          <input type="radio"
+                 name="q2"
+                 value="Strongly disagree">
           Strongly disagree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q2">
+          <input type="radio"
+                 name="q2"
+                 value="Disagree">
           Disagree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q2">
+          <input type="radio"
+                 name="q2"
+                 value="Neutral">
           Neutral
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q2">
+          <input type="radio"
+                 name="q2"
+                 value="Agree">
           Agree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q2">
+          <input type="radio"
+                 name="q2"
+                 value="Strongly agree">
           Strongly agree
         </label>
 
@@ -120,27 +145,37 @@
         </div>
 
         <label class="radio-option">
-          <input type="radio" name="q3">
+          <input type="radio"
+                 name="q3"
+                 value="Strongly disagree">
           Strongly disagree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q3">
+          <input type="radio"
+                 name="q3"
+                 value="Disagree">
           Disagree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q3">
+          <input type="radio"
+                 name="q3"
+                 value="Neutral">
           Neutral
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q3">
+          <input type="radio"
+                 name="q3"
+                 value="Agree">
           Agree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q3">
+          <input type="radio"
+                 name="q3"
+                 value="Strongly agree">
           Strongly agree
         </label>
 
@@ -155,27 +190,37 @@
         </div>
 
         <label class="radio-option">
-          <input type="radio" name="q4">
+          <input type="radio"
+                 name="q4"
+                 value="Strongly disagree">
           Strongly disagree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q4">
+          <input type="radio"
+                 name="q4"
+                 value="Disagree">
           Disagree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q4">
+          <input type="radio"
+                 name="q4"
+                 value="Neutral">
           Neutral
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q4">
+          <input type="radio"
+                 name="q4"
+                 value="Agree">
           Agree
         </label>
 
         <label class="radio-option">
-          <input type="radio" name="q4">
+          <input type="radio"
+                 name="q4"
+                 value="Strongly agree">
           Strongly agree
         </label>
 
@@ -190,10 +235,10 @@
         </div>
 
         <textarea
+          id="feedback"
           class="survey-input"
           rows="6"
-          placeholder="Write your response here..."
-        ></textarea>
+          placeholder="Write your response here..."></textarea>
 
       </div>
 
@@ -202,10 +247,11 @@
       <div class="button-container">
 
         <button
-          class="primary-button"
-          onclick="window.location.href='debrief.html'"
-        >
+          id="continueBtn"
+          class="primary-button">
+
           Continue
+
         </button>
 
       </div>
@@ -213,6 +259,133 @@
     </div>
 
   </div>
+
+  <script>
+
+    const continueBtn =
+
+      document.getElementById(
+        "continueBtn"
+      );
+
+    continueBtn.addEventListener(
+      "click",
+      async () => {
+
+        const q1 =
+
+          document.querySelector(
+            'input[name="q1"]:checked'
+          )?.value;
+
+        const q2 =
+
+          document.querySelector(
+            'input[name="q2"]:checked'
+          )?.value;
+
+        const q3 =
+
+          document.querySelector(
+            'input[name="q3"]:checked'
+          )?.value;
+
+        const q4 =
+
+          document.querySelector(
+            'input[name="q4"]:checked'
+          )?.value;
+
+        const feedback =
+
+          document.getElementById(
+            "feedback"
+          ).value;
+
+        if (!q1 || !q2 || !q3 || !q4) {
+
+          alert(
+            "Please answer all questions."
+          );
+
+          return;
+
+        }
+
+        continueBtn.disabled = true;
+
+        try {
+
+          const response =
+
+            await fetch(
+              "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body: JSON.stringify({
+
+                  action:
+                    "save_post_survey",
+
+                  session_id:
+                    localStorage.getItem(
+                      "session_id"
+                    ),
+
+                  q1: q1,
+
+                  q2: q2,
+
+                  q3: q3,
+
+                  q4: q4,
+
+                  feedback: feedback
+
+                })
+
+              }
+            );
+
+          const data =
+            await response.json();
+
+          console.log(
+            "Post survey saved:",
+            data
+          );
+
+          window.location.href =
+            "debrief.html";
+
+        }
+
+        catch (error) {
+
+          console.error(
+            "Post survey error:",
+            error
+          );
+
+          alert(
+            "Error saving post survey."
+          );
+
+          continueBtn.disabled = false;
+
+        }
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>
