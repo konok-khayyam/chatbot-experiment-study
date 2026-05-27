@@ -1,1 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+
+  <title>Consent Form</title>
+
+  <link rel="stylesheet"
+        href="css/style.css" />
+
+</head>
+
+<body>
+
+  <div class="page-container">
+
+    <!-- Progress -->
+
+    <div class="progress-wrapper">
+
+      <div class="progress-bar">
+
+        <div class="progress-fill"
+             style="width: 20%">
+        </div>
+
+      </div>
+
+      <p class="progress-text">
+        Step 1 of 5
+      </p>
+
+    </div>
+
+    <!-- Card -->
+
+    <div class="content-card">
+
+      <h1 class="page-title">
+        Consent Form
+      </h1>
+
+      <p class="page-description">
+
+        You are invited to participate in a research study
+        investigating interactions with conversational AI systems.
+
+      </p>
+
+      <div class="consent-section">
+
+        <h3>
+          Before participating, please note:
+        </h3>
+
+        <ul>
+
+          <li>
+            Your participation is voluntary.
+          </li>
+
+          <li>
+            You may stop participation at any time.
+          </li>
+
+          <li>
+            Your responses will be anonymized.
+          </li>
+
+          <li>
+            The interaction data may be analyzed
+            for research purposes.
+          </li>
+
+          <li>
+            The study includes interaction
+            with an AI chatbot.
+          </li>
+
+        </ul>
+
+      </div>
+
+      <!-- Checkbox -->
+
+      <label class="checkbox-wrapper">
+
+        <input type="checkbox"
+               id="consentCheckbox" />
+
+        <span>
+          I have read the information above and
+          agree to participate in this study.
+        </span>
+
+      </label>
+
+      <!-- Button -->
+
+      <button id="continueBtn"
+              class="primary-button"
+              disabled>
+
+        Continue
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // =====================================
+    // GENERATE SESSION ID
+    // =====================================
+
+    function generateSessionId() {
+
+      return (
+
+        "session-" +
+
+        Math.random()
+          .toString(36)
+          .substring(2, 10)
+
+        +
+
+        "-"
+
+        +
+
+        Date.now()
+
+      );
+
+    }
+
+    // =====================================
+    // PROLIFIC PARAMETERS
+    // =====================================
+
+    const urlParams =
+
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const prolificPID =
+
+      urlParams.get("PROLIFIC_PID")
+      || "test_pid";
+
+    const studyID =
+
+      urlParams.get("STUDY_ID")
+      || "test_study";
+
+    const prolificSessionID =
+
+      urlParams.get("SESSION_ID")
+      || "test_session";
+
+    // =====================================
+    // CREATE SESSION
+    // =====================================
+
+    let sessionId =
+
+      localStorage.getItem(
+        "session_id"
+      );
+
+    if (!sessionId) {
+
+      sessionId =
+        generateSessionId();
+
+      localStorage.setItem(
+        "session_id",
+        sessionId
+      );
+
+    }
+
+    // =====================================
+    // SAVE PROLIFIC DATA
+    // =====================================
+
+    localStorage.setItem(
+      "PROLIFIC_PID",
+      prolificPID
+    );
+
+    localStorage.setItem(
+      "STUDY_ID",
+      studyID
+    );
+
+    localStorage.setItem(
+      "PROLIFIC_SESSION_ID",
+      prolificSessionID
+    );
+
+    // =====================================
+    // CONSENT LOGIC
+    // =====================================
+
+    const checkbox =
+
+      document.getElementById(
+        "consentCheckbox"
+      );
+
+    const button =
+
+      document.getElementById(
+        "continueBtn"
+      );
+
+    checkbox.addEventListener(
+      "change",
+      () => {
+
+        button.disabled =
+          !checkbox.checked;
+
+      }
+    );
+
+    // =====================================
+    // SAVE CONSENT DATA
+    // =====================================
+
+    button.addEventListener(
+      "click",
+      async () => {
+
+        button.disabled = true;
+
+        const consentTimestamp =
+
+          new Date().toISOString();
+
+        localStorage.setItem(
+          "consentGiven",
+          "true"
+        );
+
+        localStorage.setItem(
+          "consentTimestamp",
+          consentTimestamp
+        );
+
+        try {
+
+          const response =
+
+            await fetch(
+              "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body: JSON.stringify({
+
+                  // IMPORTANT FOR SWITCH NODE
+
+                  action:
+                    "save_consent",
+
+                  // PARTICIPANT DATA
+
+                  session_id:
+                    sessionId,
+
+                  prolific_pid:
+                    prolificPID,
+
+                  study_id:
+                    studyID,
+
+                  prolific_session_id:
+                    prolificSessionID,
+
+                  consent: true
+
+                })
+
+              }
+            );
+
+          const data =
+            await response.json();
+
+          console.log(
+            "Consent saved:",
+            data
+          );
+
+          // REDIRECT
+
+          window.location.href =
+            "video.html";
+
+        }
+
+        catch (error) {
+
+          console.error(
+            "Consent save error:",
+            error
+          );
+
+          alert(
+            "Error saving consent data. Please try again."
+          );
+
+          button.disabled = false;
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
