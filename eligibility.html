@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+
+  <title>Eligibility Check</title>
+
+  <link rel="stylesheet"
+        href="css/style.css" />
+
+</head>
+
+<body>
+
+  <div class="page-container">
+
+    <!-- Progress -->
+
+    <div class="progress-wrapper">
+
+      <div class="progress-bar">
+
+        <div class="progress-fill"
+             style="width: 18%">
+        </div>
+
+      </div>
+
+      <p class="progress-text">
+        Eligibility Check
+      </p>
+
+    </div>
+
+    <!-- Main Card -->
+
+    <div class="content-card">
+
+      <h1 class="page-title">
+        Eligibility Check
+      </h1>
+
+      <p class="page-description">
+
+        Before continuing, please confirm the following statements.
+
+      </p>
+
+      <!-- Question 1 -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Are you at least 18 years old?
+        </div>
+
+        <label class="radio-option">
+
+          <input type="radio"
+                 name="age_check"
+                 value="Yes" />
+
+          Yes
+
+        </label>
+
+        <label class="radio-option">
+
+          <input type="radio"
+                 name="age_check"
+                 value="No" />
+
+          No
+
+        </label>
+
+      </div>
+
+      <!-- Question 2 -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Are you able to complete the study without major interruptions?
+        </div>
+
+        <label class="radio-option">
+
+          <input type="radio"
+                 name="interruption_check"
+                 value="Yes" />
+
+          Yes
+
+        </label>
+
+        <label class="radio-option">
+
+          <input type="radio"
+                 name="interruption_check"
+                 value="No" />
+
+          No
+
+        </label>
+
+      </div>
+
+      <!-- Question 3 -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Are you using a device with stable internet access and audio/video capability?
+        </div>
+
+        <label class="radio-option">
+
+          <input type="radio"
+                 name="technical_check"
+                 value="Yes" />
+
+          Yes
+
+        </label>
+
+        <label class="radio-option">
+
+          <input type="radio"
+                 name="technical_check"
+                 value="No" />
+
+          No
+
+        </label>
+
+      </div>
+
+      <!-- Question 4 -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Are you comfortable proceeding with study materials that may contain controversial political or social content presented in a fictional or simulated context?
+        </div>
+
+        <label class="radio-option">
+
+          <input type="radio"
+                 name="content_check"
+                 value="Yes" />
+
+          Yes
+
+        </label>
+
+        <label class="radio-option">
+
+          <input type="radio"
+                 name="content_check"
+                 value="No" />
+
+          No
+
+        </label>
+
+      </div>
+
+      <!-- Continue -->
+
+      <div class="button-container">
+
+        <button
+          id="continueBtn"
+          class="primary-button">
+
+          Continue
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const continueBtn =
+
+      document.getElementById(
+        "continueBtn"
+      );
+
+    continueBtn.addEventListener(
+      "click",
+      async () => {
+
+        const ageCheck =
+
+          document.querySelector(
+            'input[name="age_check"]:checked'
+          )?.value;
+
+        const interruptionCheck =
+
+          document.querySelector(
+            'input[name="interruption_check"]:checked'
+          )?.value;
+
+        const technicalCheck =
+
+          document.querySelector(
+            'input[name="technical_check"]:checked'
+          )?.value;
+
+        const contentCheck =
+
+          document.querySelector(
+            'input[name="content_check"]:checked'
+          )?.value;
+
+        // =====================================
+        // VALIDATION
+        // =====================================
+
+        if (
+          !ageCheck ||
+          !interruptionCheck ||
+          !technicalCheck ||
+          !contentCheck
+        ) {
+
+          alert(
+            "Please answer all questions before continuing."
+          );
+
+          return;
+
+        }
+
+        // =====================================
+        // ELIGIBILITY LOGIC
+        // =====================================
+
+        const eligible =
+
+          ageCheck === "Yes" &&
+          interruptionCheck === "Yes" &&
+          technicalCheck === "Yes" &&
+          contentCheck === "Yes";
+
+        // =====================================
+        // SAVE LOCALLY
+        // =====================================
+
+        localStorage.setItem(
+          "eligible",
+          eligible
+        );
+
+        // =====================================
+        // ROUTING
+        // =====================================
+
+        if (eligible) {
+
+          window.location.href =
+            "pre-survey.html";
+
+        }
+
+        else {
+
+          window.location.href =
+            "termination.html";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
