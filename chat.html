@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +47,7 @@
 
       align-items: center;
 
-      padding: 28px;
+      padding: 24px;
 
       box-sizing: border-box;
 
@@ -61,9 +60,9 @@
     .progress-wrapper {
 
       width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
 
-      margin-bottom: 18px;
+      margin-bottom: 20px;
 
     }
 
@@ -100,53 +99,15 @@
     }
 
     /* =========================================
-       INSTRUCTION CARD
-    ========================================= */
-
-    .instruction-card {
-
-      width: 100%;
-      max-width: 1100px;
-
-      background: #FFFFFF;
-
-      border: 1px solid #E4E7EC;
-
-      border-radius: 18px;
-
-      padding: 24px 30px;
-
-      margin-bottom: 20px;
-
-      box-sizing: border-box;
-
-      box-shadow:
-        0 2px 8px rgba(0,0,0,0.04);
-
-    }
-
-    .instruction-text {
-
-      margin: 0;
-
-      font-size: 17px;
-
-      line-height: 1.9;
-
-      color: #000000;
-
-    }
-
-    /* =========================================
        CHAT CONTAINER
     ========================================= */
 
     .chat-container {
 
       width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
 
-      height: calc(100vh - 260px);
+      height: calc(100vh - 110px);
 
       background: #FFFFFF;
 
@@ -166,12 +127,12 @@
     }
 
     /* =========================================
-       HEADER
+       CHAT HEADER
     ========================================= */
 
     .chat-header {
 
-      height: 88px;
+      height: 95px;
 
       border-bottom: 1px solid #ECEFF3;
 
@@ -181,7 +142,7 @@
 
       justify-content: space-between;
 
-      padding: 0 32px;
+      padding: 0 38px;
 
       background: #FFFFFF;
 
@@ -191,7 +152,7 @@
 
     .chat-title {
 
-      font-size: 30px;
+      font-size: 34px;
 
       font-weight: 700;
 
@@ -205,15 +166,15 @@
 
       color: #2F3440;
 
-      padding: 12px 18px;
+      padding: 14px 22px;
 
-      border-radius: 12px;
+      border-radius: 14px;
 
-      font-size: 22px;
+      font-size: 24px;
 
       font-weight: 700;
 
-      min-width: 95px;
+      min-width: 110px;
 
       text-align: center;
 
@@ -229,13 +190,13 @@
 
       overflow-y: auto;
 
-      padding: 30px;
+      padding: 34px;
 
       display: flex;
 
       flex-direction: column;
 
-      gap: 24px;
+      gap: 26px;
 
       background: #FCFCFD;
 
@@ -271,7 +232,7 @@
 
       font-size: 18px;
 
-      line-height: 1.7;
+      line-height: 1.8;
 
       word-wrap: break-word;
 
@@ -331,9 +292,9 @@
 
       border: 1px solid #D0D5DD;
 
-      border-radius: 14px;
+      border-radius: 16px;
 
-      padding: 16px 18px;
+      padding: 18px 20px;
 
       font-size: 17px;
 
@@ -343,7 +304,7 @@
 
       outline: none;
 
-      min-height: 28px;
+      min-height: 30px;
 
       max-height: 140px;
 
@@ -362,18 +323,18 @@
 
     .send-button {
 
-      width: 58px;
-      height: 58px;
+      width: 60px;
+      height: 60px;
 
       border: none;
 
-      border-radius: 14px;
+      border-radius: 16px;
 
       background: #4F6480;
 
       color: white;
 
-      font-size: 22px;
+      font-size: 24px;
 
       cursor: pointer;
 
@@ -396,10 +357,106 @@
     }
 
     /* =========================================
-       MODAL
+       INSTRUCTION MODAL
     ========================================= */
 
-    .modal-overlay {
+    .instruction-overlay {
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,0.45);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 9999;
+
+      padding: 20px;
+
+      box-sizing: border-box;
+
+    }
+
+    .instruction-modal {
+
+      width: 100%;
+      max-width: 720px;
+
+      background: #FFFFFF;
+
+      border-radius: 20px;
+
+      padding: 42px;
+
+      box-shadow:
+        0 12px 40px rgba(0,0,0,0.18);
+
+    }
+
+    .instruction-title {
+
+      margin-top: 0;
+
+      margin-bottom: 24px;
+
+      font-size: 34px;
+
+      font-weight: 700;
+
+      color: #2F3440;
+
+    }
+
+    .instruction-text {
+
+      font-size: 18px;
+
+      line-height: 1.9;
+
+      color: #2F3440;
+
+      margin-bottom: 36px;
+
+    }
+
+    .ready-button {
+
+      background: #4F6480;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 12px;
+
+      padding: 16px 34px;
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+
+    }
+
+    .ready-button:hover {
+
+      background: #3E526B;
+
+    }
+
+    /* =========================================
+       COMPLETION MODAL
+    ========================================= */
+
+    .completion-overlay {
 
       position: fixed;
 
@@ -417,10 +474,9 @@
 
     }
 
-    .modal-card {
+    .completion-modal {
 
       width: 90%;
-
       max-width: 520px;
 
       background: white;
@@ -436,7 +492,7 @@
 
     }
 
-    .modal-title {
+    .completion-title {
 
       font-size: 32px;
 
@@ -448,7 +504,7 @@
 
     }
 
-    .modal-text {
+    .completion-text {
 
       font-size: 18px;
 
@@ -500,27 +556,9 @@
 
       }
 
-      .instruction-card {
-
-        padding: 20px;
-
-      }
-
-      .instruction-text {
-
-        font-size: 15px;
-
-      }
-
-      .chat-container {
-
-        height: calc(100vh - 300px);
-
-      }
-
       .chat-title {
 
-        font-size: 24px;
+        font-size: 26px;
 
       }
 
@@ -532,9 +570,21 @@
 
       .message-bubble {
 
-        max-width: 90%;
+        max-width: 92%;
 
         font-size: 16px;
+
+      }
+
+      .instruction-modal {
+
+        padding: 28px;
+
+      }
+
+      .instruction-title {
+
+        font-size: 28px;
 
       }
 
@@ -545,6 +595,54 @@
 </head>
 
 <body>
+
+  <!-- =========================================
+       INSTRUCTION POPUP
+  ========================================= -->
+
+  <div
+    class="instruction-overlay"
+    id="instructionOverlay"
+  >
+
+    <div class="instruction-modal">
+
+      <h1 class="instruction-title">
+        Chat Interaction
+      </h1>
+
+      <div class="instruction-text">
+
+        You will now discuss the video with an AI chatbot.
+
+        Please respond naturally and in your own words.
+
+        The conversation will last approximately 6 minutes.
+
+        Do not use external tools, websites, or AI systems while completing this task.
+
+        There are no wrong answers here.
+
+        <br><br>
+
+        Click “Ready” when you are ready to begin.
+
+      </div>
+
+      <button
+        class="ready-button"
+        onclick="startChat()"
+      >
+        Ready
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- =========================================
+       MAIN PAGE
+  ========================================= -->
 
   <div class="chat-page">
 
@@ -562,26 +660,6 @@
 
     </div>
 
-    <!-- Instructions -->
-
-    <div class="instruction-card">
-
-      <p class="instruction-text">
-
-        You will now discuss the video with an AI chatbot.
-
-        Please respond naturally and in your own words.
-
-        The conversation will last approximately 6 minutes.
-
-        Do not use external tools, websites, or AI systems while completing this task.
-
-        There are no wrong answers here.
-
-      </p>
-
-    </div>
-
     <!-- Chat Container -->
 
     <div class="chat-container">
@@ -594,7 +672,10 @@
           Chat Interaction
         </div>
 
-        <div class="timer-box" id="timer">
+        <div
+          class="timer-box"
+          id="timer"
+        >
           06:00
         </div>
 
@@ -606,16 +687,6 @@
         class="chat-messages"
         id="chatMessages"
       >
-
-        <div class="message-row bot-row">
-
-          <div class="message-bubble bot-message">
-
-            Hello! Thank you for participating in this study.
-
-          </div>
-
-        </div>
 
       </div>
 
@@ -646,26 +717,28 @@
 
   </div>
 
-  <!-- MODAL -->
+  <!-- =========================================
+       COMPLETION MODAL
+  ========================================= -->
 
   <div
-    class="modal-overlay"
+    class="completion-overlay"
     id="completionModal"
   >
 
-    <div class="modal-card">
+    <div class="completion-modal">
 
-      <div class="modal-title">
+      <div class="completion-title">
         Interaction Complete
       </div>
 
-      <div class="modal-text">
+      <div class="completion-text">
 
-        Thank you for completing the interaction phase.
+        Thank you for completing the interaction.
 
         <br><br>
 
-        Please continue to the final survey section.
+        Please continue to the next section.
 
       </div>
 
@@ -705,6 +778,25 @@
 
     const chatMessages =
       document.getElementById("chatMessages");
+
+    /*
+    ==========================================
+    START CHAT
+    ==========================================
+    */
+
+    function startChat() {
+
+      document.getElementById(
+        "instructionOverlay"
+      ).style.display = "none";
+
+      addMessage(
+        "Hello! Thank you for participating in this study.",
+        "bot"
+      );
+
+    }
 
     /*
     ==========================================
@@ -920,4 +1012,3 @@
 </body>
 
 </html>
-```
