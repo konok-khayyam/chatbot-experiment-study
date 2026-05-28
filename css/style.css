@@ -526,3 +526,58 @@ body {
   }
 
 }
+/* =========================================
+   LIKERT SCALE
+========================================= */
+
+.likert-labels {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+
+  font-size: 15px;
+
+  color: #667085;
+
+}
+
+.likert-scale {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+}
+
+.likert-scale label {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 16px;
+
+  color: #2F3440;
+
+}
+
+.reverse-coded {
+
+  margin-bottom: 12px;
+
+  font-size: 14px;
+
+  color: #667085;
+
+  font-style: italic;
+
+}
