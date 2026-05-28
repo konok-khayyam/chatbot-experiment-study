@@ -10,9 +10,13 @@ body {
     Helvetica,
     sans-serif;
 
-  color: #2F3440;
+  color: #000000;
 
 }
+
+/* =========================================
+   PAGE LAYOUT
+========================================= */
 
 .page-container {
 
@@ -24,6 +28,25 @@ body {
 
 }
 
+.content-card {
+
+  background: #FFFFFF;
+
+  border: 1px solid #E4E7EC;
+
+  border-radius: 14px;
+
+  padding: 50px;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.04);
+
+}
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
 .progress-wrapper {
 
   margin-bottom: 28px;
@@ -33,6 +56,7 @@ body {
 .progress-bar {
 
   width: 100%;
+
   height: 10px;
 
   background: #E4E7EC;
@@ -57,26 +81,15 @@ body {
 
   margin-top: 10px;
 
-  color: #667085;
+  color: #000000;
 
   font-size: 15px;
 
 }
 
-.content-card {
-
-  background: #FFFFFF;
-
-  border: 1px solid #E4E7EC;
-
-  border-radius: 14px;
-
-  padding: 50px;
-
-  box-shadow:
-    0 2px 8px rgba(0,0,0,0.04);
-
-}
+/* =========================================
+   TYPOGRAPHY
+========================================= */
 
 .page-title {
 
@@ -86,6 +99,8 @@ body {
 
   font-weight: 700;
 
+  color: #000000;
+
 }
 
 .page-description {
@@ -94,9 +109,47 @@ body {
 
   line-height: 1.7;
 
-  color: #667085;
+  color: #000000;
 
   margin-bottom: 35px;
+
+}
+
+.question-title {
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  color: #000000;
+
+  margin-bottom: 16px;
+
+}
+
+.question-label {
+
+  display: block;
+
+  margin-bottom: 12px;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  color: #000000;
+
+}
+
+/* =========================================
+   CONSENT PAGE
+========================================= */
+
+.consent-scroll-card {
+
+  max-height: 82vh;
+
+  overflow-y: auto;
 
 }
 
@@ -110,6 +163,16 @@ body {
 
   margin-bottom: 18px;
 
+  color: #000000;
+
+}
+
+.consent-section p {
+
+  line-height: 1.8;
+
+  color: #000000;
+
 }
 
 .consent-section ul {
@@ -118,7 +181,13 @@ body {
 
   line-height: 1.9;
 
-  color: #667085;
+  color: #000000;
+
+}
+
+.consent-checkbox-group {
+
+  margin-top: 40px;
 
 }
 
@@ -130,11 +199,13 @@ body {
 
   gap: 14px;
 
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 
   font-size: 17px;
 
-  line-height: 1.6;
+  line-height: 1.7;
+
+  color: #000000;
 
 }
 
@@ -145,6 +216,10 @@ body {
   transform: scale(1.2);
 
 }
+
+/* =========================================
+   BUTTONS
+========================================= */
 
 .primary-button {
 
@@ -182,24 +257,24 @@ body {
 
 }
 
-@media (max-width: 768px) {
+.button-container {
 
-  .content-card {
+  display: flex;
 
-    padding: 30px;
+  justify-content: center;
 
-  }
-
-  .page-title {
-
-    font-size: 34px;
-
-  }
+  margin-top: 35px;
 
 }
+
+/* =========================================
+   VIDEO
+========================================= */
+
 .video-wrapper {
 
   margin-top: 30px;
+
   margin-bottom: 20px;
 
   border-radius: 14px;
@@ -216,28 +291,19 @@ body {
 
   margin-bottom: 35px;
 
-  color: #667085;
+  color: #000000;
 
   font-size: 16px;
 
 }
+
+/* =========================================
+   FORMS / INPUTS
+========================================= */
+
 .question-block {
 
   margin-bottom: 32px;
-
-}
-
-.question-label {
-
-  display: block;
-
-  margin-bottom: 12px;
-
-  font-size: 18px;
-
-  font-weight: 600;
-
-  color: #2F3440;
 
 }
 
@@ -255,7 +321,7 @@ body {
 
   background: #FFFFFF;
 
-  color: #2F3440;
+  color: #000000;
 
   box-sizing: border-box;
 
@@ -268,29 +334,9 @@ body {
   border-color: #4F6480;
 
 }
-.radio-option {
 
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  margin-bottom: 14px;
-
-  font-size: 17px;
-
-  color: #344054;
-
-}
-
-.radio-option input[type="radio"] {
-
-  transform: scale(1.2);
-
-}
 /* =========================================
-   PRE SURVEY LAYOUT
+   PRE / POST SURVEY
 ========================================= */
 
 .survey-card {
@@ -312,15 +358,11 @@ body {
 
 }
 
-/* =========================================
-   QUESTION CARDS
-========================================= */
-
 .question-card {
 
   background: #ffffff;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid #E5E7EB;
 
   border-radius: 12px;
 
@@ -330,18 +372,6 @@ body {
 
   box-shadow:
     0 1px 4px rgba(0,0,0,0.04);
-
-}
-
-.question-title {
-
-  font-size: 20px;
-
-  font-weight: 600;
-
-  color: #1f2937;
-
-  margin-bottom: 16px;
 
 }
 
@@ -361,7 +391,7 @@ body {
 
   font-size: 17px;
 
-  color: #374151;
+  color: #000000;
 
   cursor: pointer;
 
@@ -374,15 +404,21 @@ body {
 }
 
 /* =========================================
-   BUTTON CONTAINER
+   MOBILE
 ========================================= */
 
-.button-container {
+@media (max-width: 768px) {
 
-  display: flex;
+  .content-card {
 
-  justify-content: center;
+    padding: 30px;
 
-  margin-top: 35px;
+  }
+
+  .page-title {
+
+    font-size: 34px;
+
+  }
 
 }
