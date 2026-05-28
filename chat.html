@@ -779,6 +779,21 @@
     const chatMessages =
       document.getElementById("chatMessages");
 
+    const timerElement =
+      document.getElementById("timer");
+
+    /*
+    ==========================================
+    TIMER VARIABLES
+    ==========================================
+    */
+
+    let totalSeconds = 360;
+
+    let countdownStarted = false;
+
+    let countdown;
+
     /*
     ==========================================
     START CHAT
@@ -795,6 +810,58 @@
         "Hello! Thank you for participating in this study.",
         "bot"
       );
+
+      startTimer();
+
+    }
+
+    /*
+    ==========================================
+    START TIMER
+    ==========================================
+    */
+
+    function startTimer() {
+
+      if (countdownStarted) return;
+
+      countdownStarted = true;
+
+      countdown = setInterval(() => {
+
+        const minutes =
+          Math.floor(totalSeconds / 60);
+
+        const seconds =
+          totalSeconds % 60;
+
+        timerElement.textContent =
+
+          String(minutes).padStart(2, '0')
+
+          + ":"
+
+          +
+
+          String(seconds).padStart(2, '0');
+
+        totalSeconds--;
+
+        if (totalSeconds < 0) {
+
+          clearInterval(countdown);
+
+          userInput.disabled = true;
+
+          sendButton.disabled = true;
+
+          document.getElementById(
+            "completionModal"
+          ).style.display = "flex";
+
+        }
+
+      }, 1000);
 
     }
 
@@ -945,54 +1012,6 @@
 
       }
     );
-
-    /*
-    ==========================================
-    TIMER
-    ==========================================
-    */
-
-    let totalSeconds = 360;
-
-    const timerElement =
-      document.getElementById("timer");
-
-    const countdown =
-      setInterval(() => {
-
-        const minutes =
-          Math.floor(totalSeconds / 60);
-
-        const seconds =
-          totalSeconds % 60;
-
-        timerElement.textContent =
-
-          String(minutes).padStart(2, '0')
-
-          + ":"
-
-          +
-
-          String(seconds).padStart(2, '0');
-
-        totalSeconds--;
-
-        if (totalSeconds < 0) {
-
-          clearInterval(countdown);
-
-          userInput.disabled = true;
-
-          sendButton.disabled = true;
-
-          document.getElementById(
-            "completionModal"
-          ).style.display = "flex";
-
-        }
-
-      }, 1000);
 
     /*
     ==========================================
