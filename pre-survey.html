@@ -1,365 +1,675 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
 
-    <title>Pre-Survey</title>
+  <title>Pre-Survey</title>
 
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    />
+  <link rel="stylesheet"
+        href="css/style.css" />
 
 </head>
 
 <body>
 
-    <div class="page-container">
+  <div class="page-container">
 
-        <!-- Progress -->
+    <!-- Progress -->
 
-        <div class="progress-wrapper">
+    <div class="progress-wrapper">
 
-            <div class="progress-bar">
-                <div
-                    class="progress-fill"
-                    style="width: 60%;"
-                ></div>
-            </div>
+      <div class="progress-bar">
 
-            <div class="progress-text">
-                Step 3 of 5
-            </div>
-
+        <div class="progress-fill"
+             id="surveyProgress"
+             style="width: 28%">
         </div>
 
-        <!-- Main Card -->
+      </div>
 
-        <div class="content-card">
+      <p class="progress-text"
+         id="sectionIndicator">
 
-            <h1 class="page-title">
-                Pre-Survey
-            </h1>
+        Section 1 of 3
 
-            <p class="page-description">
-                Please answer the following questions
-                before interacting with the chatbot.
-            </p>
-
-            <!-- AGE -->
-
-            <div class="question-card">
-
-                <div class="question-title">
-                    Age Range
-                </div>
-
-                <label class="radio-option">
-                    <input type="radio" name="age" />
-                    18–24
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="age" />
-                    25–34
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="age" />
-                    35–44
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="age" />
-                    45–54
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="age" />
-                    55+
-                </label>
-
-            </div>
-
-            <!-- GENDER -->
-
-            <div class="question-card">
-
-                <div class="question-title">
-                    Gender
-                </div>
-
-                <label class="radio-option">
-                    <input type="radio" name="gender" />
-                    Male
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="gender" />
-                    Female
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="gender" />
-                    Non-binary
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="gender" />
-                    Prefer not to say
-                </label>
-
-            </div>
-
-            <!-- EDUCATION -->
-
-            <div class="question-card">
-
-                <div class="question-title">
-                    Highest Education Level
-                </div>
-
-                <label class="radio-option">
-                    <input type="radio" name="education" />
-                    High school
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="education" />
-                    Bachelor's degree
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="education" />
-                    Master's degree
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="education" />
-                    PhD
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="education" />
-                    Other
-                </label>
-
-            </div>
-
-            <!-- FAMILIARITY -->
-
-            <div class="question-card">
-
-                <div class="question-title">
-                    How familiar are you with AI chatbots?
-                </div>
-
-                <label class="radio-option">
-                    <input type="radio" name="familiarity" />
-                    Not familiar
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="familiarity" />
-                    Slightly familiar
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="familiarity" />
-                    Moderately familiar
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" name="familiarity" />
-                    Very familiar
-                </label>
-
-            </div>
-
-            <!-- BUTTON -->
-
-            <div class="button-container">
-
-                <button
-                    class="primary-button"
-                    id="continueButton"
-                >
-                    Continue
-                </button>
-
-            </div>
-
-        </div>
+      </p>
 
     </div>
 
+    <!-- Main Card -->
+
+    <div class="content-card">
+
+      <h1 class="page-title">
+        Pre-Survey
+      </h1>
+
+      <p class="page-description">
+
+        Before we start, please answer the following questions.
+
+      </p>
+
+      <!-- ===================================== -->
+      <!-- SECTION 1 -->
+      <!-- ===================================== -->
+
+      <div class="survey-section active-section"
+           id="section1">
+
+        <div class="section-heading">
+          Sociodemographics
+        </div>
+
+        <!-- AGE -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            Age
+          </div>
+
+          <input
+            type="number"
+            class="survey-input"
+            id="age"
+            min="18"
+            placeholder="Enter your age" />
+
+        </div>
+
+        <!-- GENDER -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            Gender
+          </div>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Woman">
+            Woman
+          </label>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Man">
+            Man
+          </label>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Non-binary">
+            Non-binary
+          </label>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Self-describe">
+            Prefer to self-describe
+          </label>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="gender"
+                   value="Prefer not to say">
+            Prefer not to say
+          </label>
+
+        </div>
+
+        <!-- COUNTRY -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            Country of residence
+          </div>
+
+          <select
+            class="survey-input"
+            id="country">
+
+            <option value="">
+              Select country
+            </option>
+
+            <option>Austria</option>
+            <option>Germany</option>
+            <option>Bangladesh</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>Australia</option>
+            <option>Other</option>
+
+          </select>
+
+        </div>
+
+        <!-- EDUCATION -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            Highest education level
+          </div>
+
+          <select
+            class="survey-input"
+            id="education">
+
+            <option value="">
+              Select education level
+            </option>
+
+            <option>High school</option>
+            <option>Bachelor's degree</option>
+            <option>Master's degree</option>
+            <option>Doctorate / PhD</option>
+            <option>Other</option>
+
+          </select>
+
+        </div>
+
+        <!-- EMPLOYMENT -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            Employment status
+          </div>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="employment"
+                   value="Student">
+            Student
+          </label>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="employment"
+                   value="Employed">
+            Employed
+          </label>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="employment"
+                   value="Unemployed">
+            Unemployed
+          </label>
+
+          <label class="radio-option">
+            <input type="radio"
+                   name="employment"
+                   value="Other">
+            Other
+          </label>
+
+        </div>
+
+        <!-- POLITICAL -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            Political orientation
+          </div>
+
+          <div class="likert-labels">
+
+            <span>
+              Very left/liberal
+            </span>
+
+            <span>
+              Very right/conservative
+            </span>
+
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="political_orientation" value="1"><span>1</span></label>
+            <label><input type="radio" name="political_orientation" value="2"><span>2</span></label>
+            <label><input type="radio" name="political_orientation" value="3"><span>3</span></label>
+            <label><input type="radio" name="political_orientation" value="4"><span>4</span></label>
+            <label><input type="radio" name="political_orientation" value="5"><span>5</span></label>
+            <label><input type="radio" name="political_orientation" value="6"><span>6</span></label>
+            <label><input type="radio" name="political_orientation" value="7"><span>7</span></label>
+
+          </div>
+
+        </div>
+
+        <!-- RELIGIOSITY -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            Religiosity
+          </div>
+
+          <div class="likert-labels">
+
+            <span>
+              Not religious at all
+            </span>
+
+            <span>
+              Very religious
+            </span>
+
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="religiosity" value="1"><span>1</span></label>
+            <label><input type="radio" name="religiosity" value="2"><span>2</span></label>
+            <label><input type="radio" name="religiosity" value="3"><span>3</span></label>
+            <label><input type="radio" name="religiosity" value="4"><span>4</span></label>
+            <label><input type="radio" name="religiosity" value="5"><span>5</span></label>
+            <label><input type="radio" name="religiosity" value="6"><span>6</span></label>
+            <label><input type="radio" name="religiosity" value="7"><span>7</span></label>
+
+          </div>
+
+        </div>
+
+        <!-- NEXT -->
+
+        <div class="button-container">
+
+          <button
+            class="primary-button"
+            onclick="nextSection(2)">
+
+            Next
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- ===================================== -->
+      <!-- SECTION 2 -->
+      <!-- ===================================== -->
+
+      <div class="survey-section"
+           id="section2">
+
+        <div class="section-heading">
+          Technology Use
+        </div>
+
+        <!-- AI CHATBOT USAGE -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            How often do you use AI chatbots such as ChatGPT, Copilot, Claude, Gemini, or similar systems?
+          </div>
+
+          <div class="likert-labels">
+            <span>Never</span>
+            <span>Very often</span>
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="ai_usage" value="1"><span>1</span></label>
+            <label><input type="radio" name="ai_usage" value="2"><span>2</span></label>
+            <label><input type="radio" name="ai_usage" value="3"><span>3</span></label>
+            <label><input type="radio" name="ai_usage" value="4"><span>4</span></label>
+            <label><input type="radio" name="ai_usage" value="5"><span>5</span></label>
+            <label><input type="radio" name="ai_usage" value="6"><span>6</span></label>
+            <label><input type="radio" name="ai_usage" value="7"><span>7</span></label>
+
+          </div>
+
+        </div>
+
+        <!-- AI FAMILIARITY -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            How familiar are you with AI-generated video or synthetic media?
+          </div>
+
+          <div class="likert-labels">
+            <span>Not familiar at all</span>
+            <span>Very familiar</span>
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="ai_familiarity" value="1"><span>1</span></label>
+            <label><input type="radio" name="ai_familiarity" value="2"><span>2</span></label>
+            <label><input type="radio" name="ai_familiarity" value="3"><span>3</span></label>
+            <label><input type="radio" name="ai_familiarity" value="4"><span>4</span></label>
+            <label><input type="radio" name="ai_familiarity" value="5"><span>5</span></label>
+            <label><input type="radio" name="ai_familiarity" value="6"><span>6</span></label>
+            <label><input type="radio" name="ai_familiarity" value="7"><span>7</span></label>
+
+          </div>
+
+        </div>
+
+        <!-- SOCIAL MEDIA -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            How often do you use social media platforms?
+          </div>
+
+          <div class="likert-labels">
+            <span>Never</span>
+            <span>Very often</span>
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="social_media" value="1"><span>1</span></label>
+            <label><input type="radio" name="social_media" value="2"><span>2</span></label>
+            <label><input type="radio" name="social_media" value="3"><span>3</span></label>
+            <label><input type="radio" name="social_media" value="4"><span>4</span></label>
+            <label><input type="radio" name="social_media" value="5"><span>5</span></label>
+            <label><input type="radio" name="social_media" value="6"><span>6</span></label>
+            <label><input type="radio" name="social_media" value="7"><span>7</span></label>
+
+          </div>
+
+        </div>
+
+        <!-- NAVIGATION -->
+
+        <div class="multi-button-container">
+
+          <button
+            class="secondary-button"
+            onclick="previousSection(1)">
+
+            Back
+
+          </button>
+
+          <button
+            class="primary-button"
+            onclick="nextSection(3)">
+
+            Next
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- ===================================== -->
+      <!-- SECTION 3 -->
+      <!-- ===================================== -->
+
+      <div class="survey-section"
+           id="section3">
+
+        <div class="section-heading">
+          Attitude Statements
+        </div>
+
+        <p class="scale-instruction">
+
+          Please read the statements below and indicate the extent to which you agree or disagree with each statement.
+
+        </p>
+
+        <!-- ITEM 1 -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            I am usually interested in understanding why people hold views different from mine.
+          </div>
+
+          <div class="likert-labels">
+            <span>Strongly disagree</span>
+            <span>Strongly agree</span>
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="open_01" value="1"><span>1</span></label>
+            <label><input type="radio" name="open_01" value="2"><span>2</span></label>
+            <label><input type="radio" name="open_01" value="3"><span>3</span></label>
+            <label><input type="radio" name="open_01" value="4"><span>4</span></label>
+            <label><input type="radio" name="open_01" value="5"><span>5</span></label>
+            <label><input type="radio" name="open_01" value="6"><span>6</span></label>
+            <label><input type="radio" name="open_01" value="7"><span>7</span></label>
+
+          </div>
+
+        </div>
+
+        <!-- ITEM 2 -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            When I disagree with someone, I still try to evaluate their arguments fairly.
+          </div>
+
+          <div class="likert-labels">
+            <span>Strongly disagree</span>
+            <span>Strongly agree</span>
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="open_02" value="1"><span>1</span></label>
+            <label><input type="radio" name="open_02" value="2"><span>2</span></label>
+            <label><input type="radio" name="open_02" value="3"><span>3</span></label>
+            <label><input type="radio" name="open_02" value="4"><span>4</span></label>
+            <label><input type="radio" name="open_02" value="5"><span>5</span></label>
+            <label><input type="radio" name="open_02" value="6"><span>6</span></label>
+            <label><input type="radio" name="open_02" value="7"><span>7</span></label>
+
+          </div>
+
+        </div>
+
+        <!-- FINAL BUTTONS -->
+
+        <div class="multi-button-container">
+
+          <button
+            class="secondary-button"
+            onclick="previousSection(2)">
+
+            Back
+
+          </button>
+
+          <button
+            class="primary-button"
+            id="submitBtn">
+
+            Continue
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
   <script>
 
-    /*
-    ==========================================
-    RANDOM CONDITION ASSIGNMENT
-    ==========================================
-    */
+    // =====================================
+    // SECTION NAVIGATION
+    // =====================================
 
-    const conditions = [
+    function nextSection(sectionNumber) {
 
-        "1",
-        "2",
-        "3",
-        "4"
+      document
+        .querySelectorAll(".survey-section")
+        .forEach(section => {
 
-    ];
-
-    let assignedCondition =
-        localStorage.getItem("condition");
-
-    if (!assignedCondition) {
-
-        assignedCondition =
-
-            conditions[
-                Math.floor(
-                    Math.random() * conditions.length
-                )
-            ];
-
-        localStorage.setItem(
-            "condition",
-            assignedCondition
-        );
-
-    }
-
-    /*
-    ==========================================
-    CONTINUE BUTTON
-    ==========================================
-    */
-
-    document
-        .getElementById("continueButton")
-        .addEventListener("click", async () => {
-
-            // =========================
-            // GET ANSWERS
-            // =========================
-
-            const age =
-                document.querySelector(
-                    'input[name="age"]:checked'
-                )?.parentElement.textContent.trim();
-
-            const gender =
-                document.querySelector(
-                    'input[name="gender"]:checked'
-                )?.parentElement.textContent.trim();
-
-            const education =
-                document.querySelector(
-                    'input[name="education"]:checked'
-                )?.parentElement.textContent.trim();
-
-            const familiarity =
-                document.querySelector(
-                    'input[name="familiarity"]:checked'
-                )?.parentElement.textContent.trim();
-
-            // =========================
-            // VALIDATION
-            // =========================
-
-            if (
-                !age ||
-                !gender ||
-                !education ||
-                !familiarity
-            ) {
-
-                alert(
-                    "Please answer all questions before continuing."
-                );
-
-                return;
-
-            }
-
-            // =========================
-            // STORE LOCALLY
-            // =========================
-
-            localStorage.setItem("age", age);
-            localStorage.setItem("gender", gender);
-            localStorage.setItem("education", education);
-            localStorage.setItem("familiarity", familiarity);
-
-            try {
-
-                // =========================
-                // SEND TO N8N
-                // =========================
-
-                await fetch(
-                    "https://n8n.media.tuwien.ac.at/webhook/save-consent",
-                    {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-
-                        body: JSON.stringify({
-
-                            action: "save_pre_survey",
-
-                            session_id:
-                                localStorage.getItem("session_id"),
-
-                            condition:
-                                localStorage.getItem("condition"),
-
-                            age: age,
-
-                            gender: gender,
-
-                            education: education,
-
-                            familiarity: familiarity
-
-                        })
-
-                    }
-                );
-
-                // =========================
-                // MOVE TO CHAT PAGE
-                // =========================
-
-                window.location.href =
-                    "chat.html";
-
-            }
-
-            catch (error) {
-
-                console.error(error);
-
-                alert(
-                    "Error saving survey data."
-                );
-
-            }
+          section.classList.remove(
+            "active-section"
+          );
 
         });
 
-</script>
+      document
+        .getElementById(
+          "section" + sectionNumber
+        )
+        .classList.add(
+          "active-section"
+        );
+
+      updateProgress(sectionNumber);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+    function previousSection(sectionNumber) {
+
+      nextSection(sectionNumber);
+
+    }
+
+    // =====================================
+    // UPDATE PROGRESS
+    // =====================================
+
+    function updateProgress(sectionNumber) {
+
+      const progress =
+        sectionNumber * 14;
+
+      document
+        .getElementById(
+          "surveyProgress"
+        )
+        .style.width =
+        progress + "%";
+
+      document
+        .getElementById(
+          "sectionIndicator"
+        )
+        .innerText =
+        "Section " +
+        sectionNumber +
+        " of 3";
+
+    }
+
+    // =====================================
+    // SUBMIT
+    // =====================================
+
+    document
+      .getElementById(
+        "submitBtn"
+      )
+      .addEventListener(
+        "click",
+        async () => {
+
+          try {
+
+            await fetch(
+              "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body: JSON.stringify({
+
+                  action:
+                    "save_presurvey",
+
+                  session_id:
+                    localStorage.getItem(
+                      "session_id"
+                    ),
+
+                  age:
+                    document.getElementById(
+                      "age"
+                    ).value,
+
+                  gender:
+                    document.querySelector(
+                      'input[name="gender"]:checked'
+                    )?.value,
+
+                  country:
+                    document.getElementById(
+                      "country"
+                    ).value,
+
+                  education:
+                    document.getElementById(
+                      "education"
+                    ).value
+
+                })
+
+              }
+            );
+
+            window.location.href =
+              "video-instruction.html";
+
+          }
+
+          catch (error) {
+
+            console.error(error);
+
+            alert(
+              "Error saving survey."
+            );
+
+          }
+
+        }
+      );
+
+  </script>
+
 </body>
 
 </html>
+```
