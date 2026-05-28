@@ -20,7 +20,7 @@ body {
 
 .page-container {
 
-  max-width: 900px;
+  max-width: 1100px;
 
   margin: 50px auto;
 
@@ -121,9 +121,11 @@ body {
 
   font-weight: 600;
 
+  line-height: 1.5;
+
   color: #000000;
 
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 
 }
 
@@ -144,7 +146,6 @@ body {
 /* =========================================
    CONSENT PAGE
 ========================================= */
-
 
 .consent-section {
 
@@ -256,7 +257,7 @@ body {
 
   justify-content: center;
 
-  margin-top: 35px;
+  margin-top: 42px;
 
 }
 
@@ -329,27 +330,8 @@ body {
 }
 
 /* =========================================
-   PRE / POST SURVEY
+   SURVEY QUESTION CARDS
 ========================================= */
-
-.survey-card {
-
-  max-width: 1050px;
-
-  margin: 40px auto;
-
-  background: #FFFFFF;
-
-  border: 1px solid #E4E7EC;
-
-  border-radius: 18px;
-
-  padding: 55px;
-
-  box-shadow:
-    0 2px 8px rgba(0,0,0,0.05);
-
-}
 
 .question-card {
 
@@ -357,11 +339,11 @@ body {
 
   border: 1px solid #E5E7EB;
 
-  border-radius: 12px;
+  border-radius: 14px;
 
-  padding: 22px 26px;
+  padding: 28px;
 
-  margin-top: 22px;
+  margin-top: 24px;
 
   box-shadow:
     0 1px 4px rgba(0,0,0,0.04);
@@ -380,7 +362,7 @@ body {
 
   gap: 12px;
 
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 
   font-size: 17px;
 
@@ -393,6 +375,116 @@ body {
 .radio-option input[type="radio"] {
 
   transform: scale(1.15);
+
+}
+
+/* =========================================
+   CHECKBOX OPTIONS
+========================================= */
+
+.checkbox-option {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 16px;
+
+  font-size: 17px;
+
+  color: #000000;
+
+  cursor: pointer;
+
+}
+
+.checkbox-option input[type="checkbox"] {
+
+  transform: scale(1.15);
+
+}
+
+/* =========================================
+   LIKERT SCALE
+========================================= */
+
+.likert-labels {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 18px;
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  color: #000000;
+
+}
+
+.likert-scale {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  width: 100%;
+
+  gap: 0;
+
+  margin-top: 12px;
+
+}
+
+.likert-scale label {
+
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: row;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 6px;
+
+  cursor: pointer;
+
+  font-size: 17px;
+
+  color: #000000;
+
+}
+
+.likert-scale input[type="radio"] {
+
+  transform: scale(1.15);
+
+}
+
+/* =========================================
+   SCALE INSTRUCTION
+========================================= */
+
+.scale-instruction {
+
+  margin-bottom: 30px;
+
+  line-height: 1.7;
+
+  color: #000000;
 
 }
 
@@ -414,136 +506,22 @@ body {
 
   }
 
-}
-```css
-/* =========================================
-   MULTI STEP SURVEY
-========================================= */
+  .question-title {
 
-.survey-section {
+    font-size: 18px;
 
-  display: none;
+  }
 
-}
+  .likert-labels {
 
-.active-section {
+    font-size: 13px;
 
-  display: block;
+  }
 
-}
+  .likert-scale label {
 
-.section-heading {
+    font-size: 15px;
 
-  font-size: 28px;
-
-  font-weight: 700;
-
-  margin-bottom: 30px;
+  }
 
 }
-
-/* =========================================
-   LIKERT SCALE
-========================================= */
-
-.likert-labels {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  margin-bottom: 18px;
-
-  font-size: 14px;
-
-}
-
-.likert-scale {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  gap: 10px;
-
-  margin-top: 10px;
-
-}
-
-.likert-scale label {
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  gap: 8px;
-
-  cursor: pointer;
-
-  font-size: 14px;
-
-}
-
-.likert-scale input[type="radio"] {
-
-  transform: scale(1.2);
-
-}
-
-/* =========================================
-   MULTI BUTTONS
-========================================= */
-
-.multi-button-container {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  margin-top: 40px;
-
-}
-
-.secondary-button {
-
-  background: #FFFFFF;
-
-  border: 1px solid #D0D5DD;
-
-  color: #000000;
-
-  border-radius: 10px;
-
-  padding: 16px 32px;
-
-  font-size: 18px;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-}
-
-.secondary-button:hover {
-
-  background: #F3F4F6;
-
-}
-
-/* =========================================
-   SCALE INSTRUCTION
-========================================= */
-
-.scale-instruction {
-
-  margin-bottom: 30px;
-
-  line-height: 1.7;
-
-}
-```
-
