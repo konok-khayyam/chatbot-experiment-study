@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,6 +100,44 @@
     }
 
     /* =========================================
+       INSTRUCTION CARD
+    ========================================= */
+
+    .instruction-card {
+
+      width: 100%;
+      max-width: 1100px;
+
+      background: #FFFFFF;
+
+      border: 1px solid #E4E7EC;
+
+      border-radius: 18px;
+
+      padding: 24px 30px;
+
+      margin-bottom: 20px;
+
+      box-sizing: border-box;
+
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+
+    }
+
+    .instruction-text {
+
+      margin: 0;
+
+      font-size: 17px;
+
+      line-height: 1.9;
+
+      color: #000000;
+
+    }
+
+    /* =========================================
        CHAT CONTAINER
     ========================================= */
 
@@ -107,7 +146,7 @@
       width: 100%;
       max-width: 1100px;
 
-      height: calc(100vh - 110px);
+      height: calc(100vh - 260px);
 
       background: #FFFFFF;
 
@@ -146,15 +185,7 @@
 
       background: #FFFFFF;
 
-    }
-
-    .header-left {
-
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 6px;
+      flex-shrink: 0;
 
     }
 
@@ -165,14 +196,6 @@
       font-weight: 700;
 
       color: #2F3440;
-
-    }
-
-    .chat-subtitle {
-
-      font-size: 16px;
-
-      color: #667085;
 
     }
 
@@ -285,6 +308,8 @@
       padding: 22px 24px;
 
       background: #FFFFFF;
+
+      flex-shrink: 0;
 
     }
 
@@ -475,21 +500,27 @@
 
       }
 
+      .instruction-card {
+
+        padding: 20px;
+
+      }
+
+      .instruction-text {
+
+        font-size: 15px;
+
+      }
+
       .chat-container {
 
-        height: calc(100vh - 90px);
+        height: calc(100vh - 300px);
 
       }
 
       .chat-title {
 
         font-size: 24px;
-
-      }
-
-      .chat-subtitle {
-
-        display: none;
 
       }
 
@@ -531,6 +562,26 @@
 
     </div>
 
+    <!-- Instructions -->
+
+    <div class="instruction-card">
+
+      <p class="instruction-text">
+
+        You will now discuss the video with an AI chatbot.
+
+        Please respond naturally and in your own words.
+
+        The conversation will last approximately 6 minutes.
+
+        Do not use external tools, websites, or AI systems while completing this task.
+
+        There are no wrong answers here.
+
+      </p>
+
+    </div>
+
     <!-- Chat Container -->
 
     <div class="chat-container">
@@ -539,20 +590,12 @@
 
       <div class="chat-header">
 
-        <div class="header-left">
-
-          <div class="chat-title">
-            Chat Interaction
-          </div>
-
-          <div class="chat-subtitle">
-            “You will now discuss the video with an AI chatbot. Please respond naturally and in your own words. The conversation will last approximately 6 minutes. Do not use external tools, websites, or AI systems while completing this task. There are no wrong answers here.”
-          </div>
-
+        <div class="chat-title">
+          Chat Interaction
         </div>
 
         <div class="timer-box" id="timer">
-          00:30
+          06:00
         </div>
 
       </div>
@@ -603,7 +646,7 @@
 
   </div>
 
-  <!-- COMPLETION MODAL -->
+  <!-- MODAL -->
 
   <div
     class="modal-overlay"
@@ -647,21 +690,6 @@
 
     const webhookUrl =
       "https://n8n.media.tuwien.ac.at/webhook/553640ac-4edf-461a-aa03-916374ecae33";
-
-    /*
-    ==========================================
-    SESSION STORAGE
-    ==========================================
-    */
-
-    if (!localStorage.getItem("sessionId")) {
-
-      localStorage.setItem(
-        "sessionId",
-        crypto.randomUUID()
-      );
-
-    }
 
     /*
     ==========================================
@@ -719,7 +747,7 @@
                   || "condition_1",
 
                 sessionId:
-                  localStorage.getItem("sessionId")
+                  localStorage.getItem("session_id")
 
               }
 
@@ -832,7 +860,7 @@
     ==========================================
     */
 
-    let totalSeconds = 30;
+    let totalSeconds = 360;
 
     const timerElement =
       document.getElementById("timer");
@@ -892,3 +920,4 @@
 </body>
 
 </html>
+```
