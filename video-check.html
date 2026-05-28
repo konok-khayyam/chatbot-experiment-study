@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+
+  <title>Video Questions</title>
+
+  <link rel="stylesheet"
+        href="css/style.css" />
+
+</head>
+
+<body>
+
+  <div class="page-container">
+
+    <!-- Progress -->
+
+    <div class="progress-wrapper">
+
+      <div class="progress-bar">
+
+        <div class="progress-fill"
+             style="width: 78%">
+        </div>
+
+      </div>
+
+      <p class="progress-text">
+        Video Questions
+      </p>
+
+    </div>
+
+    <!-- Main Card -->
+
+    <div class="content-card">
+
+      <h1 class="page-title">
+        Video Questions
+      </h1>
+
+      <p class="page-description">
+
+        Please answer the following questions about the video.
+
+      </p>
+
+      <!-- QUESTION 1 -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          What was the general topic of the video?
+        </div>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_topic"
+                 value="Social issue discussion">
+          Social issue discussion
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_topic"
+                 value="Cooking tutorial">
+          Cooking tutorial
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_topic"
+                 value="Sports highlights">
+          Sports highlights
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_topic"
+                 value="Travel vlog">
+          Travel vlog
+        </label>
+
+      </div>
+
+      <!-- QUESTION 2 -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          What format best describes the video?
+        </div>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_format"
+                 value="Social media video">
+          Social media video
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_format"
+                 value="News article">
+          News article
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_format"
+                 value="Personal email">
+          Personal email
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_format"
+                 value="Academic lecture">
+          Academic lecture
+        </label>
+
+      </div>
+
+      <!-- QUESTION 3 -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          What was the speaker mainly trying to do?
+        </div>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_goal"
+                 value="Explain neutral background issue">
+          Explain a neutral background issue
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_goal"
+                 value="Persuade viewers">
+          Persuade viewers toward a particular interpretation
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_goal"
+                 value="Sell product">
+          Sell a product
+        </label>
+
+        <label class="radio-option">
+          <input type="radio"
+                 name="video_goal"
+                 value="Technical instructions">
+          Give technical instructions
+        </label>
+
+      </div>
+
+      <!-- CONTINUE -->
+
+      <div class="button-container">
+
+        <button
+          id="continueBtn"
+          class="primary-button">
+
+          Continue
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    document
+      .getElementById(
+        "continueBtn"
+      )
+      .addEventListener(
+        "click",
+        async () => {
+
+          try {
+
+            await fetch(
+              "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body: JSON.stringify({
+
+                  action:
+                    "save_video_check",
+
+                  session_id:
+                    localStorage.getItem(
+                      "session_id"
+                    ),
+
+                  video_topic:
+                    document.querySelector(
+                      'input[name="video_topic"]:checked'
+                    )?.value,
+
+                  video_format:
+                    document.querySelector(
+                      'input[name="video_format"]:checked'
+                    )?.value,
+
+                  video_goal:
+                    document.querySelector(
+                      'input[name="video_goal"]:checked'
+                    )?.value
+
+                })
+
+              }
+            );
+
+            window.location.href =
+              "chat.html";
+
+          }
+
+          catch (error) {
+
+            console.error(error);
+
+            alert(
+              "Error saving responses."
+            );
+
+          }
+
+        }
+      );
+
+  </script>
+
+</body>
+
+</html>
