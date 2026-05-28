@@ -415,3 +415,135 @@ body {
   }
 
 }
+```css
+/* =========================================
+   MULTI STEP SURVEY
+========================================= */
+
+.survey-section {
+
+  display: none;
+
+}
+
+.active-section {
+
+  display: block;
+
+}
+
+.section-heading {
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  margin-bottom: 30px;
+
+}
+
+/* =========================================
+   LIKERT SCALE
+========================================= */
+
+.likert-labels {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+
+  font-size: 14px;
+
+}
+
+.likert-scale {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 10px;
+
+}
+
+.likert-scale label {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+}
+
+.likert-scale input[type="radio"] {
+
+  transform: scale(1.2);
+
+}
+
+/* =========================================
+   MULTI BUTTONS
+========================================= */
+
+.multi-button-container {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 40px;
+
+}
+
+.secondary-button {
+
+  background: #FFFFFF;
+
+  border: 1px solid #D0D5DD;
+
+  color: #000000;
+
+  border-radius: 10px;
+
+  padding: 16px 32px;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+}
+
+.secondary-button:hover {
+
+  background: #F3F4F6;
+
+}
+
+/* =========================================
+   SCALE INSTRUCTION
+========================================= */
+
+.scale-instruction {
+
+  margin-bottom: 30px;
+
+  line-height: 1.7;
+
+}
+```
+
