@@ -27,17 +27,13 @@
       <div class="progress-bar">
 
         <div class="progress-fill"
-             id="surveyProgress"
-             style="width: 28%">
+             style="width: 40%">
         </div>
 
       </div>
 
-      <p class="progress-text"
-         id="sectionIndicator">
-
-        Section 1 of 3
-
+      <p class="progress-text">
+        Pre-Survey
       </p>
 
     </div>
@@ -56,464 +52,240 @@
 
       </p>
 
-      <!-- ===================================== -->
-      <!-- SECTION 1 -->
-      <!-- ===================================== -->
+      <!-- AGE -->
 
-      <div class="survey-section active-section"
-           id="section1">
+      <div class="question-card">
 
-        <div class="section-heading">
-          Sociodemographics
+        <div class="question-title">
+          Age
         </div>
 
-        <!-- AGE -->
+        <input
+          type="number"
+          class="survey-input"
+          id="age"
+          min="18"
+          placeholder="Enter your age" />
 
-        <div class="question-card">
+      </div>
 
-          <div class="question-title">
-            Age
-          </div>
+      <!-- GENDER -->
 
-          <input
-            type="number"
-            class="survey-input"
-            id="age"
-            min="18"
-            placeholder="Enter your age" />
+      <div class="question-card">
 
+        <div class="question-title">
+          Gender
         </div>
 
-        <!-- GENDER -->
+        <label class="radio-option">
+          <input type="radio"
+                 name="gender"
+                 value="Woman">
+          Woman
+        </label>
 
-        <div class="question-card">
+        <label class="radio-option">
+          <input type="radio"
+                 name="gender"
+                 value="Man">
+          Man
+        </label>
 
-          <div class="question-title">
-            Gender
-          </div>
+        <label class="radio-option">
+          <input type="radio"
+                 name="gender"
+                 value="Non-binary">
+          Non-binary
+        </label>
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Woman">
-            Woman
-          </label>
+        <label class="radio-option">
+          <input type="radio"
+                 name="gender"
+                 value="Self-describe">
+          Prefer to self-describe
+        </label>
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Man">
-            Man
-          </label>
+        <label class="radio-option">
+          <input type="radio"
+                 name="gender"
+                 value="Prefer not to say">
+          Prefer not to say
+        </label>
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Non-binary">
-            Non-binary
-          </label>
+      </div>
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Self-describe">
-            Prefer to self-describe
-          </label>
+      <!-- COUNTRY -->
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="gender"
-                   value="Prefer not to say">
-            Prefer not to say
-          </label>
+      <div class="question-card">
 
+        <div class="question-title">
+          Country of residence
         </div>
 
-        <!-- COUNTRY -->
+        <select
+          class="survey-input"
+          id="country">
 
-        <div class="question-card">
+          <option value="">
+            Select country
+          </option>
 
-          <div class="question-title">
-            Country of residence
-          </div>
+          <option>Austria</option>
+          <option>Germany</option>
+          <option>Bangladesh</option>
+          <option>United Kingdom</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>Australia</option>
+          <option>Other</option>
 
-          <select
-            class="survey-input"
-            id="country">
+        </select>
 
-            <option value="">
-              Select country
-            </option>
+      </div>
 
-            <option>Austria</option>
-            <option>Germany</option>
-            <option>Bangladesh</option>
-            <option>United Kingdom</option>
-            <option>United States</option>
-            <option>Canada</option>
-            <option>Australia</option>
-            <option>Other</option>
+      <!-- EDUCATION -->
 
-          </select>
+      <div class="question-card">
 
+        <div class="question-title">
+          Highest education level
         </div>
 
-        <!-- EDUCATION -->
+        <select
+          class="survey-input"
+          id="education">
 
-        <div class="question-card">
+          <option value="">
+            Select education level
+          </option>
 
-          <div class="question-title">
-            Highest education level
-          </div>
+          <option>High school</option>
+          <option>Bachelor's degree</option>
+          <option>Master's degree</option>
+          <option>Doctorate / PhD</option>
+          <option>Other</option>
 
-          <select
-            class="survey-input"
-            id="education">
+        </select>
 
-            <option value="">
-              Select education level
-            </option>
+      </div>
 
-            <option>High school</option>
-            <option>Bachelor's degree</option>
-            <option>Master's degree</option>
-            <option>Doctorate / PhD</option>
-            <option>Other</option>
+      <!-- EMPLOYMENT -->
 
-          </select>
+      <div class="question-card">
 
+        <div class="question-title">
+          Employment status
         </div>
 
-        <!-- EMPLOYMENT -->
+        <label class="radio-option">
+          <input type="radio"
+                 name="employment"
+                 value="Student">
+          Student
+        </label>
 
-        <div class="question-card">
+        <label class="radio-option">
+          <input type="radio"
+                 name="employment"
+                 value="Employed">
+          Employed
+        </label>
 
-          <div class="question-title">
-            Employment status
-          </div>
+        <label class="radio-option">
+          <input type="radio"
+                 name="employment"
+                 value="Unemployed">
+          Unemployed
+        </label>
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="employment"
-                   value="Student">
-            Student
-          </label>
+        <label class="radio-option">
+          <input type="radio"
+                 name="employment"
+                 value="Other">
+          Other
+        </label>
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="employment"
-                   value="Employed">
-            Employed
-          </label>
+      </div>
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="employment"
-                   value="Unemployed">
-            Unemployed
-          </label>
+      <!-- POLITICAL ORIENTATION -->
 
-          <label class="radio-option">
-            <input type="radio"
-                   name="employment"
-                   value="Other">
-            Other
-          </label>
+      <div class="question-card">
 
+        <div class="question-title">
+          Political orientation
         </div>
 
-        <!-- POLITICAL -->
+        <div class="likert-labels">
 
-        <div class="question-card">
+          <span>
+            Very left/liberal
+          </span>
 
-          <div class="question-title">
-            Political orientation
-          </div>
-
-          <div class="likert-labels">
-
-            <span>
-              Very left/liberal
-            </span>
-
-            <span>
-              Very right/conservative
-            </span>
-
-          </div>
-
-          <div class="likert-scale">
-
-            <label><input type="radio" name="political_orientation" value="1"><span>1</span></label>
-            <label><input type="radio" name="political_orientation" value="2"><span>2</span></label>
-            <label><input type="radio" name="political_orientation" value="3"><span>3</span></label>
-            <label><input type="radio" name="political_orientation" value="4"><span>4</span></label>
-            <label><input type="radio" name="political_orientation" value="5"><span>5</span></label>
-            <label><input type="radio" name="political_orientation" value="6"><span>6</span></label>
-            <label><input type="radio" name="political_orientation" value="7"><span>7</span></label>
-
-          </div>
+          <span>
+            Very right/conservative
+          </span>
 
         </div>
 
-        <!-- RELIGIOSITY -->
+        <div class="likert-scale">
 
-        <div class="question-card">
-
-          <div class="question-title">
-            Religiosity
-          </div>
-
-          <div class="likert-labels">
-
-            <span>
-              Not religious at all
-            </span>
-
-            <span>
-              Very religious
-            </span>
-
-          </div>
-
-          <div class="likert-scale">
-
-            <label><input type="radio" name="religiosity" value="1"><span>1</span></label>
-            <label><input type="radio" name="religiosity" value="2"><span>2</span></label>
-            <label><input type="radio" name="religiosity" value="3"><span>3</span></label>
-            <label><input type="radio" name="religiosity" value="4"><span>4</span></label>
-            <label><input type="radio" name="religiosity" value="5"><span>5</span></label>
-            <label><input type="radio" name="religiosity" value="6"><span>6</span></label>
-            <label><input type="radio" name="religiosity" value="7"><span>7</span></label>
-
-          </div>
-
-        </div>
-
-        <!-- NEXT -->
-
-        <div class="button-container">
-
-          <button
-            class="primary-button"
-            onclick="nextSection(2)">
-
-            Next
-
-          </button>
+          <label><input type="radio" name="political_orientation" value="1"><span>1</span></label>
+          <label><input type="radio" name="political_orientation" value="2"><span>2</span></label>
+          <label><input type="radio" name="political_orientation" value="3"><span>3</span></label>
+          <label><input type="radio" name="political_orientation" value="4"><span>4</span></label>
+          <label><input type="radio" name="political_orientation" value="5"><span>5</span></label>
+          <label><input type="radio" name="political_orientation" value="6"><span>6</span></label>
+          <label><input type="radio" name="political_orientation" value="7"><span>7</span></label>
 
         </div>
 
       </div>
 
-      <!-- ===================================== -->
-      <!-- SECTION 2 -->
-      <!-- ===================================== -->
+      <!-- RELIGIOSITY -->
 
-      <div class="survey-section"
-           id="section2">
+      <div class="question-card">
 
-        <div class="section-heading">
-          Technology Use
+        <div class="question-title">
+          Religiosity
         </div>
 
-        <!-- AI CHATBOT USAGE -->
+        <div class="likert-labels">
 
-        <div class="question-card">
+          <span>
+            Not religious at all
+          </span>
 
-          <div class="question-title">
-            How often do you use AI chatbots such as ChatGPT, Copilot, Claude, Gemini, or similar systems?
-          </div>
-
-          <div class="likert-labels">
-            <span>Never</span>
-            <span>Very often</span>
-          </div>
-
-          <div class="likert-scale">
-
-            <label><input type="radio" name="ai_usage" value="1"><span>1</span></label>
-            <label><input type="radio" name="ai_usage" value="2"><span>2</span></label>
-            <label><input type="radio" name="ai_usage" value="3"><span>3</span></label>
-            <label><input type="radio" name="ai_usage" value="4"><span>4</span></label>
-            <label><input type="radio" name="ai_usage" value="5"><span>5</span></label>
-            <label><input type="radio" name="ai_usage" value="6"><span>6</span></label>
-            <label><input type="radio" name="ai_usage" value="7"><span>7</span></label>
-
-          </div>
+          <span>
+            Very religious
+          </span>
 
         </div>
 
-        <!-- AI FAMILIARITY -->
+        <div class="likert-scale">
 
-        <div class="question-card">
-
-          <div class="question-title">
-            How familiar are you with AI-generated video or synthetic media?
-          </div>
-
-          <div class="likert-labels">
-            <span>Not familiar at all</span>
-            <span>Very familiar</span>
-          </div>
-
-          <div class="likert-scale">
-
-            <label><input type="radio" name="ai_familiarity" value="1"><span>1</span></label>
-            <label><input type="radio" name="ai_familiarity" value="2"><span>2</span></label>
-            <label><input type="radio" name="ai_familiarity" value="3"><span>3</span></label>
-            <label><input type="radio" name="ai_familiarity" value="4"><span>4</span></label>
-            <label><input type="radio" name="ai_familiarity" value="5"><span>5</span></label>
-            <label><input type="radio" name="ai_familiarity" value="6"><span>6</span></label>
-            <label><input type="radio" name="ai_familiarity" value="7"><span>7</span></label>
-
-          </div>
-
-        </div>
-
-        <!-- SOCIAL MEDIA -->
-
-        <div class="question-card">
-
-          <div class="question-title">
-            How often do you use social media platforms?
-          </div>
-
-          <div class="likert-labels">
-            <span>Never</span>
-            <span>Very often</span>
-          </div>
-
-          <div class="likert-scale">
-
-            <label><input type="radio" name="social_media" value="1"><span>1</span></label>
-            <label><input type="radio" name="social_media" value="2"><span>2</span></label>
-            <label><input type="radio" name="social_media" value="3"><span>3</span></label>
-            <label><input type="radio" name="social_media" value="4"><span>4</span></label>
-            <label><input type="radio" name="social_media" value="5"><span>5</span></label>
-            <label><input type="radio" name="social_media" value="6"><span>6</span></label>
-            <label><input type="radio" name="social_media" value="7"><span>7</span></label>
-
-          </div>
-
-        </div>
-
-        <!-- NAVIGATION -->
-
-        <div class="multi-button-container">
-
-          <button
-            class="secondary-button"
-            onclick="previousSection(1)">
-
-            Back
-
-          </button>
-
-          <button
-            class="primary-button"
-            onclick="nextSection(3)">
-
-            Next
-
-          </button>
+          <label><input type="radio" name="religiosity" value="1"><span>1</span></label>
+          <label><input type="radio" name="religiosity" value="2"><span>2</span></label>
+          <label><input type="radio" name="religiosity" value="3"><span>3</span></label>
+          <label><input type="radio" name="religiosity" value="4"><span>4</span></label>
+          <label><input type="radio" name="religiosity" value="5"><span>5</span></label>
+          <label><input type="radio" name="religiosity" value="6"><span>6</span></label>
+          <label><input type="radio" name="religiosity" value="7"><span>7</span></label>
 
         </div>
 
       </div>
 
-      <!-- ===================================== -->
-      <!-- SECTION 3 -->
-      <!-- ===================================== -->
+      <!-- CONTINUE -->
 
-      <div class="survey-section"
-           id="section3">
+      <div class="button-container">
 
-        <div class="section-heading">
-          Attitude Statements
-        </div>
+        <button
+          class="primary-button"
+          id="submitBtn">
 
-        <p class="scale-instruction">
+          Continue
 
-          Please read the statements below and indicate the extent to which you agree or disagree with each statement.
-
-        </p>
-
-        <!-- ITEM 1 -->
-
-        <div class="question-card">
-
-          <div class="question-title">
-            I am usually interested in understanding why people hold views different from mine.
-          </div>
-
-          <div class="likert-labels">
-            <span>Strongly disagree</span>
-            <span>Strongly agree</span>
-          </div>
-
-          <div class="likert-scale">
-
-            <label><input type="radio" name="open_01" value="1"><span>1</span></label>
-            <label><input type="radio" name="open_01" value="2"><span>2</span></label>
-            <label><input type="radio" name="open_01" value="3"><span>3</span></label>
-            <label><input type="radio" name="open_01" value="4"><span>4</span></label>
-            <label><input type="radio" name="open_01" value="5"><span>5</span></label>
-            <label><input type="radio" name="open_01" value="6"><span>6</span></label>
-            <label><input type="radio" name="open_01" value="7"><span>7</span></label>
-
-          </div>
-
-        </div>
-
-        <!-- ITEM 2 -->
-
-        <div class="question-card">
-
-          <div class="question-title">
-            When I disagree with someone, I still try to evaluate their arguments fairly.
-          </div>
-
-          <div class="likert-labels">
-            <span>Strongly disagree</span>
-            <span>Strongly agree</span>
-          </div>
-
-          <div class="likert-scale">
-
-            <label><input type="radio" name="open_02" value="1"><span>1</span></label>
-            <label><input type="radio" name="open_02" value="2"><span>2</span></label>
-            <label><input type="radio" name="open_02" value="3"><span>3</span></label>
-            <label><input type="radio" name="open_02" value="4"><span>4</span></label>
-            <label><input type="radio" name="open_02" value="5"><span>5</span></label>
-            <label><input type="radio" name="open_02" value="6"><span>6</span></label>
-            <label><input type="radio" name="open_02" value="7"><span>7</span></label>
-
-          </div>
-
-        </div>
-
-        <!-- FINAL BUTTONS -->
-
-        <div class="multi-button-container">
-
-          <button
-            class="secondary-button"
-            onclick="previousSection(2)">
-
-            Back
-
-          </button>
-
-          <button
-            class="primary-button"
-            id="submitBtn">
-
-            Continue
-
-          </button>
-
-        </div>
+        </button>
 
       </div>
 
@@ -522,76 +294,6 @@
   </div>
 
   <script>
-
-    // =====================================
-    // SECTION NAVIGATION
-    // =====================================
-
-    function nextSection(sectionNumber) {
-
-      document
-        .querySelectorAll(".survey-section")
-        .forEach(section => {
-
-          section.classList.remove(
-            "active-section"
-          );
-
-        });
-
-      document
-        .getElementById(
-          "section" + sectionNumber
-        )
-        .classList.add(
-          "active-section"
-        );
-
-      updateProgress(sectionNumber);
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
-
-    function previousSection(sectionNumber) {
-
-      nextSection(sectionNumber);
-
-    }
-
-    // =====================================
-    // UPDATE PROGRESS
-    // =====================================
-
-    function updateProgress(sectionNumber) {
-
-      const progress =
-        sectionNumber * 14;
-
-      document
-        .getElementById(
-          "surveyProgress"
-        )
-        .style.width =
-        progress + "%";
-
-      document
-        .getElementById(
-          "sectionIndicator"
-        )
-        .innerText =
-        "Section " +
-        sectionNumber +
-        " of 3";
-
-    }
-
-    // =====================================
-    // SUBMIT
-    // =====================================
 
     document
       .getElementById(
