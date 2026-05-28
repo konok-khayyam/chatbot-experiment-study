@@ -8,7 +8,7 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0"/>
 
-  <title>Video Introduction</title>
+  <title>Video Exposure</title>
 
   <link rel="stylesheet"
         href="css/style.css" />
@@ -26,13 +26,13 @@
       <div class="progress-bar">
 
         <div class="progress-fill"
-             style="width: 40%">
+             style="width: 70%">
         </div>
 
       </div>
 
       <p class="progress-text">
-        Step 2 of 5
+        Video Exposure
       </p>
 
     </div>
@@ -42,24 +42,27 @@
     <div class="content-card">
 
       <h1 class="page-title">
-        Introduction Video
+        Video Exposure
       </h1>
 
       <p class="page-description">
 
-        Please watch the following short video before
-        continuing to the next part of the study.
+        Please watch the following video carefully.
+
+        <br><br>
+
+        The Continue button will activate after most of the video has been viewed.
 
       </p>
 
-      <!-- Video Wrapper -->
+      <!-- Video -->
 
       <div class="video-wrapper">
 
         <iframe
           id="studyVideo"
           width="100%"
-          height="450"
+          height="500"
           src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"
           title="Study Video"
           frameborder="0"
@@ -70,24 +73,29 @@
 
       </div>
 
-      <!-- Video Status -->
+      <!-- Status -->
 
       <p id="videoStatus"
          class="video-status">
 
-        Please start the video to continue.
+        Please watch the video to continue.
 
       </p>
 
-      <!-- Continue Button -->
+      <!-- Continue -->
 
-      <button id="continueBtn"
-              class="primary-button"
-              disabled>
+      <div class="button-container">
 
-        Continue
+        <button
+          id="continueBtn"
+          class="primary-button"
+          disabled>
 
-      </button>
+          Continue
+
+        </button>
+
+      </div>
 
     </div>
 
@@ -100,10 +108,13 @@
   <script>
 
     let player;
-    let videoStarted = false;
+
+    let watchInterval;
+
+    let videoCompleted = false;
 
     // =====================================
-    // CREATE YOUTUBE PLAYER
+    // CREATE PLAYER
     // =====================================
 
     function onYouTubeIframeAPIReady() {
@@ -125,7 +136,7 @@
     }
 
     // =====================================
-    // VIDEO INTERACTION
+    // TRACK VIDEO
     // =====================================
 
     function onPlayerStateChange(event) {
@@ -134,26 +145,18 @@
 
       if (
         event.data === YT.PlayerState.PLAYING
-        &&
-        !videoStarted
       ) {
 
-        videoStarted = true;
+        startTracking();
 
-        document.getElementById(
-          "videoStatus"
-        ).innerText =
-          "Video started. You may continue after watching.";
+      }
 
-        document.getElementById(
-          "continueBtn"
-        ).disabled = false;
+      // PAUSED
 
-        // save interaction timestamp
+      else {
 
-        localStorage.setItem(
-          "videoStartedAt",
-          new Date().toISOString()
+        clearInterval(
+          watchInterval
         );
 
       }
@@ -161,7 +164,90 @@
     }
 
     // =====================================
-    // CONTINUE BUTTON
+    // WATCH TRACKING
+    // =====================================
+
+    function startTracking() {
+
+      watchInterval = setInterval(
+        () => {
+
+          if (!player || !player.getDuration) {
+            return;
+          }
+
+          const currentTime =
+            player.getCurrentTime();
+
+          const duration =
+            player.getDuration();
+
+          if (!duration) {
+            return;
+          }
+
+          const progress =
+            (currentTime / duration) * 100;
+
+          // UPDATE STATUS
+
+          document.getElementById(
+            "videoStatus"
+          ).innerText =
+
+            "Video watched: "
+            +
+            Math.floor(progress)
+            +
+            "%";
+
+          // ENABLE AFTER 90%
+
+          if (
+            progress >= 90
+            &&
+            !videoCompleted
+          ) {
+
+            videoCompleted = true;
+
+            clearInterval(
+              watchInterval
+            );
+
+            document.getElementById(
+              "continueBtn"
+            ).disabled = false;
+
+            document.getElementById(
+              "videoStatus"
+            ).innerText =
+
+              "Video completed. You may continue.";
+
+            // SAVE LOCAL FLAG
+
+            localStorage.setItem(
+              "videoCompleted",
+              "true"
+            );
+
+            localStorage.setItem(
+              "videoCompletedAt",
+              new Date().toISOString()
+            );
+
+          }
+
+        },
+
+        1000
+      );
+
+    }
+
+    // =====================================
+    // CONTINUE
     // =====================================
 
     document.getElementById(
@@ -170,13 +256,8 @@
       "click",
       () => {
 
-        localStorage.setItem(
-          "videoCompleted",
-          "true"
-        );
-
         window.location.href =
-          "pre-survey.html";
+          "chat.html";
 
       }
     );
