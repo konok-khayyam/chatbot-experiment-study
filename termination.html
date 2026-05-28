@@ -73,6 +73,34 @@
     </div>
 
   </div>
+  <script>
+
+  // =====================================
+  // TERMINATION FLAG
+  // =====================================
+
+  localStorage.setItem(
+    "study_terminated",
+    "true"
+  );
+
+  // =====================================
+  // PREVENT BACK NAVIGATION
+  // =====================================
+
+  history.pushState(
+    null,
+    null,
+    location.href
+  );
+
+  window.onpopstate = function () {
+
+    history.go(1);
+
+  };
+
+</script>
 
 </body>
 
