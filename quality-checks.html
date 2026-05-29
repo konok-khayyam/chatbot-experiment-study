@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Final Questions</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  />
+
+</head>
+
+<body>
+
+  <div class="page-container">
+
+    <!-- Progress -->
+
+    <div class="progress-wrapper">
+
+      <div class="progress-bar">
+
+        <div
+          class="progress-fill"
+          style="width: 100%;"
+        ></div>
+
+      </div>
+
+      <div class="progress-text">
+        Final Step
+      </div>
+
+    </div>
+
+    <!-- Main Card -->
+
+    <div class="content-card">
+
+      <h1 class="page-title">
+        Final Questions
+      </h1>
+
+      <p class="page-description">
+
+        Please answer the following final questions
+        about your experience during the study.
+
+      </p>
+
+      <!-- =========================================
+           STUDY PURPOSE
+      ========================================= -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          What do you think this study was about?
+        </div>
+
+        <textarea
+          class="survey-input"
+          rows="6"
+          name="study_guess"
+          placeholder="Write your response here..."
+        ></textarea>
+
+      </div>
+
+      <!-- =========================================
+           TECHNICAL PROBLEMS
+      ========================================= -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Did you experience any technical problems?
+        </div>
+
+        <label class="radio-option">
+
+          <input
+            type="radio"
+            name="technical_problem"
+            value="yes"
+            onclick="toggleTechnicalBox(true)"
+          />
+
+          Yes
+
+        </label>
+
+        <label class="radio-option">
+
+          <input
+            type="radio"
+            name="technical_problem"
+            value="no"
+            onclick="toggleTechnicalBox(false)"
+          />
+
+          No
+
+        </label>
+
+        <div
+          id="technicalBox"
+          style="display:none; margin-top:20px;"
+        >
+
+          <textarea
+            class="survey-input"
+            rows="5"
+            name="technical_problem_details"
+            placeholder="Please describe the technical problem..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+      <!-- =========================================
+           EXTERNAL TOOLS
+      ========================================= -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Did you use any external tools, websites, or AI systems while completing this study?
+        </div>
+
+        <label class="radio-option">
+
+          <input
+            type="radio"
+            name="external_tools"
+            value="yes"
+            onclick="toggleExternalToolsBox(true)"
+          />
+
+          Yes
+
+        </label>
+
+        <label class="radio-option">
+
+          <input
+            type="radio"
+            name="external_tools"
+            value="no"
+            onclick="toggleExternalToolsBox(false)"
+          />
+
+          No
+
+        </label>
+
+        <div
+          id="externalToolsBox"
+          style="display:none; margin-top:20px;"
+        >
+
+          <textarea
+            class="survey-input"
+            rows="5"
+            name="external_tools_details"
+            placeholder="Please describe which tools or systems you used..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+      <!-- =========================================
+           TASK SERIOUSNESS
+      ========================================= -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          How seriously did you take the task?
+        </div>
+
+        <div class="likert-labels">
+          <span>Not seriously at all</span>
+          <span>Very seriously</span>
+        </div>
+
+        <div class="likert-scale">
+
+          <label><input type="radio" name="task_seriousness" value="1">1</label>
+          <label><input type="radio" name="task_seriousness" value="2">2</label>
+          <label><input type="radio" name="task_seriousness" value="3">3</label>
+          <label><input type="radio" name="task_seriousness" value="4">4</label>
+          <label><input type="radio" name="task_seriousness" value="5">5</label>
+          <label><input type="radio" name="task_seriousness" value="6">6</label>
+          <label><input type="radio" name="task_seriousness" value="7">7</label>
+
+        </div>
+
+      </div>
+
+      <!-- =========================================
+           CHAT SUMMARY
+      ========================================= -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Please briefly summarize what you discussed with the chatbot.
+        </div>
+
+        <textarea
+          class="survey-input"
+          rows="6"
+          name="chat_summary"
+          placeholder="Write your response here..."
+        ></textarea>
+
+      </div>
+
+      <!-- =========================================
+           FINAL COMMENTS
+      ========================================= -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Do you have any final comments about the study?
+        </div>
+
+        <textarea
+          class="survey-input"
+          rows="6"
+          name="final_comments"
+          placeholder="Write your response here..."
+        ></textarea>
+
+      </div>
+
+      <!-- =========================================
+           CONTINUE
+      ========================================= -->
+
+      <div class="button-container">
+
+        <button
+          class="primary-button"
+          onclick="window.location.href='debrief.html'"
+        >
+          Continue
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    function toggleTechnicalBox(show) {
+
+      document.getElementById(
+        "technicalBox"
+      ).style.display =
+        show ? "block" : "none";
+
+    }
+
+    function toggleExternalToolsBox(show) {
+
+      document.getElementById(
+        "externalToolsBox"
+      ).style.display =
+        show ? "block" : "none";
+
+    }
+
+  </script>
+
+</body>
+
+</html>
