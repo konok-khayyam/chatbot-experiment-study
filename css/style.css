@@ -581,3 +581,28 @@ body {
   font-style: italic;
 
 }
+.instruction-card {
+
+  background: #F8FAFC;
+
+  border: 1px solid #E2E8F0;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin-top: 28px;
+
+  margin-bottom: 28px;
+
+  text-align: center;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  line-height: 1.7;
+
+  color: #2F3440;
+
+}
