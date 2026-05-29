@@ -671,6 +671,70 @@
 
   <script>
 
+ // =====================================
+    // SEARCHABLE COUNTRY SELECT
+    // =====================================
+
+    new TomSelect(
+      "#country",
+      {
+        create: false,
+        sortField: {
+          field: "text",
+          direction: "asc"
+        }
+      }
+    );
+
+    // =====================================
+    // VALIDATION
+    // =====================================
+
+    function validateSurvey() {
+
+      const age =
+        document.getElementById("age").value;
+
+      const gender =
+        document.querySelector(
+          'input[name="gender"]:checked'
+        );
+
+      const country =
+        document.getElementById("country").value;
+
+      const education =
+        document.getElementById("education").value;
+
+      const employment =
+        document.querySelector(
+          'input[name="employment"]:checked'
+        );
+
+      if (
+        !age ||
+        !gender ||
+        !country ||
+        !education ||
+        !employment
+      ) {
+
+        alert(
+          "Please answer all required questions before continuing."
+        );
+
+        return false;
+
+      }
+
+      return true;
+
+    }
+
+    // =====================================
+    // SUBMIT
+    // =====================================
+
     document
       .getElementById(
         "submitBtn"
@@ -678,6 +742,12 @@
       .addEventListener(
         "click",
         async () => {
+
+          if (
+            !validateSurvey()
+          ) {
+            return;
+          }
 
           try {
 
@@ -699,7 +769,7 @@
 
                   session_id:
                     localStorage.getItem(
-                      "session_id"
+                      "sessionId"
                     ),
 
                   age:
@@ -720,7 +790,12 @@
                   education:
                     document.getElementById(
                       "education"
-                    ).value
+                    ).value,
+
+                  employment:
+                    document.querySelector(
+                      'input[name="employment"]:checked'
+                    )?.value
 
                 })
 
@@ -745,27 +820,8 @@
         }
       );
 
-      <!-- CONTINUE BUTTON -->
-
-      <div class="button-container">
-
-        <button
-          class="primary-button"
-          id="submitBtn">
-
-          Continue
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
   </script>
 
-   
 </body>
 
 </html>
