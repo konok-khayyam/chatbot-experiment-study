@@ -24,6 +24,37 @@
 
 </head>
 
+  <script>
+
+  // =====================================
+  // PREVENT BACK NAVIGATION
+  // =====================================
+
+  (function () {
+
+    history.pushState(
+      null,
+      "",
+      location.href
+    );
+
+    window.addEventListener(
+      "popstate",
+      function () {
+
+        history.pushState(
+          null,
+          "",
+          location.href
+        );
+
+      }
+    );
+
+  })();
+
+</script>
+
 <body>
 
   <div class="page-container">
