@@ -765,123 +765,212 @@
     // =====================================
     // SUBMIT
     // =====================================
-
-    document
-      .getElementById(
-        "submitBtn"
-      )
-      .addEventListener(
-        "click",
-        async () => {
-
-          if (
-            !validateSurvey()
-          ) {
-            return;
-          }
-
-          try {
-
-            await fetch(
-              "https://n8n.media.tuwien.ac.at/webhook/save-consent",
-              {
-
-                method: "POST",
-
-                headers: {
-                  "Content-Type":
-                    "application/json"
-                },
-
-                body: JSON.stringify({
-
-                  action:
-                    "save_presurvey",
-
-                  session_id:
-                    localStorage.getItem(
-                      "sessionId"
-                    ),
-
-                  age:
-                    document.getElementById(
-                      "age"
-                    ).value,
-
-                  gender:
-                    document.querySelector(
-                      'input[name="gender"]:checked'
-                    )?.value,
-
-                  country:
-                    document.getElementById(
-                      "country"
-                    ).value,
-
-                  education:
-                    document.getElementById(
-                      "education"
-                    ).value,
-
-                  employment:
-                    document.querySelector(
-                      'input[name="employment"]:checked'
-                    )?.value
-
-                })
-
-              }
-            );
-
-            // =====================================
-// RANDOM CONDITION
-// =====================================
-
-if (
-  !localStorage.getItem(
-    "condition"
+document
+  .getElementById(
+    "submitBtn"
   )
-) {
+  .addEventListener(
+    "click",
+    async () => {
 
-  const conditions = [
-    "1",
-    "2",
-    "3",
-    "4"
-  ];
+      if (
+        !validateSurvey()
+      ) {
+        return;
+      }
 
-  const randomCondition =
-    conditions[
-      Math.floor(
-        Math.random() *
-        conditions.length
-      )
-    ];
+      try {
 
-  localStorage.setItem(
-    "condition",
-    randomCondition
-  );
+        // =====================================
+        // RANDOM CONDITION
+        // =====================================
 
-}
-            window.location.href =
-              "video-instruction.html";
+        if (
+          !localStorage.getItem(
+            "condition"
+          )
+        ) {
 
-          }
-          
+          const conditions = [
+            "1",
+            "2",
+            "3",
+            "4"
+          ];
 
-          catch (error) {
+          const randomCondition =
+            conditions[
+              Math.floor(
+                Math.random() *
+                conditions.length
+              )
+            ];
 
-            console.error(error);
-
-            alert(
-              "Error saving survey."
-            );
-
-          }
+          localStorage.setItem(
+            "condition",
+            randomCondition
+          );
 
         }
-      );
+
+        // =====================================
+        // ETHNIC BACKGROUND
+        // =====================================
+
+        const backgroundSelections =
+          Array.from(
+            document.querySelectorAll(
+              'input[name="background"]:checked'
+            )
+          ).map(
+            checkbox => checkbox.value
+          );
+
+        // =====================================
+        // SEND DATA
+        // =====================================
+
+        await fetch(
+          "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+          {
+
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+
+              action:
+                "save_presurvey",
+
+              session_id:
+                localStorage.getItem(
+                  "sessionId"
+                ),
+
+              condition:
+                localStorage.getItem(
+                  "condition"
+                ),
+
+              age:
+                document.getElementById(
+                  "age"
+                ).value,
+
+              gender:
+                document.querySelector(
+                  'input[name="gender"]:checked'
+                )?.value,
+
+              country:
+                document.getElementById(
+                  "country"
+                ).value,
+
+              education:
+                document.getElementById(
+                  "education"
+                ).value,
+
+              employment:
+                document.querySelector(
+                  'input[name="employment"]:checked'
+                )?.value,
+
+              political_orientation:
+                document.querySelector(
+                  'input[name="political_orientation"]:checked'
+                )?.value,
+
+              religiosity:
+                document.querySelector(
+                  'input[name="religiosity"]:checked'
+                )?.value,
+
+              ethnic_background:
+                backgroundSelections.join(", "),
+
+              ai_usage:
+                document.querySelector(
+                  'input[name="ai_usage"]:checked'
+                )?.value,
+
+              ai_familiarity:
+                document.querySelector(
+                  'input[name="ai_familiarity"]:checked'
+                )?.value,
+
+              gaming:
+                document.querySelector(
+                  'input[name="gaming"]:checked'
+                )?.value,
+
+              social_media:
+                document.querySelector(
+                  'input[name="social_media"]:checked'
+                )?.value,
+
+              open_01:
+                document.querySelector(
+                  'input[name="open_01"]:checked'
+                )?.value,
+
+              open_02:
+                document.querySelector(
+                  'input[name="open_02"]:checked'
+                )?.value,
+
+              open_03:
+                document.querySelector(
+                  'input[name="open_03"]:checked'
+                )?.value,
+
+              open_04:
+                document.querySelector(
+                  'input[name="open_04"]:checked'
+                )?.value,
+
+              open_05_reverse:
+                document.querySelector(
+                  'input[name="open_05_reverse"]:checked'
+                )?.value,
+
+              open_06_reverse:
+                document.querySelector(
+                  'input[name="open_06_reverse"]:checked'
+                )?.value
+
+            })
+
+          }
+        );
+
+        // =====================================
+        // REDIRECT
+        // =====================================
+
+        window.location.href =
+          "video-instruction.html";
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Error saving survey."
+        );
+
+      }
+
+    }
+  );
+
 
   </script>
 
