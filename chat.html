@@ -794,11 +794,34 @@
 
     let countdown;
 
+/*
+==========================================
+CHAT METADATA
+==========================================
+*/
+
+let messageCount = 0;
+
+let userMessageCount = 0;
+
+let botMessageCount = 0;
+
+let chatStartTimestamp = null;
+
+const promptVersion =
+  "reflective_v1";
+
+const modelVersion =
+  "gpt-4o-mini";
+
+
     /*
     ==========================================
     START CHAT
     ==========================================
     */
+chatStartTimestamp =
+  new Date().toISOString()
 
     function startChat() {
 
@@ -875,6 +898,27 @@
 
       const message =
         userInput.value.trim();
+// ==========================================
+// COUNTERS
+// ==========================================
+
+messageCount++;
+
+userMessageCount++;
+
+// USER WORD COUNT
+
+const userWordCount =
+  message
+    .split(/\s+/)
+    .filter(word => word.length > 0)
+    .length;
+
+// TIMESTAMP
+
+const messageTimestamp =
+  new Date().toISOString();
+
 
       if (!message) return;
 
@@ -897,26 +941,63 @@
 
             body: JSON.stringify({
 
-              chatInput: message,
+body: JSON.stringify({
 
-              metadata: {
+  chatInput: message,
 
-                condition:
-                  localStorage.getItem("condition")
-                  || "condition_1",
+  metadata: {
 
-                sessionId:
-                  localStorage.getItem("session_id")
+    session_id:
+      localStorage.getItem(
+        "session_id"
+      ),
 
-              }
+    condition:
+      localStorage.getItem(
+        "condition"
+      ) || "condition_1",
 
-            })
+    prompt_version:
+      promptVersion,
+
+    model_version:
+      modelVersion,
+
+    message_number:
+      messageCount,
+
+    timestamp:
+      messageTimestamp,
+
+    user_word_count:
+      userWordCount,
+
+    chat_start_timestamp:
+      chatStartTimestamp
+
+  }
+
+})
+
 
           }
         );
 
         const data =
           await response.json();
+      
+// BOT COUNTER
+
+botMessageCount++;
+
+// BOT WORD COUNT
+
+const botWordCount =
+  (data.text || "")
+    .split(/\s+/)
+    .filter(word => word.length > 0)
+    .length;
+
 
         addMessage(
           data.text || "No response received.",
@@ -937,6 +1018,20 @@
       }
 
     }
+// ==========================================
+// STORE BOT METADATA LOCALLY
+// ==========================================
+
+console.log({
+
+  bot_message_count:
+    botMessageCount,
+
+  bot_word_count:
+    botWordCount
+
+});
+
 
     /*
     ==========================================
