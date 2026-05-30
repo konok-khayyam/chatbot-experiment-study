@@ -833,10 +833,42 @@
               }
             );
 
+            // =====================================
+// RANDOM CONDITION
+// =====================================
+
+if (
+  !localStorage.getItem(
+    "condition"
+  )
+) {
+
+  const conditions = [
+    "1",
+    "2",
+    "3",
+    "4"
+  ];
+
+  const randomCondition =
+    conditions[
+      Math.floor(
+        Math.random() *
+        conditions.length
+      )
+    ];
+
+  localStorage.setItem(
+    "condition",
+    randomCondition
+  );
+
+}
             window.location.href =
               "video-instruction.html";
 
           }
+          
 
           catch (error) {
 
