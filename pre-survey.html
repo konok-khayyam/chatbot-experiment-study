@@ -721,46 +721,81 @@
     // VALIDATION
     // =====================================
 
-    function validateSurvey() {
+   function validateSurvey() {
 
-      const age =
-        document.getElementById("age").value;
+  const requiredRadioGroups = [
 
-      const gender =
-        document.querySelector(
-          'input[name="gender"]:checked'
-        );
+    "gender",
+    "employment",
+    "political_orientation",
+    "religiosity",
+    "ai_usage",
+    "ai_familiarity",
+    "gaming",
+    "social_media",
+    "open_01",
+    "open_02",
+    "open_03",
+    "open_04",
+    "open_05_reverse",
+    "open_06_reverse"
 
-      const country =
-        document.getElementById("country").value;
+  ];
 
-      const education =
-        document.getElementById("education").value;
+  const age =
+    document.getElementById(
+      "age"
+    ).value;
 
-      const employment =
-        document.querySelector(
-          'input[name="employment"]:checked'
-        );
+  const country =
+    document.getElementById(
+      "country"
+    ).value;
 
-      if (
-        !age ||
-        !gender ||
-        !country ||
-        !education ||
-        !employment
-      ) {
+  const education =
+    document.getElementById(
+      "education"
+    ).value;
 
-        alert(
-          "Please answer all required questions before continuing."
-        );
+  if (
+    !age ||
+    !country ||
+    !education
+  ) {
 
-        return false;
+    alert(
+      "Please answer all required questions before continuing."
+    );
 
-      }
+    return false;
 
-      return true;
+  }
+
+  for (
+    const groupName
+    of requiredRadioGroups
+  ) {
+
+    const checked =
+      document.querySelector(
+        `input[name="${groupName}"]:checked`
+      );
+
+    if (!checked) {
+
+      alert(
+        "Please answer all required questions before continuing."
+      );
+
+      return false;
 
     }
+
+  }
+
+  return true;
+
+}
 
     // =====================================
     // SUBMIT
