@@ -24,36 +24,6 @@
 
 </head>
 
-  <script>
-
-  // =====================================
-  // PREVENT BACK NAVIGATION
-  // =====================================
-
-  (function () {
-
-    history.pushState(
-      null,
-      "",
-      location.href
-    );
-
-    window.addEventListener(
-      "popstate",
-      function () {
-
-        history.pushState(
-          null,
-          "",
-          location.href
-        );
-
-      }
-    );
-
-  })();
-
-</script>
 
 <body>
 
@@ -1008,7 +978,25 @@ document
 
 
   </script>
+<script>
 
+  // =====================================
+  // PREVENT BACK NAVIGATION
+  // =====================================
+
+  history.pushState(
+    null,
+    null,
+    location.href
+  );
+
+  window.onpopstate = function () {
+
+    history.go(1);
+
+  };
+
+</script>
 </body>
 
 </html>
