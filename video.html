@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,13 +27,13 @@
       <div class="progress-bar">
 
         <div class="progress-fill"
-             style="width: 70%">
+             style="width: 40%">
         </div>
 
       </div>
 
       <p class="progress-text">
-        Video Exposure
+        Step 6 of 15
       </p>
 
     </div>
@@ -63,7 +64,7 @@
           id="studyVideo"
           width="100%"
           height="500"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&controls=0&disablekb=1&modestbranding=1&rel=0"
           title="Study Video"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -107,11 +108,33 @@
 
   <script>
 
+    // =====================================
+    // VIDEO VARIABLES
+    // =====================================
+
     let player;
 
-    let watchInterval;
+    let trackingInterval;
+
+    let videoStarted = false;
 
     let videoCompleted = false;
+
+    let videoStartTimestamp = null;
+
+    let videoEndTimestamp = null;
+
+    let watchTime = 0;
+
+    let pauseCount = 0;
+
+    let rewatchCount = 0;
+
+    let maxWatchedSecond = 0;
+
+    let previousSecond = 0;
+
+    let videoDuration = 0;
 
     // =====================================
     // CREATE PLAYER
@@ -136,7 +159,7 @@
     }
 
     // =====================================
-    // TRACK VIDEO
+    // PLAYER STATE
     // =====================================
 
     function onPlayerStateChange(event) {
@@ -147,16 +170,47 @@
         event.data === YT.PlayerState.PLAYING
       ) {
 
+        if (!videoStarted) {
+
+          videoStarted = true;
+
+          videoStartTimestamp =
+            new Date().toISOString();
+
+        }
+
+        videoDuration =
+          player.getDuration();
+
         startTracking();
 
       }
 
       // PAUSED
 
-      else {
+      else if (
+        event.data === YT.PlayerState.PAUSED
+      ) {
+
+        pauseCount++;
 
         clearInterval(
-          watchInterval
+          trackingInterval
+        );
+
+      }
+
+      // ENDED
+
+      else if (
+        event.data === YT.PlayerState.ENDED
+      ) {
+
+        videoEndTimestamp =
+          new Date().toISOString();
+
+        clearInterval(
+          trackingInterval
         );
 
       }
@@ -164,56 +218,76 @@
     }
 
     // =====================================
-    // WATCH TRACKING
+    // TRACK WATCHING
     // =====================================
 
     function startTracking() {
 
-      watchInterval = setInterval(
+      clearInterval(
+        trackingInterval
+      );
+
+      trackingInterval = setInterval(
         () => {
 
-          if (!player || !player.getDuration) {
+          if (
+            !player
+            ||
+            !player.getCurrentTime
+          ) {
             return;
           }
 
-          const currentTime =
+          const currentSecond =
             player.getCurrentTime();
 
-          const duration =
-            player.getDuration();
+          // WATCH TIME
 
-          if (!duration) {
-            return;
-          }
+          watchTime++;
 
-          const progress =
-            (currentTime / duration) * 100;
-
-          // UPDATE STATUS
-
-          document.getElementById(
-            "videoStatus"
-          ).innerText =
-
-            "Video watched: "
-            +
-            Math.floor(progress)
-            +
-            "%";
-
-          // ENABLE AFTER 90%
+          // REWATCH DETECTION
 
           if (
-            progress >= 90
+            currentSecond <
+            previousSecond - 2
+          ) {
+
+            rewatchCount++;
+
+          }
+
+          previousSecond =
+            currentSecond;
+
+          // MAX WATCHED
+
+          if (
+            currentSecond >
+            maxWatchedSecond
+          ) {
+
+            maxWatchedSecond =
+              currentSecond;
+
+          }
+
+          // WATCH PERCENTAGE
+
+          const watchPercentage =
+            (
+              maxWatchedSecond /
+              videoDuration
+            ) * 100;
+
+          // ENABLE BUTTON AT 90%
+
+          if (
+            watchPercentage >= 90
             &&
             !videoCompleted
           ) {
 
             videoCompleted = true;
-
-            clearInterval(
-              watchInterval
-            );
 
             document.getElementById(
               "continueBtn"
@@ -225,18 +299,6 @@
 
               "Video completed. You may continue.";
 
-            // SAVE LOCAL FLAG
-
-            localStorage.setItem(
-              "videoCompleted",
-              "true"
-            );
-
-            localStorage.setItem(
-              "videoCompletedAt",
-              new Date().toISOString()
-            );
-
           }
 
         },
@@ -247,23 +309,146 @@
     }
 
     // =====================================
-    // CONTINUE
+    // CONTINUE BUTTON
     // =====================================
 
     document.getElementById(
       "continueBtn"
     ).addEventListener(
       "click",
-      () => {
+      async () => {
 
-        window.location.href =
-          "chat.html";
+        try {
+
+          const watchPercentage =
+            (
+              maxWatchedSecond /
+              videoDuration
+            ) * 100;
+
+          // VIDEO END TIME
+
+          if (!videoEndTimestamp) {
+
+            videoEndTimestamp =
+              new Date().toISOString();
+
+          }
+
+          // =====================================
+          // SEND VIDEO METRICS
+          // =====================================
+
+          await fetch(
+            "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+            {
+
+              method: "POST",
+
+              headers: {
+
+                "Content-Type":
+                  "application/json"
+
+              },
+
+              body: JSON.stringify({
+
+                action:
+                  "save_video_metrics",
+
+                session_id:
+                  localStorage.getItem(
+                    "session_id"
+                  ),
+
+                video_start_timestamp:
+                  videoStartTimestamp,
+
+                video_end_timestamp:
+                  videoEndTimestamp,
+
+                video_duration:
+                  Math.round(
+                    videoDuration
+                  ),
+
+                watch_time:
+                  watchTime,
+
+                watch_percentage:
+                  Math.round(
+                    watchPercentage
+                  ),
+
+                rewatch_count:
+                  rewatchCount,
+
+                pause_count:
+                  pauseCount,
+
+                video_condition_id:
+                  localStorage.getItem(
+                    "condition"
+                  ),
+
+                video_completed:
+                  videoCompleted
+                    ? "yes"
+                    : "no",
+
+                video_completed_timestamp:
+                  new Date().toISOString()
+
+              })
+
+            }
+          );
+
+          // =====================================
+          // REDIRECT
+          // =====================================
+
+          window.location.replace(
+            "chat.html"
+          );
+
+        }
+
+        catch (error) {
+
+          console.error(error);
+
+          alert(
+            "Error saving video data."
+          );
+
+        }
 
       }
     );
 
   </script>
 
+  <!-- BACK BLOCK -->
+
+  <script>
+
+    history.pushState(
+      null,
+      null,
+      location.href
+    );
+
+    window.onpopstate = function () {
+
+      history.go(1);
+
+    };
+
+  </script>
+
 </body>
 
 </html>
+```
