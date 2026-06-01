@@ -292,18 +292,199 @@
 
       <div class="button-container">
 
-        <button
-          class="primary-button"
-          onclick="window.location.href='manipulation-checks.html'"
-        >
-          Continue
-        </button>
+    
+    <button
+      class="primary-button"
+      onclick="submitMarkerVariables()"
+    >
+      Continue
+    </button>
+
 
       </div>
 
     </div>
 
   </div>
+<script>
+
+/*
+==========================================
+SUBMIT MARKER VARIABLES
+==========================================
+*/
+
+async function submitMarkerVariables() {
+
+  // ======================================
+  // REQUIRED QUESTIONS
+  // ======================================
+
+  const requiredQuestions = [
+
+    "marker_1",
+    "marker_2",
+    "marker_3",
+    "marker_4",
+
+    "response_style_1",
+    "response_style_2",
+    "response_style_3",
+    "response_style_4_reverse"
+
+  ];
+
+  // ======================================
+  // VALIDATION
+  // ======================================
+
+  for (const question of requiredQuestions) {
+
+    const checked =
+      document.querySelector(
+        `input[name="${question}"]:checked`
+      );
+
+    if (!checked) {
+
+      alert(
+        "Please answer all questions before continuing."
+      );
+
+      return;
+
+    }
+
+  }
+
+  // ======================================
+  // DISABLE BUTTON
+  // ======================================
+
+  const button =
+    document.querySelector(
+      ".primary-button"
+    );
+
+  button.disabled = true;
+
+  button.innerText =
+    "Saving...";
+
+  // ======================================
+  // COLLECT RESPONSES
+  // ======================================
+
+  const responses = {};
+
+  requiredQuestions.forEach(question => {
+
+    responses[question] =
+
+      document.querySelector(
+        `input[name="${question}"]:checked`
+      ).value;
+
+  });
+
+  // ======================================
+  // SEND TO BACKEND
+  // ======================================
+
+  try {
+
+    const response = await fetch(
+
+      "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+
+      {
+
+        method: "POST",
+
+        headers: {
+
+          "Content-Type":
+            "application/json"
+
+        },
+
+        body: JSON.stringify({
+
+          action:
+            "save_marker_variables",
+
+          session_id:
+            localStorage.getItem(
+              "session_id"
+            ),
+
+          ...responses
+
+        })
+
+      }
+
+    );
+
+    // ======================================
+    // VERIFY SAVE
+    // ======================================
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Failed to save data"
+      );
+
+    }
+
+    // ======================================
+    // REDIRECT
+    // ======================================
+
+    window.location.replace(
+      "manipulation-checks.html"
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+    button.disabled = false;
+
+    button.innerText =
+      "Continue";
+
+    alert(
+      "Error saving responses."
+    );
+
+  }
+
+}
+
+/*
+==========================================
+BLOCK BACK NAVIGATION
+==========================================
+*/
+
+history.pushState(
+  null,
+  null,
+  location.href
+);
+
+window.onpopstate = function () {
+
+  history.go(1);
+
+};
+
+</script>
+
 
 </body>
 
