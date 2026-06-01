@@ -824,6 +824,9 @@ chatStartTimestamp =
   new Date().toISOString()
 
     function startChat() {
+      
+chatStartTimestamp =
+  new Date().toISOString();
 
       document.getElementById(
         "instructionOverlay"
@@ -939,8 +942,6 @@ const messageTimestamp =
                 "application/json"
             },
 
-            body: JSON.stringify({
-
 body: JSON.stringify({
 
   chatInput: message,
@@ -1018,19 +1019,19 @@ const botWordCount =
       }
 
     }
-// ==========================================
-// STORE BOT METADATA LOCALLY
-// ==========================================
+// // ==========================================
+// // STORE BOT METADATA LOCALLY
+// // ==========================================
 
-console.log({
+// console.log({
 
-  bot_message_count:
-    botMessageCount,
+//   bot_message_count:
+//     botMessageCount,
 
-  bot_word_count:
-    botWordCount
+//   bot_word_count:
+//     botWordCount
 
-});
+// });
 
 
     /*
@@ -1115,11 +1116,11 @@ console.log({
     */
 
     function goToPostSurvey() {
+      
+window.location.replace(
+  "post-chat-measures.html"
+);
 
-      window.location.href =
-        "post-chat-measures.html";
-
-    }
 
   </script>
 
