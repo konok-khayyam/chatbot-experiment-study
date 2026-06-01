@@ -442,19 +442,242 @@
       ========================================= -->
 
       <div class="button-container">
+<button
+  class="primary-button"
+  onclick="submitManipulationChecks()"
+>
+  Continue
+</button>
 
-        <button
-          class="primary-button"
-          onclick="window.location.href='quality-checks.html'"
-        >
-          Continue
-        </button>
+
 
       </div>
 
     </div>
 
   </div>
+<script>
+
+/*
+==========================================
+SUBMIT MANIPULATION CHECKS
+==========================================
+*/
+
+async function submitManipulationChecks() {
+
+  // ======================================
+  // REQUIRED QUESTIONS
+  // ======================================
+
+  const requiredQuestions = [
+
+    "manipulation_1",
+    "manipulation_2",
+    "manipulation_3",
+    "manipulation_4",
+    "manipulation_5",
+    "manipulation_6",
+    "manipulation_7",
+    "manipulation_8",
+    "manipulation_9",
+    "manipulation_10",
+    "manipulation_11",
+    "manipulation_12",
+
+    "conversation_partner"
+
+  ];
+
+  // ======================================
+  // VALIDATION
+  // ======================================
+
+  for (const question of requiredQuestions) {
+
+    const checked =
+      document.querySelector(
+        `input[name="${question}"]:checked`
+      );
+
+    if (!checked) {
+
+      alert(
+        "Please answer all questions before continuing."
+      );
+
+      return;
+
+    }
+
+  }
+
+  // ======================================
+  // DISABLE BUTTON
+  // ======================================
+
+  const button =
+    document.querySelector(
+      ".primary-button"
+    );
+
+  button.disabled = true;
+
+  button.innerText =
+    "Saving...";
+
+  // ======================================
+  // COLLECT RESPONSES
+  // ======================================
+
+  const responses = {};
+
+  requiredQuestions.forEach(question => {
+
+    responses[question] =
+
+      document.querySelector(
+        `input[name="${question}"]:checked`
+      ).value;
+
+  });
+
+  // ======================================
+  // SEND TO BACKEND
+  // ======================================
+
+  try {
+
+    // const response = await fetch(
+console.log("START FETCH");
+
+const response = await fetch(
+
+  "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+
+  {
+
+    method: "POST",
+
+    headers: {
+
+      "Content-Type":
+        "application/json"
+
+    },
+
+    body: JSON.stringify({
+
+      action:
+        "save_manipulation_checks",
+
+      session_id:
+        localStorage.getItem(
+          "session_id"
+        ),
+
+      ...responses
+
+    })
+
+  }
+
+);
+
+console.log("FETCH FINISHED");
+
+console.log(response);
+
+    //   "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+
+    //   {
+
+    //     method: "POST",
+
+    //     headers: {
+
+    //       "Content-Type":
+    //         "application/json"
+
+    //     },
+
+    //     body: JSON.stringify({
+
+    //       action:
+    //         "save_manipulation_checks",
+
+    //       session_id:
+    //         localStorage.getItem(
+    //           "session_id"
+    //         ),
+
+    //       ...responses
+
+    //     })
+
+    //   }
+
+    // );
+
+    // ======================================
+    // VERIFY SAVE
+    // ======================================
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Failed to save data"
+      );
+
+    }
+
+    // ======================================
+    // REDIRECT
+    // ======================================
+
+    window.location.replace(
+      "quality-checks.html"
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+    button.disabled = false;
+
+    button.innerText =
+      "Continue";
+
+    alert(
+      "Error saving responses."
+    );
+
+  }
+
+}
+
+/*
+==========================================
+BLOCK BACK NAVIGATION
+==========================================
+*/
+
+history.pushState(
+  null,
+  null,
+  location.href
+);
+
+window.onpopstate = function () {
+
+  history.go(1);
+
+};
+
+</script>
+
 
 </body>
 
