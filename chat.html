@@ -820,28 +820,25 @@ const modelVersion =
     START CHAT
     ==========================================
     */
-chatStartTimestamp =
-  new Date().toISOString()
+function startChat() {
 
-    function startChat() {
-      
-chatStartTimestamp =
-  new Date().toISOString();
+  chatStartTimestamp =
+    new Date().toISOString();
 
-      document.getElementById(
-        "instructionOverlay"
-      ).style.display = "none";
+  document.getElementById(
+    "instructionOverlay"
+  ).style.display = "none";
 
-      addMessage(
-        "Hello! Thank you for participating in this study.",
-        "bot"
-      );
+  addMessage(
+    "Hello! Thank you for participating in this study.",
+    "bot"
+  );
 
-      startTimer();
+  startTimer();
 
-    }
-
-    /*
+}
+    
+/*
     ==========================================
     START TIMER
     ==========================================
@@ -1109,20 +1106,22 @@ const botWordCount =
       }
     );
 
-    /*
-    ==========================================
-    REDIRECT
-    ==========================================
-    */
+/*
+==========================================
+REDIRECT
+==========================================
+*/
 
-    function goToPostSurvey() {
-      
-window.location.replace(
-  "post-chat-measures.html"
-);
+function goToPostSurvey() {
 
+  window.location.replace(
+    "post-chat-measures.html"
+  );
 
-  </script>
+}
+
+</script>
+
 
 </body>
 
