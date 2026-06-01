@@ -801,6 +801,7 @@ CHAT METADATA
 */
 
 let messageCount = 0;
+let lastActivityTime = Date.now();
 
 let userMessageCount = 0;
 
@@ -812,7 +813,7 @@ const promptVersion =
   "reflective_v1";
 
 const modelVersion =
-  "gpt-4o-mini";
+  "llama-3.1-8binstant";
 
 
     /*
@@ -824,6 +825,7 @@ function startChat() {
 
   chatStartTimestamp =
     new Date().toISOString();
+  lastActivityTime = Date.now();
 
   document.getElementById(
     "instructionOverlay"
@@ -902,6 +904,8 @@ function startChat() {
 // COUNTERS
 // ==========================================
 
+
+if (!message) return;
 messageCount++;
 
 userMessageCount++;
@@ -920,7 +924,9 @@ const messageTimestamp =
   new Date().toISOString();
 
 
-      if (!message) return;
+    
+
+      const now = Date.now(); const inactiveTime = Math.floor( (now - lastActivityTime) / 1000 ); lastActivityTime = now;
 
       addMessage(message, "user");
 
@@ -971,8 +977,10 @@ body: JSON.stringify({
       userWordCount,
 
     chat_start_timestamp:
-      chatStartTimestamp
-
+      chatStartTimestamp,
+    
+    inactive_time_seconds:
+    inactiveTime,
   }
 
 })
