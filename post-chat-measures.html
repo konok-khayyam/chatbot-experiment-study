@@ -526,18 +526,153 @@
 
       <div class="button-container">
 
-        <button
-          class="primary-button"
-          onclick="window.location.href='main-outcomes.html'"
-        >
-          Continue
-        </button>
+       <button class="primary-button" onclick="submitPostChatMeasures()" 
+         > 
+         Continue
+       </button>
 
       </div>
 
     </div>
 
   </div>
+<script>
+
+/*
+==========================================
+SUBMIT POST CHAT MEASURES
+==========================================
+*/
+
+async function submitPostChatMeasures() {
+
+  // ======================================
+  // VALIDATION
+  // ======================================
+
+  for (let i = 1; i <= 15; i++) {
+
+    const checked =
+      document.querySelector(
+        `input[name="q${i}"]:checked`
+      );
+
+    if (!checked) {
+
+      alert(
+        "Please answer all questions before continuing."
+      );
+
+      return;
+
+    }
+
+  }
+
+  // ======================================
+  // COLLECT RESPONSES
+  // ======================================
+
+  const responses = {};
+
+  for (let i = 1; i <= 15; i++) {
+
+    responses[`q${i}`] =
+
+      document.querySelector(
+        `input[name="q${i}"]:checked`
+      ).value;
+
+  }
+
+  // ======================================
+  // SEND TO BACKEND
+  // ======================================
+
+  try {
+    
+const button =
+  document.querySelector(
+    ".primary-button"
+  );
+
+button.disabled = true;
+
+button.innerText =
+  "Saving...";
+
+
+    await fetch(
+      "https://n8n.media.tuwien.ac.at/webhook/save-consent",
+      {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+
+          action:
+            "save_post_chat_measures",
+
+          session_id:
+            localStorage.getItem(
+              "session_id"
+            ),
+
+          ...responses
+
+        })
+
+      }
+    );
+
+    // ======================================
+    // REDIRECT
+    // ======================================
+
+    window.location.replace(
+      "main-outcomes.html"
+    );
+
+  }
+
+  
+
+  catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Error saving responses."
+    );
+
+  }
+
+}
+
+/*
+==========================================
+BLOCK BACK NAVIGATION
+==========================================
+*/
+
+history.pushState(
+  null,
+  null,
+  location.href
+);
+
+window.onpopstate = function () {
+
+  history.go(1);
+
+};
+
+</script>
 
 </body>
 
