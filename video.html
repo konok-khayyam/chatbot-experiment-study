@@ -135,6 +135,12 @@
 
     let videoDuration = 0;
 
+    let videoHiddenTime = 0;
+
+    let hiddenStartTime = null;
+
+    let autoPaused = false;
+
     // =====================================
     // CREATE PLAYER
     // =====================================
@@ -186,18 +192,23 @@
       }
 
       // PAUSED
+else if (
+  event.data === YT.PlayerState.PAUSED
+) {
 
-      else if (
-        event.data === YT.PlayerState.PAUSED
-      ) {
+  if (!autoPaused) {
 
-        pauseCount++;
+    pauseCount++;
 
-        clearInterval(
-          trackingInterval
-        );
+  }
 
-      }
+  autoPaused = false;
+
+  clearInterval(
+    trackingInterval
+  );
+
+}
 
       // ENDED
 
@@ -272,11 +283,16 @@
 
           // WATCH PERCENTAGE
 
-          const watchPercentage =
-            (
-              maxWatchedSecond /
-              videoDuration
-            ) * 100;
+         const watchPercentage =
+
+  videoDuration > 0
+
+    ? (
+        maxWatchedSecond /
+        videoDuration
+      ) * 100
+
+    : 0;
 
           // ENABLE BUTTON AT 90%
 
@@ -306,7 +322,70 @@
       );
 
     }
+    // =====================================
+// TAB VISIBILITY TRACKING
+// =====================================
 
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    // USER LEFT TAB
+
+if (
+  document.visibilityState === "hidden"
+) {
+
+  if (!videoStarted) {
+    return;
+  }
+
+  hiddenStartTime =
+    Date.now();
+
+      // PAUSE VIDEO
+
+      if (
+        player &&
+        player.pauseVideo
+      ) {
+
+        autoPaused = true;
+
+        player.pauseVideo();
+
+      }
+
+    }
+
+    // USER RETURNED
+
+    else if (
+      document.visibilityState === "visible"
+    ) {
+
+      if (
+        hiddenStartTime
+      ) {
+
+        videoHiddenTime +=
+
+          Math.floor(
+            (
+              Date.now()
+              -
+              hiddenStartTime
+            ) / 1000
+          );
+
+      }
+
+      hiddenStartTime = null;
+
+    }
+
+  }
+);
     // =====================================
     // CONTINUE BUTTON
     // =====================================
@@ -319,11 +398,16 @@
 
         try {
 
-          const watchPercentage =
-            (
-              maxWatchedSecond /
-              videoDuration
-            ) * 100;
+const watchPercentage =
+
+  videoDuration > 0
+
+    ? (
+        maxWatchedSecond /
+        videoDuration
+      ) * 100
+
+    : 0;
 
           // VIDEO END TIME
 
@@ -397,7 +481,10 @@
                     : "no",
 
                 video_completed_timestamp:
-                  new Date().toISOString()
+  new Date().toISOString(),
+
+video_hidden_time:
+  videoHiddenTime
 
               })
 
