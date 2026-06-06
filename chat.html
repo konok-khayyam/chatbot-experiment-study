@@ -793,6 +793,11 @@
     let countdownStarted = false;
 
     let countdown;
+    let chatHiddenTime = 0;
+
+    let hiddenStartTime = null;
+    
+    let chatPaused = false;
 
 /*
 ==========================================
@@ -853,6 +858,11 @@ function startChat() {
       countdownStarted = true;
 
       countdown = setInterval(() => {
+        if (chatPaused) {
+
+      return;
+
+        }
 
         const minutes =
           Math.floor(totalSeconds / 60);
@@ -890,6 +900,78 @@ function startChat() {
 
     }
 
+    /*
+==========================================
+TAB VISIBILITY TRACKING
+==========================================
+*/
+
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    // USER LEFT TAB
+
+    if (
+      document.visibilityState === "hidden"
+    ) {
+
+      if (!countdownStarted) {
+        return;
+      }
+
+      hiddenStartTime =
+        Date.now();
+
+      chatPaused = true;
+
+      timerElement.textContent =
+        "PAUSED";
+
+    }
+
+    // USER RETURNED
+
+    else if (
+      document.visibilityState === "visible"
+    ) {
+
+      if (
+        hiddenStartTime
+      ) {
+
+        chatHiddenTime +=
+
+          Math.floor(
+            (
+              Date.now()
+              -
+              hiddenStartTime
+            ) / 1000
+          );
+
+      }
+
+      hiddenStartTime = null;
+
+      chatPaused = false;
+      const minutes =
+  Math.floor(totalSeconds / 60);
+
+const seconds =
+  totalSeconds % 60;
+
+timerElement.textContent =
+
+  String(minutes).padStart(2, '0')
+  + ":"
+  +
+  String(seconds).padStart(2, '0');
+
+    }
+
+  }
+);
     /*
     ==========================================
     SEND MESSAGE
@@ -981,6 +1063,9 @@ body: JSON.stringify({
     
     inactive_time_seconds:
     inactiveTime,
+
+    chat_hidden_time:
+  chatHiddenTime,
   }
 
 })
