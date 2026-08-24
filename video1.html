@@ -19,11 +19,8 @@
       box-sizing: border-box;
     }
 
-
     body {
-
       margin: 0;
-
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -31,243 +28,174 @@
         Roboto,
         Arial,
         sans-serif;
-
       background: #f5f7fa;
-
       color: #222;
-
       min-height: 100vh;
-
     }
-
 
     .page-container {
-
       width: 100%;
-
       min-height: 100vh;
-
       display: flex;
-
       justify-content: center;
-
       align-items: center;
-
       padding: 40px 20px;
-
     }
-
 
     .content-card {
-
       width: 100%;
-
       max-width: 850px;
-
       background: #ffffff;
-
       border-radius: 14px;
-
       padding: 40px 44px;
-
       box-shadow:
         0 4px 18px rgba(0, 0, 0, 0.08);
-
     }
-
 
     /* ============================= */
     /* PROGRESS */
     /* ============================= */
 
     .progress-wrapper {
-
       margin-bottom: 30px;
-
     }
-
 
     .progress-bar {
-
       width: 100%;
-
       height: 7px;
-
       background: #e5e7eb;
-
       border-radius: 10px;
-
       overflow: hidden;
-
     }
-
 
     .progress-fill {
-
       width: 66%;
-
       height: 100%;
-
       background: #333;
-
       border-radius: 10px;
-
     }
-
 
     .progress-text {
-
       margin-top: 9px;
-
       margin-bottom: 0;
-
       font-size: 13px;
-
       color: #777;
-
     }
-
 
     /* ============================= */
     /* TITLE */
     /* ============================= */
 
     .page-title {
-
       margin: 0 0 12px;
-
       font-size: 30px;
-
       line-height: 1.25;
-
       font-weight: 700;
-
     }
-
 
     .page-description {
-
       margin: 0 0 28px;
-
       font-size: 16px;
-
       line-height: 1.65;
-
       color: #555;
-
     }
-
 
     /* ============================= */
     /* VIDEO */
     /* ============================= */
 
     .video-wrapper {
-
       width: 100%;
-
       background: #000;
-
       border-radius: 10px;
-
       overflow: hidden;
-
     }
-
 
     #studyVideo {
-
       display: block;
-
       width: 100%;
-
       height: auto;
-
-      min-height: 300px;
-
       max-height: 520px;
-
       background: #000;
-
     }
 
+    /* ============================= */
+    /* CUSTOM VIDEO CONTROLS */
+    /* ============================= */
+
+    .video-controls {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: #222;
+    }
+
+    .play-button {
+      border: none;
+      border-radius: 7px;
+      padding: 9px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fff;
+      color: #222;
+    }
+
+    .play-button:hover {
+      opacity: 0.85;
+    }
+
+    .time-display {
+      font-size: 13px;
+      color: #ddd;
+    }
 
     /* ============================= */
     /* STATUS */
     /* ============================= */
 
     .video-status {
-
       margin: 18px 0 0;
-
       padding: 13px 16px;
-
       background: #f7f7f7;
-
       border-radius: 7px;
-
       font-size: 14px;
-
       line-height: 1.5;
-
       color: #555;
-
     }
-
 
     /* ============================= */
     /* BUTTON */
     /* ============================= */
 
     .button-container {
-
       margin-top: 28px;
-
       display: flex;
-
       justify-content: flex-end;
-
     }
-
 
     .primary-button {
-
       border: none;
-
       border-radius: 8px;
-
       padding: 13px 28px;
-
       font-size: 15px;
-
       font-weight: 600;
-
       cursor: pointer;
-
       background: #222;
-
       color: #fff;
-
       transition: opacity 0.2s ease;
-
     }
-
 
     .primary-button:hover:not(:disabled) {
-
       opacity: 0.85;
-
     }
-
 
     .primary-button:disabled {
-
       background: #c7c7c7;
-
       cursor: not-allowed;
-
     }
-
 
     /* ============================= */
     /* MOBILE */
@@ -276,46 +204,28 @@
     @media (max-width: 600px) {
 
       .page-container {
-
         padding: 20px 14px;
-
       }
-
 
       .content-card {
-
         padding: 28px 20px;
-
         border-radius: 12px;
-
       }
-
 
       .page-title {
-
         font-size: 26px;
-
       }
-
 
       .page-description {
-
         font-size: 15px;
-
       }
-
 
       .button-container {
-
         justify-content: stretch;
-
       }
 
-
       .primary-button {
-
         width: 100%;
-
       }
 
     }
@@ -327,9 +237,7 @@
 
 <body>
 
-
   <div class="page-container">
-
 
     <div class="content-card">
 
@@ -347,9 +255,7 @@
         </div>
 
         <p class="progress-text">
-
-          Watching Video
-
+          Step 2 of 3 — Video
         </p>
 
       </div>
@@ -360,9 +266,7 @@
       <!-- ============================= -->
 
       <h1 class="page-title">
-
         Video
-
       </h1>
 
 
@@ -386,10 +290,8 @@
 
         <video
           id="studyVideo"
-          controls
           playsinline
           preload="metadata"
-          width="100%"
         >
 
           <source
@@ -401,6 +303,30 @@
           HTML5 video playback.
 
         </video>
+
+
+        <!-- ============================= -->
+        <!-- CUSTOM CONTROLS -->
+        <!-- ============================= -->
+
+        <div class="video-controls">
+
+          <button
+            id="playButton"
+            class="play-button"
+            type="button"
+          >
+            Play
+          </button>
+
+          <span
+            id="timeDisplay"
+            class="time-display"
+          >
+            0:00
+          </span>
+
+        </div>
 
       </div>
 
@@ -457,6 +383,18 @@
     const video =
       document.getElementById(
         "studyVideo"
+      );
+
+
+    const playButton =
+      document.getElementById(
+        "playButton"
+      );
+
+
+    const timeDisplay =
+      document.getElementById(
+        "timeDisplay"
       );
 
 
@@ -533,38 +471,6 @@
 
 
     // =====================================
-    // NEW SEEKING CONTROL
-    // =====================================
-
-    let lastAllowedTime =
-      0;
-
-
-    let isSeeking =
-      false;
-
-
-    // =====================================
-    // VIDEO LOAD ERROR
-    // =====================================
-
-    video.addEventListener(
-      "error",
-      () => {
-
-        console.error(
-          "Video failed to load.",
-          video.error
-        );
-
-        videoStatus.innerText =
-          "The video could not be loaded. Please refresh the page.";
-
-      }
-    );
-
-
-    // =====================================
     // VIDEO METADATA
     // =====================================
 
@@ -575,87 +481,122 @@
         videoDuration =
           video.duration;
 
-        console.log(
-          "Video duration:",
-          videoDuration
-        );
+        updateTimeDisplay();
 
       }
     );
 
 
     // =====================================
-    // PREVENT FORWARD SKIPPING
+    // FORMAT TIME
+    // =====================================
+
+    function formatTime(
+      seconds
+    ) {
+
+      if (
+        !Number.isFinite(seconds)
+      ) {
+
+        return "0:00";
+
+      }
+
+
+      const minutes =
+        Math.floor(
+          seconds / 60
+        );
+
+
+      const remainingSeconds =
+        Math.floor(
+          seconds % 60
+        );
+
+
+      return (
+        minutes +
+        ":" +
+        String(
+          remainingSeconds
+        ).padStart(
+          2,
+          "0"
+        )
+      );
+
+    }
+
+
+    // =====================================
+    // UPDATE TIME
+    // =====================================
+
+    function updateTimeDisplay() {
+
+      timeDisplay.innerText =
+
+        formatTime(
+          video.currentTime
+        ) +
+        " / " +
+        formatTime(
+          videoDuration
+        );
+
+    }
+
+
+    // =====================================
+    // TIME UPDATE
     // =====================================
 
     video.addEventListener(
       "timeupdate",
       () => {
 
-        /*
-        Keep track of the furthest position
-        that the participant has genuinely
-        reached through normal playback.
-        */
-
-        if (
-          !isSeeking &&
-          video.currentTime >
-          lastAllowedTime
-        ) {
-
-          lastAllowedTime =
-            video.currentTime;
-
-        }
+        updateTimeDisplay();
 
       }
     );
 
 
     // =====================================
-    // DETECT SEEKING
+    // PLAY / PAUSE BUTTON
     // =====================================
 
-    video.addEventListener(
-      "seeking",
-      () => {
-
-        isSeeking =
-          true;
-
-
-        /*
-        Allow backward seeking.
-
-        Prevent forward seeking beyond the
-        position already reached.
-        */
+    playButton.addEventListener(
+      "click",
+      async () => {
 
         if (
-          video.currentTime >
-          lastAllowedTime + 0.5
+          video.paused
         ) {
 
-          video.currentTime =
-            lastAllowedTime;
+          try {
+
+            await video.play();
+
+          }
+
+          catch (error) {
+
+            console.error(
+              "Unable to play video:",
+              error
+            );
+
+          }
 
         }
 
-      }
-    );
+        else {
 
+          video.pause();
 
-    // =====================================
-    // SEEK COMPLETED
-    // =====================================
-
-    video.addEventListener(
-      "seeked",
-      () => {
-
-        isSeeking =
-          false;
+        }
 
       }
     );
@@ -686,6 +627,10 @@
           video.duration;
 
 
+        playButton.innerText =
+          "Pause";
+
+
         startTracking();
 
 
@@ -704,16 +649,6 @@
       "pause",
       () => {
 
-        /*
-        If the participant manually pauses
-        the video, count it as a pause.
-
-        If the page automatically pauses the
-        video because the participant leaves
-        the tab, do not count it as a
-        participant pause.
-        */
-
         if (
           !autoPaused
         ) {
@@ -725,6 +660,10 @@
 
         autoPaused =
           false;
+
+
+        playButton.innerText =
+          "Play";
 
 
         stopTracking();
@@ -745,15 +684,6 @@
           new Date().toISOString();
 
 
-        /*
-        Mark the actual end of the video
-        as the furthest valid position.
-        */
-
-        lastAllowedTime =
-          video.duration;
-
-
         maxWatchedSecond =
           video.duration;
 
@@ -766,8 +696,15 @@
           false;
 
 
+        playButton.innerText =
+          "Replay";
+
+
         videoStatus.innerText =
           "Video completed. You may continue.";
+
+
+        updateTimeDisplay();
 
 
         stopTracking();
@@ -848,23 +785,16 @@
 
 
             // -----------------------------
-            // MAXIMUM VALID WATCHED POSITION
+            // MAXIMUM WATCHED POSITION
             // -----------------------------
 
             if (
-              currentSecond <=
-              lastAllowedTime + 1
+              currentSecond >
+              maxWatchedSecond
             ) {
 
-              if (
-                currentSecond >
-                maxWatchedSecond
-              ) {
-
-                maxWatchedSecond =
-                  currentSecond;
-
-              }
+              maxWatchedSecond =
+                currentSecond;
 
             }
 
@@ -940,7 +870,7 @@
 
 
     // =====================================
-    // TAB VISIBILITY TRACKING
+    // TAB VISIBILITY
     // =====================================
 
     document.addEventListener(
@@ -948,9 +878,9 @@
       () => {
 
 
-        // =================================
-        // PARTICIPANT LEAVES TAB
-        // =================================
+        // ================================
+        // LEAVING TAB
+        // ================================
 
         if (
           document.visibilityState ===
@@ -972,11 +902,8 @@
 
 
           /*
-          Automatically pause the video.
-
-          This means the participant cannot
-          continue watching while they are on
-          another tab.
+          Pause automatically when the
+          participant leaves the tab.
           */
 
           if (
@@ -998,9 +925,9 @@
         }
 
 
-        // =================================
-        // PARTICIPANT RETURNS
-        // =================================
+        // ================================
+        // RETURNING TO TAB
+        // ================================
 
         else {
 
@@ -1026,10 +953,8 @@
 
 
           /*
-          Do NOT automatically resume.
-
-          The participant must press Play
-          themselves after returning.
+          Do not automatically resume.
+          Participant must press Play.
           */
 
           if (
@@ -1083,7 +1008,7 @@
 
 
         // =================================
-        // STORE VIDEO DATA LOCALLY
+        // STORE VIDEO DATA
         // =================================
 
         localStorage.setItem(
@@ -1144,7 +1069,7 @@
 
 
         // =================================
-        // REDIRECT TO CHAT
+        // REDIRECT
         // =================================
 
         window.location.replace(
@@ -1175,7 +1100,6 @@
 
 
   </script>
-
 
 </body>
 
