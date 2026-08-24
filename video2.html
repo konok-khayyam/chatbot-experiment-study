@@ -117,6 +117,46 @@
       height: auto;
       max-height: 520px;
       background: #000;
+
+      /*
+      IMPORTANT:
+      Native controls are intentionally NOT used.
+      This prevents the participant from getting
+      a browser-provided seek bar.
+      */
+    }
+
+    /* ============================= */
+    /* CUSTOM VIDEO CONTROLS */
+    /* ============================= */
+
+    .video-controls {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: #222;
+    }
+
+    .play-button {
+      border: none;
+      border-radius: 7px;
+      padding: 9px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fff;
+      color: #222;
+    }
+
+    .play-button:hover {
+      opacity: 0.85;
+    }
+
+    .time-display {
+      font-size: 13px;
+      color: #ddd;
     }
 
     /* ============================= */
@@ -208,6 +248,7 @@
 
     <div class="content-card">
 
+
       <!-- ============================= -->
       <!-- PROGRESS -->
       <!-- ============================= -->
@@ -256,7 +297,6 @@
 
         <video
           id="studyVideo"
-          controls
           playsinline
           preload="metadata"
         >
@@ -270,6 +310,30 @@
           HTML5 video playback.
 
         </video>
+
+
+        <!-- ============================= -->
+        <!-- CUSTOM CONTROLS -->
+        <!-- ============================= -->
+
+        <div class="video-controls">
+
+          <button
+            id="playButton"
+            class="play-button"
+            type="button"
+          >
+            Play
+          </button>
+
+          <span
+            id="timeDisplay"
+            class="time-display"
+          >
+            0:00
+          </span>
+
+        </div>
 
       </div>
 
@@ -306,6 +370,7 @@
 
       </div>
 
+
     </div>
 
   </div>
@@ -317,8 +382,9 @@
 
   <script>
 
+
     // =====================================
-    // VIDEO
+    // ELEMENTS
     // =====================================
 
     const video =
@@ -326,10 +392,24 @@
         "studyVideo"
       );
 
+
+    const playButton =
+      document.getElementById(
+        "playButton"
+      );
+
+
+    const timeDisplay =
+      document.getElementById(
+        "timeDisplay"
+      );
+
+
     const continueBtn =
       document.getElementById(
         "continueBtn"
       );
+
 
     const videoStatus =
       document.getElementById(
@@ -341,62 +421,60 @@
     // TRACKING VARIABLES
     // =====================================
 
-    let videoStarted = false;
-
-    let videoCompleted = false;
-
-    let videoStartTimestamp = null;
-
-    let videoEndTimestamp = null;
-
-    let videoDuration = 0;
-
-    let watchTime = 0;
-
-    let maxWatchedSecond = 0;
-
-    let previousSecond = 0;
-
-    let rewatchCount = 0;
-
-    let pauseCount = 0;
-
-    let hiddenTime = 0;
-
-    let hiddenStartTime = null;
-
-    let trackingInterval = null;
-
-    let autoPaused = false;
+    let videoStarted =
+      false;
 
 
-    // =====================================
-    // SEEKING CONTROL
-    // =====================================
-
-    let lastAllowedTime = 0;
-
-    let isSeeking = false;
+    let videoCompleted =
+      false;
 
 
-    // =====================================
-    // VIDEO LOAD ERROR
-    // =====================================
+    let videoStartTimestamp =
+      null;
 
-    video.addEventListener(
-      "error",
-      () => {
 
-        console.error(
-          "Video failed to load.",
-          video.error
-        );
+    let videoEndTimestamp =
+      null;
 
-        videoStatus.innerText =
-          "The video could not be loaded. Please refresh the page.";
 
-      }
-    );
+    let videoDuration =
+      0;
+
+
+    let watchTime =
+      0;
+
+
+    let maxWatchedSecond =
+      0;
+
+
+    let previousSecond =
+      0;
+
+
+    let rewatchCount =
+      0;
+
+
+    let pauseCount =
+      0;
+
+
+    let hiddenTime =
+      0;
+
+
+    let hiddenStartTime =
+      null;
+
+
+    let trackingInterval =
+      null;
+
+
+    let autoPaused =
+      false;
 
 
     // =====================================
@@ -410,36 +488,120 @@
         videoDuration =
           video.duration;
 
-        console.log(
-          "Video duration:",
-          videoDuration
-        );
+        updateTimeDisplay();
 
       }
     );
 
 
     // =====================================
-    // PREVENT FORWARD SKIPPING
+    // FORMAT TIME
+    // =====================================
+
+    function formatTime(
+      seconds
+    ) {
+
+      if (
+        !Number.isFinite(seconds)
+      ) {
+
+        return "0:00";
+
+      }
+
+
+      const minutes =
+        Math.floor(
+          seconds / 60
+        );
+
+
+      const remainingSeconds =
+        Math.floor(
+          seconds % 60
+        );
+
+
+      return (
+        minutes +
+        ":" +
+        String(
+          remainingSeconds
+        ).padStart(
+          2,
+          "0"
+        )
+      );
+
+    }
+
+
+    // =====================================
+    // UPDATE TIME
+    // =====================================
+
+    function updateTimeDisplay() {
+
+      timeDisplay.innerText =
+
+        formatTime(
+          video.currentTime
+        ) +
+        " / " +
+        formatTime(
+          videoDuration
+        );
+
+    }
+
+
+    // =====================================
+    // TIME UPDATE
     // =====================================
 
     video.addEventListener(
       "timeupdate",
       () => {
 
-        /*
-        Keep track of the furthest position
-        reached through normal playback.
-        */
+        updateTimeDisplay();
+
+      }
+    );
+
+
+    // =====================================
+    // PLAY / PAUSE BUTTON
+    // =====================================
+
+    playButton.addEventListener(
+      "click",
+      async () => {
 
         if (
-          !isSeeking &&
-          video.currentTime >
-          lastAllowedTime
+          video.paused
         ) {
 
-          lastAllowedTime =
-            video.currentTime;
+          try {
+
+            await video.play();
+
+          }
+
+          catch (error) {
+
+            console.error(
+              "Unable to play video:",
+              error
+            );
+
+          }
+
+        }
+
+        else {
+
+          video.pause();
 
         }
 
@@ -448,71 +610,36 @@
 
 
     // =====================================
-    // DETECT SEEKING
-    // =====================================
-
-    video.addEventListener(
-      "seeking",
-      () => {
-
-        isSeeking = true;
-
-        /*
-        Allow backward seeking.
-
-        Prevent forward seeking beyond the
-        position already reached.
-        */
-
-        if (
-          video.currentTime >
-          lastAllowedTime + 0.5
-        ) {
-
-          video.currentTime =
-            lastAllowedTime;
-
-        }
-
-      }
-    );
-
-
-    // =====================================
-    // SEEK COMPLETED
-    // =====================================
-
-    video.addEventListener(
-      "seeked",
-      () => {
-
-        isSeeking = false;
-
-      }
-    );
-
-
-    // =====================================
-    // VIDEO START
+    // VIDEO START / RESUME
     // =====================================
 
     video.addEventListener(
       "play",
       () => {
 
-        if (!videoStarted) {
+        if (
+          !videoStarted
+        ) {
 
-          videoStarted = true;
+          videoStarted =
+            true;
 
           videoStartTimestamp =
             new Date().toISOString();
 
         }
 
+
         videoDuration =
           video.duration;
 
+
+        playButton.innerText =
+          "Pause";
+
+
         startTracking();
+
 
         videoStatus.innerText =
           "Video is playing.";
@@ -529,13 +656,22 @@
       "pause",
       () => {
 
-        if (!autoPaused) {
+        if (
+          !autoPaused
+        ) {
 
           pauseCount++;
 
         }
 
-        autoPaused = false;
+
+        autoPaused =
+          false;
+
+
+        playButton.innerText =
+          "Play";
+
 
         stopTracking();
 
@@ -555,25 +691,28 @@
           new Date().toISOString();
 
 
-        /*
-        The participant reached the actual
-        end of the video.
-        */
-
-        lastAllowedTime =
-          video.duration;
-
         maxWatchedSecond =
           video.duration;
+
 
         videoCompleted =
           true;
 
+
         continueBtn.disabled =
           false;
 
+
+        playButton.innerText =
+          "Replay";
+
+
         videoStatus.innerText =
           "Video completed. You may continue.";
+
+
+        updateTimeDisplay();
+
 
         stopTracking();
 
@@ -589,13 +728,15 @@
 
       stopTracking();
 
+
       trackingInterval =
         setInterval(
           () => {
 
-            // =============================
+
+            // -----------------------------
             // PAGE MUST BE VISIBLE
-            // =============================
+            // -----------------------------
 
             if (
               document.visibilityState !==
@@ -607,9 +748,9 @@
             }
 
 
-            // =============================
+            // -----------------------------
             // VIDEO MUST BE PLAYING
-            // =============================
+            // -----------------------------
 
             if (
               video.paused ||
@@ -625,16 +766,16 @@
               video.currentTime;
 
 
-            // =============================
+            // -----------------------------
             // WATCH TIME
-            // =============================
+            // -----------------------------
 
             watchTime++;
 
 
-            // =============================
+            // -----------------------------
             // REWATCH DETECTION
-            // =============================
+            // -----------------------------
 
             if (
               currentSecond <
@@ -645,35 +786,29 @@
 
             }
 
+
             previousSecond =
               currentSecond;
 
 
-            // =============================
-            // MAXIMUM VALID WATCHED POSITION
-            // =============================
+            // -----------------------------
+            // MAXIMUM WATCHED POSITION
+            // -----------------------------
 
             if (
-              currentSecond <=
-              lastAllowedTime + 1
+              currentSecond >
+              maxWatchedSecond
             ) {
 
-              if (
-                currentSecond >
-                maxWatchedSecond
-              ) {
-
-                maxWatchedSecond =
-                  currentSecond;
-
-              }
+              maxWatchedSecond =
+                currentSecond;
 
             }
 
 
-            // =============================
+            // -----------------------------
             // WATCH PERCENTAGE
-            // =============================
+            // -----------------------------
 
             const watchPercentage =
 
@@ -687,9 +822,9 @@
                 : 0;
 
 
-            // =============================
+            // -----------------------------
             // ENABLE AT 98%
-            // =============================
+            // -----------------------------
 
             if (
               watchPercentage >= 98 &&
@@ -699,8 +834,10 @@
               videoCompleted =
                 true;
 
+
               continueBtn.disabled =
                 false;
+
 
               videoStatus.innerText =
                 "Video completed. You may continue.";
@@ -730,6 +867,7 @@
           trackingInterval
         );
 
+
         trackingInterval =
           null;
 
@@ -748,7 +886,7 @@
 
 
         // ================================
-        // PARTICIPANT LEAVES TAB
+        // LEAVING TAB
         // ================================
 
         if (
@@ -756,7 +894,10 @@
           "hidden"
         ) {
 
-          if (!videoStarted) {
+
+          if (
+            !videoStarted
+          ) {
 
             return;
 
@@ -768,10 +909,8 @@
 
 
           /*
-          Automatically pause the video.
-
-          The participant cannot continue
-          watching while on another tab.
+          Pause automatically when the
+          participant leaves the tab.
           */
 
           if (
@@ -779,7 +918,9 @@
             !video.ended
           ) {
 
-            autoPaused = true;
+            autoPaused =
+              true;
+
 
             video.pause();
 
@@ -792,10 +933,11 @@
 
 
         // ================================
-        // PARTICIPANT RETURNS
+        // RETURNING TO TAB
         // ================================
 
         else {
+
 
           if (
             hiddenStartTime !== null
@@ -812,13 +954,13 @@
 
           }
 
+
           hiddenStartTime =
             null;
 
 
           /*
           Do not automatically resume.
-
           Participant must press Play.
           */
 
@@ -846,6 +988,7 @@
       "click",
       () => {
 
+
         if (
           !videoCompleted
         ) {
@@ -872,7 +1015,7 @@
 
 
         // =================================
-        // SAVE VIDEO DATA LOCALLY
+        // STORE VIDEO DATA
         // =================================
 
         localStorage.setItem(
@@ -880,10 +1023,12 @@
           "PROV"
         );
 
+
         localStorage.setItem(
           "pilot_video_completed",
           "yes"
         );
+
 
         localStorage.setItem(
           "pilot_video_watch_percentage",
@@ -892,30 +1037,36 @@
           )
         );
 
+
         localStorage.setItem(
           "pilot_video_watch_time",
           watchTime
         );
+
 
         localStorage.setItem(
           "pilot_video_pause_count",
           pauseCount
         );
 
+
         localStorage.setItem(
           "pilot_video_rewatch_count",
           rewatchCount
         );
+
 
         localStorage.setItem(
           "pilot_video_hidden_time",
           hiddenTime
         );
 
+
         localStorage.setItem(
           "pilot_video_start",
           videoStartTimestamp || ""
         );
+
 
         localStorage.setItem(
           "pilot_video_end",
@@ -925,7 +1076,7 @@
 
 
         // =================================
-        // GO TO CHAT
+        // REDIRECT
         // =================================
 
         window.location.replace(
@@ -945,6 +1096,7 @@
       null,
       location.href
     );
+
 
     window.onpopstate =
       function () {
