@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Video Study</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      background: #f5f7fa;
+
+      color: #222;
+
+      min-height: 100vh;
+
+    }
+
+
+    .page-container {
+
+      width: 100%;
+
+      min-height: 100vh;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 40px 20px;
+
+    }
+
+
+    .content-card {
+
+      width: 100%;
+
+      max-width: 850px;
+
+      background: #ffffff;
+
+      border-radius: 14px;
+
+      padding: 40px 44px;
+
+      box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.08);
+
+    }
+
+
+    /* ============================= */
+    /* PROGRESS */
+    /* ============================= */
+
+    .progress-wrapper {
+
+      margin-bottom: 30px;
+
+    }
+
+
+    .progress-bar {
+
+      width: 100%;
+
+      height: 7px;
+
+      background: #e5e7eb;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+    }
+
+
+    .progress-fill {
+
+      width: 66%;
+
+      height: 100%;
+
+      background: #333;
+
+      border-radius: 10px;
+
+    }
+
+
+    .progress-text {
+
+      margin-top: 9px;
+
+      margin-bottom: 0;
+
+      font-size: 13px;
+
+      color: #777;
+
+    }
+
+
+    /* ============================= */
+    /* TITLE */
+    /* ============================= */
+
+    .page-title {
+
+      margin: 0 0 12px;
+
+      font-size: 30px;
+
+      line-height: 1.25;
+
+      font-weight: 700;
+
+    }
+
+
+    .page-description {
+
+      margin: 0 0 28px;
+
+      font-size: 16px;
+
+      line-height: 1.65;
+
+      color: #555;
+
+    }
+
+
+    /* ============================= */
+    /* VIDEO */
+    /* ============================= */
+
+    .video-wrapper {
+
+      width: 100%;
+
+      background: #000;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+    }
+
+
+    #studyVideo {
+
+      display: block;
+
+      width: 100%;
+
+      height: auto;
+
+      min-height: 300px;
+
+      max-height: 520px;
+
+      background: #000;
+
+    }
+
+
+    /* ============================= */
+    /* STATUS */
+    /* ============================= */
+
+    .video-status {
+
+      margin: 18px 0 0;
+
+      padding: 13px 16px;
+
+      background: #f7f7f7;
+
+      border-radius: 7px;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      color: #555;
+
+    }
+
+
+    /* ============================= */
+    /* BUTTON */
+    /* ============================= */
+
+    .button-container {
+
+      margin-top: 28px;
+
+      display: flex;
+
+      justify-content: flex-end;
+
+    }
+
+
+    .primary-button {
+
+      border: none;
+
+      border-radius: 8px;
+
+      padding: 13px 28px;
+
+      font-size: 15px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      background: #222;
+
+      color: #fff;
+
+      transition: opacity 0.2s ease;
+
+    }
+
+
+    .primary-button:hover:not(:disabled) {
+
+      opacity: 0.85;
+
+    }
+
+
+    .primary-button:disabled {
+
+      background: #c7c7c7;
+
+      cursor: not-allowed;
+
+    }
+
+
+    /* ============================= */
+    /* MOBILE */
+    /* ============================= */
+
+    @media (max-width: 600px) {
+
+      .page-container {
+
+        padding: 20px 14px;
+
+      }
+
+
+      .content-card {
+
+        padding: 28px 20px;
+
+        border-radius: 12px;
+
+      }
+
+
+      .page-title {
+
+        font-size: 26px;
+
+      }
+
+
+      .page-description {
+
+        font-size: 15px;
+
+      }
+
+
+      .button-container {
+
+        justify-content: stretch;
+
+      }
+
+
+      .primary-button {
+
+        width: 100%;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="page-container">
+
+
+    <div class="content-card">
+
+
+      <!-- ============================= -->
+      <!-- PROGRESS -->
+      <!-- ============================= -->
+
+      <div class="progress-wrapper">
+
+        <div class="progress-bar">
+
+          <div class="progress-fill"></div>
+
+        </div>
+
+        <p class="progress-text">
+
+          Step 2 of 3 — Video
+
+        </p>
+
+      </div>
+
+
+      <!-- ============================= -->
+      <!-- TITLE -->
+      <!-- ============================= -->
+
+      <h1 class="page-title">
+
+        Video
+
+      </h1>
+
+
+      <p class="page-description">
+
+        Please watch the following video carefully.
+
+        <br><br>
+
+        You will be able to continue after most of
+        the video has been viewed.
+
+      </p>
+
+
+      <!-- ============================= -->
+      <!-- VIDEO -->
+      <!-- ============================= -->
+
+      <div class="video-wrapper">
+
+        <video
+          id="studyVideo"
+          controls
+          playsinline
+          preload="metadata"
+          width="100%"
+        >
+
+          <source
+            src="./BBC.mp4"
+            type="video/mp4"
+          >
+
+          Your browser does not support
+          HTML5 video playback.
+
+        </video>
+
+      </div>
+
+
+      <!-- ============================= -->
+      <!-- STATUS -->
+      <!-- ============================= -->
+
+      <p
+        id="videoStatus"
+        class="video-status"
+      >
+
+        Please watch the video to continue.
+
+      </p>
+
+
+      <!-- ============================= -->
+      <!-- CONTINUE -->
+      <!-- ============================= -->
+
+      <div class="button-container">
+
+        <button
+          id="continueBtn"
+          class="primary-button"
+          disabled
+        >
+
+          Continue
+
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- ============================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ============================= -->
+
+  <script>
+
+
+    // =====================================
+    // ELEMENTS
+    // =====================================
+
+    const video =
+      document.getElementById(
+        "studyVideo"
+      );
+
+
+    const continueBtn =
+      document.getElementById(
+        "continueBtn"
+      );
+
+
+    const videoStatus =
+      document.getElementById(
+        "videoStatus"
+      );
+
+
+    // =====================================
+    // TRACKING VARIABLES
+    // =====================================
+
+    let videoStarted =
+      false;
+
+
+    let videoCompleted =
+      false;
+
+
+    let videoStartTimestamp =
+      null;
+
+
+    let videoEndTimestamp =
+      null;
+
+
+    let videoDuration =
+      0;
+
+
+    let watchTime =
+      0;
+
+
+    let maxWatchedSecond =
+      0;
+
+
+    let previousSecond =
+      0;
+
+
+    let rewatchCount =
+      0;
+
+
+    let pauseCount =
+      0;
+
+
+    let hiddenTime =
+      0;
+
+
+    let hiddenStartTime =
+      null;
+
+
+    let trackingInterval =
+      null;
+
+
+    let autoPaused =
+      false;
+
+
+    // =====================================
+    // VIDEO LOAD ERROR
+    // =====================================
+
+    video.addEventListener(
+      "error",
+      () => {
+
+        console.error(
+          "Video failed to load.",
+          video.error
+        );
+
+        videoStatus.innerText =
+          "The video could not be loaded. Please refresh the page.";
+
+      }
+    );
+
+
+    // =====================================
+    // VIDEO METADATA
+    // =====================================
+
+    video.addEventListener(
+      "loadedmetadata",
+      () => {
+
+        videoDuration =
+          video.duration;
+
+        console.log(
+          "Video duration:",
+          videoDuration
+        );
+
+      }
+    );
+
+
+    // =====================================
+    // VIDEO START / RESUME
+    // =====================================
+
+    video.addEventListener(
+      "play",
+      () => {
+
+        if (!videoStarted) {
+
+          videoStarted =
+            true;
+
+          videoStartTimestamp =
+            new Date().toISOString();
+
+        }
+
+        videoDuration =
+          video.duration;
+
+        startTracking();
+
+        videoStatus.innerText =
+          "Video is playing.";
+
+      }
+    );
+
+
+    // =====================================
+    // VIDEO PAUSE
+    // =====================================
+
+    video.addEventListener(
+      "pause",
+      () => {
+
+        /*
+        If the participant manually pauses
+        the video, count it as a pause.
+
+        If the page automatically pauses the
+        video because the participant leaves
+        the tab, do not count it as a
+        participant pause.
+        */
+
+        if (!autoPaused) {
+
+          pauseCount++;
+
+        }
+
+        autoPaused =
+          false;
+
+        stopTracking();
+
+      }
+    );
+
+
+    // =====================================
+    // VIDEO ENDED
+    // =====================================
+
+    video.addEventListener(
+      "ended",
+      () => {
+
+        videoEndTimestamp =
+          new Date().toISOString();
+
+        stopTracking();
+
+      }
+    );
+
+
+    // =====================================
+    // TRACK WATCHING
+    // =====================================
+
+    function startTracking() {
+
+      stopTracking();
+
+
+      trackingInterval =
+        setInterval(
+          () => {
+
+
+            // -----------------------------
+            // PAGE MUST BE VISIBLE
+            // -----------------------------
+
+            if (
+              document.visibilityState !==
+              "visible"
+            ) {
+
+              return;
+
+            }
+
+
+            // -----------------------------
+            // VIDEO MUST BE PLAYING
+            // -----------------------------
+
+            if (
+              video.paused ||
+              video.ended
+            ) {
+
+              return;
+
+            }
+
+
+            const currentSecond =
+              video.currentTime;
+
+
+            // -----------------------------
+            // WATCH TIME
+            // -----------------------------
+
+            watchTime++;
+
+
+            // -----------------------------
+            // REWATCH DETECTION
+            // -----------------------------
+
+            if (
+              currentSecond <
+              previousSecond - 2
+            ) {
+
+              rewatchCount++;
+
+            }
+
+
+            previousSecond =
+              currentSecond;
+
+
+            // -----------------------------
+            // MAXIMUM WATCHED POSITION
+            // -----------------------------
+
+            if (
+              currentSecond >
+              maxWatchedSecond
+            ) {
+
+              maxWatchedSecond =
+                currentSecond;
+
+            }
+
+
+            // -----------------------------
+            // WATCH PERCENTAGE
+            // -----------------------------
+
+            const watchPercentage =
+
+              videoDuration > 0
+
+                ? (
+                    maxWatchedSecond /
+                    videoDuration
+                  ) * 100
+
+                : 0;
+
+
+            // -----------------------------
+            // ENABLE AT 90%
+            // -----------------------------
+
+            if (
+              watchPercentage >= 90 &&
+              !videoCompleted
+            ) {
+
+              videoCompleted =
+                true;
+
+
+              continueBtn.disabled =
+                false;
+
+
+              videoStatus.innerText =
+                "Video completed. You may continue.";
+
+            }
+
+          },
+
+          1000
+
+        );
+
+    }
+
+
+    // =====================================
+    // STOP TRACKING
+    // =====================================
+
+    function stopTracking() {
+
+      if (
+        trackingInterval !== null
+      ) {
+
+        clearInterval(
+          trackingInterval
+        );
+
+        trackingInterval =
+          null;
+
+      }
+
+    }
+
+
+    // =====================================
+    // TAB VISIBILITY TRACKING
+    // =====================================
+
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+
+
+        // =================================
+        // PARTICIPANT LEAVES TAB
+        // =================================
+
+        if (
+          document.visibilityState ===
+          "hidden"
+        ) {
+
+
+          if (!videoStarted) {
+
+            return;
+
+          }
+
+
+          hiddenStartTime =
+            Date.now();
+
+
+          /*
+          Automatically pause the video.
+
+          This means the participant cannot
+          continue watching while they are on
+          another tab.
+          */
+
+          if (
+            !video.paused &&
+            !video.ended
+          ) {
+
+            autoPaused =
+              true;
+
+            video.pause();
+
+          }
+
+
+          stopTracking();
+
+        }
+
+
+        // =================================
+        // PARTICIPANT RETURNS
+        // =================================
+
+        else {
+
+
+          if (
+            hiddenStartTime !== null
+          ) {
+
+            hiddenTime +=
+
+              Math.floor(
+                (
+                  Date.now() -
+                  hiddenStartTime
+                ) / 1000
+              );
+
+          }
+
+
+          hiddenStartTime =
+            null;
+
+
+          /*
+          Do NOT automatically resume.
+
+          The participant must press Play
+          themselves after returning.
+          */
+
+          if (
+            videoStarted &&
+            !videoCompleted
+          ) {
+
+            videoStatus.innerText =
+              "You returned to the study. Please press Play to resume the video.";
+
+          }
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // CONTINUE BUTTON
+    // =====================================
+
+    continueBtn.addEventListener(
+      "click",
+      () => {
+
+
+        if (!videoCompleted) {
+
+          return;
+
+        }
+
+
+        // =================================
+        // FINAL WATCH PERCENTAGE
+        // =================================
+
+        const watchPercentage =
+
+          videoDuration > 0
+
+            ? (
+                maxWatchedSecond /
+                videoDuration
+              ) * 100
+
+            : 0;
+
+
+        // =================================
+        // STORE VIDEO DATA LOCALLY
+        // =================================
+
+        localStorage.setItem(
+          "pilot_video",
+          "BBC"
+        );
+
+
+        localStorage.setItem(
+          "pilot_video_completed",
+          "yes"
+        );
+
+
+        localStorage.setItem(
+          "pilot_video_watch_percentage",
+          Math.round(
+            watchPercentage
+          )
+        );
+
+
+        localStorage.setItem(
+          "pilot_video_watch_time",
+          watchTime
+        );
+
+
+        localStorage.setItem(
+          "pilot_video_pause_count",
+          pauseCount
+        );
+
+
+        localStorage.setItem(
+          "pilot_video_rewatch_count",
+          rewatchCount
+        );
+
+
+        localStorage.setItem(
+          "pilot_video_hidden_time",
+          hiddenTime
+        );
+
+
+        localStorage.setItem(
+          "pilot_video_start",
+          videoStartTimestamp || ""
+        );
+
+
+        localStorage.setItem(
+          "pilot_video_end",
+          videoEndTimestamp ||
+          new Date().toISOString()
+        );
+
+
+        // =================================
+        // REDIRECT TO RATINGS
+        // =================================
+
+        window.location.replace(
+          "chat.html"
+        );
+
+      }
+    );
+
+
+    // =====================================
+    // BLOCK BACK NAVIGATION
+    // =====================================
+
+    history.pushState(
+      null,
+      null,
+      location.href
+    );
+
+
+    window.onpopstate =
+      function () {
+
+        history.go(1);
+
+      };
+
+
+  </script>
+
+
+</body>
+
+</html>
