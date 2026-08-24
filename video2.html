@@ -12,6 +12,7 @@
 
   <title>Video Study</title>
 
+
   <style>
 
     * {
@@ -220,8 +221,7 @@
         </div>
 
         <p class="progress-text">
-          Video Watching
-        
+          Step 2 of 3 — Video
         </p>
 
       </div>
@@ -242,8 +242,8 @@
 
         <br><br>
 
-        You will be able to continue after most of
-        the video has been viewed.
+        You will be able to continue after the
+        entire video has been viewed.
 
       </p>
 
@@ -371,6 +371,35 @@
 
 
     // =====================================
+    // SEEKING CONTROL
+    // =====================================
+
+    let lastAllowedTime = 0;
+
+    let isSeeking = false;
+
+
+    // =====================================
+    // VIDEO LOAD ERROR
+    // =====================================
+
+    video.addEventListener(
+      "error",
+      () => {
+
+        console.error(
+          "Video failed to load.",
+          video.error
+        );
+
+        videoStatus.innerText =
+          "The video could not be loaded. Please refresh the page.";
+
+      }
+    );
+
+
+    // =====================================
     // VIDEO METADATA
     // =====================================
 
@@ -380,6 +409,84 @@
 
         videoDuration =
           video.duration;
+
+        console.log(
+          "Video duration:",
+          videoDuration
+        );
+
+      }
+    );
+
+
+    // =====================================
+    // PREVENT FORWARD SKIPPING
+    // =====================================
+
+    video.addEventListener(
+      "timeupdate",
+      () => {
+
+        /*
+        Keep track of the furthest position
+        reached through normal playback.
+        */
+
+        if (
+          !isSeeking &&
+          video.currentTime >
+          lastAllowedTime
+        ) {
+
+          lastAllowedTime =
+            video.currentTime;
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // DETECT SEEKING
+    // =====================================
+
+    video.addEventListener(
+      "seeking",
+      () => {
+
+        isSeeking = true;
+
+        /*
+        Allow backward seeking.
+
+        Prevent forward seeking beyond the
+        position already reached.
+        */
+
+        if (
+          video.currentTime >
+          lastAllowedTime + 0.5
+        ) {
+
+          video.currentTime =
+            lastAllowedTime;
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // SEEK COMPLETED
+    // =====================================
+
+    video.addEventListener(
+      "seeked",
+      () => {
+
+        isSeeking = false;
 
       }
     );
@@ -447,6 +554,27 @@
         videoEndTimestamp =
           new Date().toISOString();
 
+
+        /*
+        The participant reached the actual
+        end of the video.
+        */
+
+        lastAllowedTime =
+          video.duration;
+
+        maxWatchedSecond =
+          video.duration;
+
+        videoCompleted =
+          true;
+
+        continueBtn.disabled =
+          false;
+
+        videoStatus.innerText =
+          "Video completed. You may continue.";
+
         stopTracking();
 
       }
@@ -465,6 +593,10 @@
         setInterval(
           () => {
 
+            // =============================
+            // PAGE MUST BE VISIBLE
+            // =============================
+
             if (
               document.visibilityState !==
               "visible"
@@ -474,6 +606,11 @@
 
             }
 
+
+            // =============================
+            // VIDEO MUST BE PLAYING
+            // =============================
+
             if (
               video.paused ||
               video.ended
@@ -482,6 +619,7 @@
               return;
 
             }
+
 
             const currentSecond =
               video.currentTime;
@@ -507,22 +645,28 @@
 
             }
 
-
             previousSecond =
               currentSecond;
 
 
             // =============================
-            // MAXIMUM WATCHED POSITION
+            // MAXIMUM VALID WATCHED POSITION
             // =============================
 
             if (
-              currentSecond >
-              maxWatchedSecond
+              currentSecond <=
+              lastAllowedTime + 1
             ) {
 
-              maxWatchedSecond =
-                currentSecond;
+              if (
+                currentSecond >
+                maxWatchedSecond
+              ) {
+
+                maxWatchedSecond =
+                  currentSecond;
+
+              }
 
             }
 
@@ -544,15 +688,16 @@
 
 
             // =============================
-            // ENABLE CONTINUE AT 90%
+            // ENABLE AT 98%
             // =============================
 
             if (
-              watchPercentage >= 90 &&
+              watchPercentage >= 98 &&
               !videoCompleted
             ) {
 
-              videoCompleted = true;
+              videoCompleted =
+                true;
 
               continueBtn.disabled =
                 false;
@@ -565,6 +710,7 @@
           },
 
           1000
+
         );
 
     }
@@ -576,13 +722,16 @@
 
     function stopTracking() {
 
-      if (trackingInterval) {
+      if (
+        trackingInterval !== null
+      ) {
 
         clearInterval(
           trackingInterval
         );
 
-        trackingInterval = null;
+        trackingInterval =
+          null;
 
       }
 
@@ -618,7 +767,12 @@
             Date.now();
 
 
-          // Pause video automatically
+          /*
+          Automatically pause the video.
+
+          The participant cannot continue
+          watching while on another tab.
+          */
 
           if (
             !video.paused &&
@@ -662,8 +816,11 @@
             null;
 
 
-          // Do NOT automatically resume.
-          // Participant must press Play.
+          /*
+          Do not automatically resume.
+
+          Participant must press Play.
+          */
 
           if (
             videoStarted &&
@@ -689,15 +846,18 @@
       "click",
       () => {
 
-        if (!videoCompleted) {
+        if (
+          !videoCompleted
+        ) {
 
           return;
 
         }
 
 
-        // Save basic pilot data locally.
-        // Backend will be added later.
+        // =================================
+        // FINAL WATCH PERCENTAGE
+        // =================================
 
         const watchPercentage =
 
@@ -710,6 +870,10 @@
 
             : 0;
 
+
+        // =================================
+        // SAVE VIDEO DATA LOCALLY
+        // =================================
 
         localStorage.setItem(
           "pilot_video",
@@ -761,7 +925,7 @@
 
 
         // =================================
-        // GO TO RATINGS
+        // GO TO CHAT
         // =================================
 
         window.location.replace(
