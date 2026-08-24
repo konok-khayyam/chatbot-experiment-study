@@ -372,8 +372,8 @@
 
         <br><br>
 
-        You will be able to continue after most of
-        the video has been viewed.
+        You will be able to continue after the
+        entire video has been viewed.
 
       </p>
 
@@ -533,6 +533,18 @@
 
 
     // =====================================
+    // NEW SEEKING CONTROL
+    // =====================================
+
+    let lastAllowedTime =
+      0;
+
+
+    let isSeeking =
+      false;
+
+
+    // =====================================
     // VIDEO LOAD ERROR
     // =====================================
 
@@ -573,6 +585,83 @@
 
 
     // =====================================
+    // PREVENT FORWARD SKIPPING
+    // =====================================
+
+    video.addEventListener(
+      "timeupdate",
+      () => {
+
+        /*
+        Keep track of the furthest position
+        that the participant has genuinely
+        reached through normal playback.
+        */
+
+        if (
+          !isSeeking &&
+          video.currentTime >
+          lastAllowedTime
+        ) {
+
+          lastAllowedTime =
+            video.currentTime;
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // DETECT SEEKING
+    // =====================================
+
+    video.addEventListener(
+      "seeking",
+      () => {
+
+        isSeeking =
+          true;
+
+
+        /*
+        Allow backward seeking.
+
+        Prevent forward seeking beyond the
+        position already reached.
+        */
+
+        if (
+          video.currentTime >
+          lastAllowedTime + 0.5
+        ) {
+
+          video.currentTime =
+            lastAllowedTime;
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // SEEK COMPLETED
+    // =====================================
+
+    video.addEventListener(
+      "seeked",
+      () => {
+
+        isSeeking =
+          false;
+
+      }
+    );
+
+
+    // =====================================
     // VIDEO START / RESUME
     // =====================================
 
@@ -580,7 +669,9 @@
       "play",
       () => {
 
-        if (!videoStarted) {
+        if (
+          !videoStarted
+        ) {
 
           videoStarted =
             true;
@@ -590,10 +681,13 @@
 
         }
 
+
         videoDuration =
           video.duration;
 
+
         startTracking();
+
 
         videoStatus.innerText =
           "Video is playing.";
@@ -620,14 +714,18 @@
         participant pause.
         */
 
-        if (!autoPaused) {
+        if (
+          !autoPaused
+        ) {
 
           pauseCount++;
 
         }
 
+
         autoPaused =
           false;
+
 
         stopTracking();
 
@@ -645,6 +743,32 @@
 
         videoEndTimestamp =
           new Date().toISOString();
+
+
+        /*
+        Mark the actual end of the video
+        as the furthest valid position.
+        */
+
+        lastAllowedTime =
+          video.duration;
+
+
+        maxWatchedSecond =
+          video.duration;
+
+
+        videoCompleted =
+          true;
+
+
+        continueBtn.disabled =
+          false;
+
+
+        videoStatus.innerText =
+          "Video completed. You may continue.";
+
 
         stopTracking();
 
@@ -724,16 +848,23 @@
 
 
             // -----------------------------
-            // MAXIMUM WATCHED POSITION
+            // MAXIMUM VALID WATCHED POSITION
             // -----------------------------
 
             if (
-              currentSecond >
-              maxWatchedSecond
+              currentSecond <=
+              lastAllowedTime + 1
             ) {
 
-              maxWatchedSecond =
-                currentSecond;
+              if (
+                currentSecond >
+                maxWatchedSecond
+              ) {
+
+                maxWatchedSecond =
+                  currentSecond;
+
+              }
 
             }
 
@@ -755,11 +886,11 @@
 
 
             // -----------------------------
-            // ENABLE AT 90%
+            // ENABLE AT 98%
             // -----------------------------
 
             if (
-              watchPercentage >= 90 &&
+              watchPercentage >= 98 &&
               !videoCompleted
             ) {
 
@@ -799,6 +930,7 @@
           trackingInterval
         );
 
+
         trackingInterval =
           null;
 
@@ -826,7 +958,9 @@
         ) {
 
 
-          if (!videoStarted) {
+          if (
+            !videoStarted
+          ) {
 
             return;
 
@@ -852,6 +986,7 @@
 
             autoPaused =
               true;
+
 
             video.pause();
 
@@ -922,7 +1057,9 @@
       () => {
 
 
-        if (!videoCompleted) {
+        if (
+          !videoCompleted
+        ) {
 
           return;
 
@@ -1007,7 +1144,7 @@
 
 
         // =================================
-        // REDIRECT TO RATINGS
+        // REDIRECT TO CHAT
         // =================================
 
         window.location.replace(
