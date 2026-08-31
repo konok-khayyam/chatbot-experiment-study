@@ -828,51 +828,75 @@ const modelVersion =
     */
 async function startChat() {
 
-  chatStartTimestamp = new Date().toISOString();
-  lastActivityTime = Date.now();
-
-  document.getElementById("instructionOverlay").style.display = "none";
-
   try {
 
-    const response = await fetch(webhookUrl, {
+    const sessionId =
+      localStorage.getItem("session_id");
 
-      method: "POST",
+    const condition =
+      localStorage.getItem("condition");
 
-      headers: {
-        "Content-Type": "application/json"
-      },
+    const response =
+      await fetch(
+        "https://n8n.media.tuwien.ac.at/webhook/chat",
+        {
+          method: "POST",
 
-      body: JSON.stringify({
+          headers: {
+            "Content-Type": "application/json"
+          },
 
-        action: "start_chat",
+          body: JSON.stringify({
 
-        session_id:
-          localStorage.getItem("session_id"),
+            chatInput: "",
 
-        condition:
-          localStorage.getItem("condition") || "condition_1"
+            metadata: {
 
-      })
+              session_id: sessionId,
 
-    });
+              condition: condition,
 
-    const data = await response.json();
+              action: "start_chat"
 
-    addMessage(
-      data.text || "No response received.",
-      "bot"
+            }
+
+          })
+        }
+      );
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Failed to start chat"
+      );
+
+    }
+
+    const data =
+      await response.json();
+
+    // Display the AI's first message
+    // using your existing chat display function
+
+    if (data.output) {
+
+      addBotMessage(
+        data.output
+      );
+
+    }
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Error starting chat:",
+      error
     );
 
-    startTimer();
-
-  } catch (error) {
-
-    console.error(error);
-
-    addMessage(
-      "Error connecting to chatbot.",
-      "bot"
+    alert(
+      "Something went wrong. Please try again."
     );
 
   }
