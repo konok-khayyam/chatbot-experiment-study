@@ -875,16 +875,53 @@ async function startChat() {
     const data =
       await response.json();
 
-    // Display the AI's first message
-    // using your existing chat display function
+
+    // =====================================
+    // DISPLAY AI'S FIRST MESSAGE
+    // =====================================
 
     if (data.output) {
 
-      addBotMessage(
-        data.output
+      addMessage(
+        data.output,
+        "bot"
+      );
+
+    } else if (data.text) {
+
+      addMessage(
+        data.text,
+        "bot"
       );
 
     }
+
+
+    // =====================================
+    // MARK CHAT AS STARTED
+    // =====================================
+
+    chatStartTimestamp =
+      new Date().toISOString();
+
+    lastActivityTime =
+      Date.now();
+
+
+    // =====================================
+    // CLOSE INSTRUCTION POPUP
+    // =====================================
+
+    document.getElementById(
+      "instructionOverlay"
+    ).style.display = "none";
+
+
+    // =====================================
+    // START TIMER
+    // =====================================
+
+    startTimer();
 
   }
 
@@ -901,8 +938,7 @@ async function startChat() {
 
   }
 
-}
-    
+}    
 // function startChat() {
 
 //   chatStartTimestamp =
