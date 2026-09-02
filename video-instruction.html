@@ -65,7 +65,7 @@
 
         <button
           class="primary-button"
-          onclick="window.location.href='video.html'">
+          onclick="startVideo()">
 
           Start Video
 
@@ -76,6 +76,45 @@
     </div>
 
   </div>
+
+  <script>
+
+    function startVideo() {
+
+      const videoCondition =
+        localStorage.getItem(
+          "video_condition"
+        );
+
+      if (
+        videoCondition === "bbc"
+      ) {
+
+        window.location.href =
+          "video1.html";
+
+      }
+
+      else if (
+        videoCondition === "prov"
+      ) {
+
+        window.location.href =
+          "video2.html";
+
+      }
+
+      else {
+
+        alert(
+          "Video assignment could not be found. Please try again."
+        );
+
+      }
+
+    }
+
+  </script>
 
 </body>
 
