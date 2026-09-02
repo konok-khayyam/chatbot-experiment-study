@@ -37,6 +37,7 @@
 
     </div>
 
+
     <!-- Main Card -->
 
     <div class="content-card">
@@ -45,13 +46,17 @@
         Video Questions
       </h1>
 
+
       <p class="page-description">
 
         Please answer the following questions about the video.
 
       </p>
 
+
+      <!-- ================================= -->
       <!-- QUESTION 1 -->
+      <!-- ================================= -->
 
       <div class="question-card">
 
@@ -59,37 +64,64 @@
           What was the general topic of the video?
         </div>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_topic"
-                 value="Social issue discussion">
+
+          <input
+            type="radio"
+            name="video_topic"
+            value="Social issue discussion"
+          >
+
           Social issue discussion
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_topic"
-                 value="Cooking tutorial">
+
+          <input
+            type="radio"
+            name="video_topic"
+            value="Cooking tutorial"
+          >
+
           Cooking tutorial
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_topic"
-                 value="Sports highlights">
+
+          <input
+            type="radio"
+            name="video_topic"
+            value="Sports highlights"
+          >
+
           Sports highlights
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_topic"
-                 value="Travel vlog">
+
+          <input
+            type="radio"
+            name="video_topic"
+            value="Travel vlog"
+          >
+
           Travel vlog
+
         </label>
 
       </div>
 
+
+      <!-- ================================= -->
       <!-- QUESTION 2 -->
+      <!-- ================================= -->
 
       <div class="question-card">
 
@@ -97,37 +129,64 @@
           What format best describes the video?
         </div>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_format"
-                 value="Social media video">
+
+          <input
+            type="radio"
+            name="video_format"
+            value="Social media video"
+          >
+
           Social media video
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_format"
-                 value="News article">
+
+          <input
+            type="radio"
+            name="video_format"
+            value="News article"
+          >
+
           News article
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_format"
-                 value="Personal email">
+
+          <input
+            type="radio"
+            name="video_format"
+            value="Personal email"
+          >
+
           Personal email
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_format"
-                 value="Academic lecture">
+
+          <input
+            type="radio"
+            name="video_format"
+            value="Academic lecture"
+          >
+
           Academic lecture
+
         </label>
 
       </div>
 
+
+      <!-- ================================= -->
       <!-- QUESTION 3 -->
+      <!-- ================================= -->
 
       <div class="question-card">
 
@@ -135,43 +194,72 @@
           What was the speaker mainly trying to do?
         </div>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_goal"
-                 value="Explain neutral background issue">
+
+          <input
+            type="radio"
+            name="video_goal"
+            value="Explain neutral background issue"
+          >
+
           Explain a neutral background issue
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_goal"
-                 value="Persuade viewers">
+
+          <input
+            type="radio"
+            name="video_goal"
+            value="Persuade viewers"
+          >
+
           Persuade viewers toward a particular interpretation
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_goal"
-                 value="Sell product">
+
+          <input
+            type="radio"
+            name="video_goal"
+            value="Sell product"
+          >
+
           Sell a product
+
         </label>
 
+
         <label class="radio-option">
-          <input type="radio"
-                 name="video_goal"
-                 value="Technical instructions">
+
+          <input
+            type="radio"
+            name="video_goal"
+            value="Technical instructions"
+          >
+
           Give technical instructions
+
         </label>
 
       </div>
 
+
+      <!-- ================================= -->
       <!-- CONTINUE -->
+      <!-- ================================= -->
 
       <div class="button-container">
 
         <button
           id="continueBtn"
-          class="primary-button">
+          class="primary-button"
+          type="button"
+        >
 
           Continue
 
@@ -183,18 +271,125 @@
 
   </div>
 
+
   <script>
 
-    document
-      .getElementById(
+    // =====================================
+    // CONTINUE BUTTON
+    // =====================================
+
+    const continueBtn =
+      document.getElementById(
         "continueBtn"
-      )
-      .addEventListener(
-        "click",
-        async () => {
+      );
 
-          try {
 
+    // =====================================
+    // VALIDATE QUESTIONS
+    // =====================================
+
+    function validateQuestions() {
+
+      const videoTopic =
+        document.querySelector(
+          'input[name="video_topic"]:checked'
+        );
+
+
+      const videoFormat =
+        document.querySelector(
+          'input[name="video_format"]:checked'
+        );
+
+
+      const videoGoal =
+        document.querySelector(
+          'input[name="video_goal"]:checked'
+        );
+
+
+      if (
+        !videoTopic ||
+        !videoFormat ||
+        !videoGoal
+      ) {
+
+        alert(
+          "Please answer all questions before continuing."
+        );
+
+        return false;
+
+      }
+
+
+      return true;
+
+    }
+
+
+    // =====================================
+    // CONTINUE BUTTON
+    // =====================================
+
+    continueBtn.addEventListener(
+      "click",
+      async () => {
+
+
+        // =================================
+        // VALIDATE
+        // =================================
+
+        if (
+          !validateQuestions()
+        ) {
+
+          return;
+
+        }
+
+
+        // =================================
+        // GET ANSWERS
+        // =================================
+
+        const videoTopic =
+          document.querySelector(
+            'input[name="video_topic"]:checked'
+          ).value;
+
+
+        const videoFormat =
+          document.querySelector(
+            'input[name="video_format"]:checked'
+          ).value;
+
+
+        const videoGoal =
+          document.querySelector(
+            'input[name="video_goal"]:checked'
+          ).value;
+
+
+        // =================================
+        // PREVENT DOUBLE CLICK
+        // =================================
+
+        continueBtn.disabled =
+          true;
+
+        continueBtn.innerText =
+          "Please wait...";
+
+
+        // =================================
+        // SEND TO N8N
+        // =================================
+
+        try {
+
+          const response =
             await fetch(
               "https://n8n.media.tuwien.ac.at/webhook/save-consent",
               {
@@ -202,57 +397,122 @@
                 method: "POST",
 
                 headers: {
+
                   "Content-Type":
                     "application/json"
+
                 },
+
 
                 body: JSON.stringify({
 
+                  // -------------------------
+                  // ACTION
+                  // -------------------------
+
                   action:
                     "save_video_check",
+
+
+                  // -------------------------
+                  // PARTICIPANT ID
+                  // -------------------------
 
                   session_id:
                     localStorage.getItem(
                       "session_id"
                     ),
 
+
+                  // -------------------------
+                  // VIDEO QUESTIONS
+                  // -------------------------
+
                   video_topic:
-                    document.querySelector(
-                      'input[name="video_topic"]:checked'
-                    )?.value,
+                    videoTopic,
 
                   video_format:
-                    document.querySelector(
-                      'input[name="video_format"]:checked'
-                    )?.value,
+                    videoFormat,
 
                   video_goal:
-                    document.querySelector(
-                      'input[name="video_goal"]:checked'
-                    )?.value
+                    videoGoal
 
                 })
 
               }
             );
 
-            window.location.href =
-              "chat.html";
 
-          }
+          // =================================
+          // CHECK SERVER RESPONSE
+          // =================================
 
-          catch (error) {
+          if (
+            !response.ok
+          ) {
 
-            console.error(error);
-
-            alert(
-              "Error saving responses."
+            throw new Error(
+              "Server returned an error."
             );
 
           }
 
+
+          // =================================
+          // REDIRECT TO CHAT
+          // =================================
+
+          window.location.replace(
+            "chat.html"
+          );
+
         }
-      );
+
+
+        catch (error) {
+
+          console.error(
+            "Error saving video comprehension:",
+            error
+          );
+
+
+          // Re-enable button if saving fails
+
+          continueBtn.disabled =
+            false;
+
+          continueBtn.innerText =
+            "Continue";
+
+
+          alert(
+            "Error saving responses. Please try again."
+          );
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // BLOCK BACK NAVIGATION
+    // =====================================
+
+    history.pushState(
+      null,
+      null,
+      location.href
+    );
+
+
+    window.onpopstate =
+      function () {
+
+        history.go(1);
+
+      };
 
   </script>
 
