@@ -748,20 +748,26 @@
           "education"
         ).value;
 
+      const backgroundSelected =
+  document.querySelector(
+    'input[name="background"]:checked'
+  );
 
-      if (
-        !age ||
-        !country ||
-        !education
-      ) {
 
-        alert(
-          "Please answer all required questions before continuing."
-        );
+     if (
+  !age ||
+  !country ||
+  !education ||
+  !backgroundSelected
+) {
 
-        return false;
+  alert(
+    "Please answer all required questions before continuing."
+  );
 
-      }
+  return false;
+
+}
 
 
       for (
