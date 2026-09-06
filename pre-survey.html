@@ -817,68 +817,99 @@
 
           try {
 
-
             // =====================================
-            // RANDOM CHAT CONDITION
+            // GET EXISTING SESSION ID
             // =====================================
 
-            if (
-              !localStorage.getItem(
-                "condition"
-              )
-            ) {
-
-              const conditions = [
-                "1",
-                "2",
-                "3",
-                "4"
-              ];
+            const sessionId =
+              localStorage.getItem(
+                "session_id"
+              );
 
 
-              const randomCondition =
-                conditions[
-                  Math.floor(
-                    Math.random() *
-                    conditions.length
-                  )
-                ];
+            if (!sessionId) {
 
-
-              localStorage.setItem(
-                "condition",
-                randomCondition
+              throw new Error(
+                "Missing session ID."
               );
 
             }
 
 
             // =====================================
-            // RANDOM VIDEO CONDITION
+            // GET BALANCED EXPERIMENTAL ASSIGNMENT
             // =====================================
 
-            const videoConditions = [
-              "bbc",
-              "prov"
-            ];
+            const assignmentResponse =
+              await fetch(
+                "https://n8n.media.tuwien.ac.at/webhook/assign-condition",
+                {
+
+                  method: "POST",
+
+                  headers: {
+
+                    "Content-Type":
+                      "application/json"
+
+                  },
+
+                  body: JSON.stringify({
+
+                    session_id:
+                      sessionId
+
+                  })
+
+                }
+              );
 
 
-            const randomVideoCondition =
-              videoConditions[
-                Math.floor(
-                  Math.random() *
-                  videoConditions.length
-                )
-              ];
+            if (
+              !assignmentResponse.ok
+            ) {
+
+              throw new Error(
+                "Could not obtain experimental assignment."
+              );
+
+            }
+
+
+            const assignment =
+              await assignmentResponse.json();
 
 
             // =====================================
-            // STORE VIDEO CONDITION
+            // VALIDATE ASSIGNMENT
+            // =====================================
+
+            if (
+              !assignment.success ||
+              !assignment.video_condition ||
+              !assignment.condition
+            ) {
+
+              throw new Error(
+                "Invalid experimental assignment received."
+              );
+
+            }
+
+
+            // =====================================
+            // STORE ASSIGNED CONDITIONS
             // =====================================
 
             localStorage.setItem(
+              "condition",
+              assignment.condition
+            );
+
+
+            localStorage.setItem(
               "video_condition",
-              randomVideoCondition
+              assignment.video_condition
             );
 
 
@@ -920,17 +951,13 @@
                     "save_presurvey",
 
                   session_id:
-                    localStorage.getItem(
-                      "session_id"
-                    ),
+                    sessionId,
 
                   condition:
-                    localStorage.getItem(
-                      "condition"
-                    ),
+                    assignment.condition,
 
                   video_condition:
-                    randomVideoCondition,
+                    assignment.video_condition,
 
                   age:
                     document.getElementById(
@@ -1032,11 +1059,11 @@
 
 
             // =====================================
-            // REDIRECT TO RANDOM VIDEO
+            // REDIRECT TO ASSIGNED VIDEO
             // =====================================
 
-           window.location.href =
-  "video-instruction.html";
+            window.location.href =
+              "video-instruction.html";
 
           }
 
@@ -1050,7 +1077,7 @@
 
 
             alert(
-              "Error saving survey."
+              "Error saving survey. Please try again."
             );
 
           }
