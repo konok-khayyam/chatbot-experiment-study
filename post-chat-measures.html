@@ -70,7 +70,7 @@
 
 
       <!-- =========================================
-           RANDOMIZED QUESTION CONTAINER
+           EXISTING QUESTIONS
       ========================================== -->
 
       <div id="questions-container">
@@ -83,7 +83,7 @@
 
         <!-- Q1: PROVOCATIVENESS -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             How provocative or emotionally charged did you find this video?
@@ -96,68 +96,13 @@
 
           <div class="likert-scale">
 
-            <label>
-              <input
-                type="radio"
-                name="video_provocativeness"
-                value="1"
-              >
-              1
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="video_provocativeness"
-                value="2"
-              >
-              2
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="video_provocativeness"
-                value="3"
-              >
-              3
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="video_provocativeness"
-                value="4"
-              >
-              4
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="video_provocativeness"
-                value="5"
-              >
-              5
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="video_provocativeness"
-                value="6"
-              >
-              6
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="video_provocativeness"
-                value="7"
-              >
-              7
-            </label>
+            <label><input type="radio" name="video_provocativeness" value="1">1</label>
+            <label><input type="radio" name="video_provocativeness" value="2">2</label>
+            <label><input type="radio" name="video_provocativeness" value="3">3</label>
+            <label><input type="radio" name="video_provocativeness" value="4">4</label>
+            <label><input type="radio" name="video_provocativeness" value="5">5</label>
+            <label><input type="radio" name="video_provocativeness" value="6">6</label>
+            <label><input type="radio" name="video_provocativeness" value="7">7</label>
 
           </div>
 
@@ -166,7 +111,7 @@
 
         <!-- Q2: NEGATIVITY -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             How negative did the video feel toward immigrants or immigration?
@@ -194,7 +139,7 @@
 
         <!-- Q3: CREDIBILITY -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             How credible or trustworthy did the source seem?
@@ -222,7 +167,7 @@
 
         <!-- Q4: AI GENERATED -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             Did this video feel AI-generated to you?
@@ -250,7 +195,7 @@
 
         <!-- Q5: IMMIGRATION BACKGROUND -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             Do you have an immigration background?
@@ -289,7 +234,7 @@
 
         <!-- Q6 -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             The chatbot tried to understand my perspective.
@@ -317,7 +262,7 @@
 
         <!-- Q7 -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             The chatbot challenged the claims made in the video.
@@ -345,7 +290,7 @@
 
         <!-- Q8 -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             The chatbot used a friendly tone.
@@ -373,7 +318,7 @@
 
         <!-- Q9 -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             The chatbot showed empathy toward how I feel about this topic.
@@ -401,7 +346,7 @@
 
         <!-- Q10 -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             How was the conversation partner described?
@@ -461,318 +406,588 @@
 
 
         <!-- =========================================
-             FEELING UNDERSTOOD
+             PETS + REACTANCE BLOCKS
+             
+             The order of these two blocks is
+             randomized by JavaScript.
         ========================================== -->
 
+        <div id="post-chat-blocks">
 
-        <!-- Q11 -->
 
-        <div class="question-card randomized-item">
+          <!-- =====================================
+               PETS BLOCK
+          ====================================== -->
 
-          <div class="question-title">
-            During the conversation, I felt understood by the chatbot.
+          <div
+            id="pets-block"
+            class="post-chat-block"
+          >
+
+            <div class="instruction-card">
+
+              <strong>Perceived Empathy of the Chatbot</strong>
+
+              <p>
+                For the following questions, please think about
+                the chatbot you just talked to. In these questions,
+                "the system" refers to that chatbot.
+              </p>
+
+              <p>
+                Please indicate how much you agree or disagree
+                with each statement.
+              </p>
+
+            </div>
+
+
+            <div id="pets-items">
+
+
+              <!-- E1 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system considered my mental state.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_1"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_1_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- E2 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system seemed emotionally intelligent.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_2"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_2_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- E3 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system expressed emotions.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_3"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_3_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- E4 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system sympathized with me.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_4"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_4_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- E5 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system showed interest in me.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_5"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_5_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- E6 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system supported me in coping with an emotional situation.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_6"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_6_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- U1 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system understood my goals.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_7"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_7_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- U2 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system understood my needs.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_8"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_8_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- U3 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  I trusted the system.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_9"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_9_value">50</span>
+                </div>
+
+              </div>
+
+
+              <!-- U4 -->
+
+              <div class="question-card pets-item">
+
+                <div class="question-title">
+                  The system understood my intentions.
+                </div>
+
+                <div class="slider-labels">
+                  <span>Strongly disagree</span>
+                  <span>Strongly agree</span>
+                </div>
+
+                <input
+                  type="range"
+                  name="pets_10"
+                  min="0"
+                  max="100"
+                  value="50"
+                  class="pets-slider"
+                >
+
+                <div class="slider-value">
+                  <span id="pets_10_value">50</span>
+                </div>
+
+              </div>
+
+
+            </div>
+
           </div>
 
-          <div class="likert-labels">
-            <span class="disagree-label">Strongly disagree</span>
-            <span class="agree-label">Strongly agree</span>
-          </div>
 
-          <div class="likert-scale">
 
-            <label><input type="radio" name="feeling_understood_1" value="1">1</label>
-            <label><input type="radio" name="feeling_understood_1" value="2">2</label>
-            <label><input type="radio" name="feeling_understood_1" value="3">3</label>
-            <label><input type="radio" name="feeling_understood_1" value="4">4</label>
-            <label><input type="radio" name="feeling_understood_1" value="5">5</label>
-            <label><input type="radio" name="feeling_understood_1" value="6">6</label>
-            <label><input type="radio" name="feeling_understood_1" value="7">7</label>
+          <!-- =====================================
+               REACTANCE BLOCK
+          ====================================== -->
 
-          </div>
+          <div
+            id="reactance-block"
+            class="post-chat-block"
+          >
 
-        </div>
+            <div class="instruction-card">
 
+              <strong>Perceived Threat to Freedom</strong>
 
-        <!-- Q12 -->
+              <p>
+                Please indicate how much you agree or disagree
+                with each statement.
+              </p>
 
-        <div class="question-card randomized-item">
+            </div>
 
-          <div class="question-title">
-            The chatbot acknowledged my perspective.
-          </div>
 
-          <div class="likert-labels">
-            <span class="disagree-label">Strongly disagree</span>
-            <span class="agree-label">Strongly agree</span>
-          </div>
+            <!-- FT1 -->
 
-          <div class="likert-scale">
+            <div class="question-card">
 
-            <label><input type="radio" name="feeling_understood_2" value="1">1</label>
-            <label><input type="radio" name="feeling_understood_2" value="2">2</label>
-            <label><input type="radio" name="feeling_understood_2" value="3">3</label>
-            <label><input type="radio" name="feeling_understood_2" value="4">4</label>
-            <label><input type="radio" name="feeling_understood_2" value="5">5</label>
-            <label><input type="radio" name="feeling_understood_2" value="6">6</label>
-            <label><input type="radio" name="feeling_understood_2" value="7">7</label>
+              <div class="question-title">
+                The chatbot's messages threatened my freedom to choose.
+              </div>
 
-          </div>
+              <div class="likert-labels">
+                <span>Strongly disagree</span>
+                <span>Strongly agree</span>
+              </div>
 
-        </div>
+              <div class="likert-scale">
 
+                <label><input type="radio" name="ft1" value="1">1</label>
+                <label><input type="radio" name="ft1" value="2">2</label>
+                <label><input type="radio" name="ft1" value="3">3</label>
+                <label><input type="radio" name="ft1" value="4">4</label>
+                <label><input type="radio" name="ft1" value="5">5</label>
 
-        <!-- Q13 -->
+              </div>
 
-        <div class="question-card randomized-item">
+            </div>
 
-          <div class="question-title">
-            The chatbot seemed interested in what I had to say.
-          </div>
 
-          <div class="likert-labels">
-            <span class="disagree-label">Strongly disagree</span>
-            <span class="agree-label">Strongly agree</span>
-          </div>
+            <!-- FT2 -->
 
-          <div class="likert-scale">
+            <div class="question-card">
 
-            <label><input type="radio" name="feeling_understood_3" value="1">1</label>
-            <label><input type="radio" name="feeling_understood_3" value="2">2</label>
-            <label><input type="radio" name="feeling_understood_3" value="3">3</label>
-            <label><input type="radio" name="feeling_understood_3" value="4">4</label>
-            <label><input type="radio" name="feeling_understood_3" value="5">5</label>
-            <label><input type="radio" name="feeling_understood_3" value="6">6</label>
-            <label><input type="radio" name="feeling_understood_3" value="7">7</label>
+              <div class="question-title">
+                The chatbot's messages tried to make a decision for me.
+              </div>
 
-          </div>
+              <div class="likert-labels">
+                <span>Strongly disagree</span>
+                <span>Strongly agree</span>
+              </div>
 
-        </div>
+              <div class="likert-scale">
 
+                <label><input type="radio" name="ft2" value="1">1</label>
+                <label><input type="radio" name="ft2" value="2">2</label>
+                <label><input type="radio" name="ft2" value="3">3</label>
+                <label><input type="radio" name="ft2" value="4">4</label>
+                <label><input type="radio" name="ft2" value="5">5</label>
 
-        <!-- Q14 -->
+              </div>
 
-        <div class="question-card randomized-item">
+            </div>
 
-          <div class="question-title">
-            The chatbot responded to what I wrote.
-          </div>
 
-          <div class="likert-labels">
-            <span class="disagree-label">Strongly disagree</span>
-            <span class="agree-label">Strongly agree</span>
-          </div>
+            <!-- FT3 -->
 
-          <div class="likert-scale">
+            <div class="question-card">
 
-            <label><input type="radio" name="feeling_understood_4" value="1">1</label>
-            <label><input type="radio" name="feeling_understood_4" value="2">2</label>
-            <label><input type="radio" name="feeling_understood_4" value="3">3</label>
-            <label><input type="radio" name="feeling_understood_4" value="4">4</label>
-            <label><input type="radio" name="feeling_understood_4" value="5">5</label>
-            <label><input type="radio" name="feeling_understood_4" value="6">6</label>
-            <label><input type="radio" name="feeling_understood_4" value="7">7</label>
+              <div class="question-title">
+                The chatbot's messages tried to manipulate me.
+              </div>
 
-          </div>
+              <div class="likert-labels">
+                <span>Strongly disagree</span>
+                <span>Strongly agree</span>
+              </div>
 
-        </div>
+              <div class="likert-scale">
 
+                <label><input type="radio" name="ft3" value="1">1</label>
+                <label><input type="radio" name="ft3" value="2">2</label>
+                <label><input type="radio" name="ft3" value="3">3</label>
+                <label><input type="radio" name="ft3" value="4">4</label>
+                <label><input type="radio" name="ft3" value="5">5</label>
 
-        <!-- Q15 REVERSE -->
+              </div>
 
-        <div class="question-card randomized-item">
+            </div>
 
-          <div class="question-title">
-            I felt dismissed by the chatbot.
-          </div>
 
-          <div class="likert-labels">
-            <span class="agree-label">Strongly agree</span>
-            <span class="disagree-label">Strongly disagree</span>
-          </div>
+            <!-- FT4 -->
 
-          <div class="likert-scale">
+            <div class="question-card">
 
-            <label><input type="radio" name="feeling_understood_5_reverse" value="1">1</label>
-            <label><input type="radio" name="feeling_understood_5_reverse" value="2">2</label>
-            <label><input type="radio" name="feeling_understood_5_reverse" value="3">3</label>
-            <label><input type="radio" name="feeling_understood_5_reverse" value="4">4</label>
-            <label><input type="radio" name="feeling_understood_5_reverse" value="5">5</label>
-            <label><input type="radio" name="feeling_understood_5_reverse" value="6">6</label>
-            <label><input type="radio" name="feeling_understood_5_reverse" value="7">7</label>
+              <div class="question-title">
+                The chatbot's messages tried to pressure me.
+              </div>
 
-          </div>
+              <div class="likert-labels">
+                <span>Strongly disagree</span>
+                <span>Strongly agree</span>
+              </div>
 
-        </div>
+              <div class="likert-scale">
 
+                <label><input type="radio" name="ft4" value="1">1</label>
+                <label><input type="radio" name="ft4" value="2">2</label>
+                <label><input type="radio" name="ft4" value="3">3</label>
+                <label><input type="radio" name="ft4" value="4">4</label>
+                <label><input type="radio" name="ft4" value="5">5</label>
 
-        <!-- Q16 REVERSE -->
+              </div>
 
-        <div class="question-card randomized-item">
+            </div>
 
-          <div class="question-title">
-            I felt misunderstood by the chatbot.
-          </div>
 
-          <div class="likert-labels">
-            <span class="agree-label">Strongly agree</span>
-            <span class="disagree-label">Strongly disagree</span>
-          </div>
+            <!-- =====================================
+                 ANGER
+            ====================================== -->
 
-          <div class="likert-scale">
+            <div class="instruction-card">
 
-            <label><input type="radio" name="feeling_understood_6_reverse" value="1">1</label>
-            <label><input type="radio" name="feeling_understood_6_reverse" value="2">2</label>
-            <label><input type="radio" name="feeling_understood_6_reverse" value="3">3</label>
-            <label><input type="radio" name="feeling_understood_6_reverse" value="4">4</label>
-            <label><input type="radio" name="feeling_understood_6_reverse" value="5">5</label>
-            <label><input type="radio" name="feeling_understood_6_reverse" value="6">6</label>
-            <label><input type="radio" name="feeling_understood_6_reverse" value="7">7</label>
+              <strong>Anger</strong>
 
-          </div>
+              <p>
+                While chatting with the chatbot, how much did you feel each of the following?
+              </p>
 
-        </div>
+              <p>
+                0 = None of this feeling &nbsp;&nbsp;&nbsp;
+                4 = A great deal of this feeling
+              </p>
 
+            </div>
 
 
-        <!-- =========================================
-             AUTONOMY / REACTANCE
-        ========================================== -->
+            <!-- ANG1 -->
 
+            <div class="question-card">
 
-        <!-- Q17 -->
+              <div class="question-title">
+                Irritated
+              </div>
 
-        <div class="question-card randomized-item">
+              <div class="likert-labels">
+                <span>None of this feeling</span>
+                <span>A great deal of this feeling</span>
+              </div>
 
-          <div class="question-title">
-            The chatbot respected my freedom to make up my own mind.
-          </div>
+              <div class="likert-scale">
 
-          <div class="likert-labels">
-            <span class="disagree-label">Strongly disagree</span>
-            <span class="agree-label">Strongly agree</span>
-          </div>
+                <label><input type="radio" name="ang1" value="0">0</label>
+                <label><input type="radio" name="ang1" value="1">1</label>
+                <label><input type="radio" name="ang1" value="2">2</label>
+                <label><input type="radio" name="ang1" value="3">3</label>
+                <label><input type="radio" name="ang1" value="4">4</label>
 
-          <div class="likert-scale">
+              </div>
 
-            <label><input type="radio" name="autonomy_1" value="1">1</label>
-            <label><input type="radio" name="autonomy_1" value="2">2</label>
-            <label><input type="radio" name="autonomy_1" value="3">3</label>
-            <label><input type="radio" name="autonomy_1" value="4">4</label>
-            <label><input type="radio" name="autonomy_1" value="5">5</label>
-            <label><input type="radio" name="autonomy_1" value="6">6</label>
-            <label><input type="radio" name="autonomy_1" value="7">7</label>
+            </div>
 
-          </div>
 
-        </div>
+            <!-- ANG2 -->
 
+            <div class="question-card">
 
-        <!-- Q18 -->
+              <div class="question-title">
+                Angry
+              </div>
 
-        <div class="question-card randomized-item">
+              <div class="likert-labels">
+                <span>None of this feeling</span>
+                <span>A great deal of this feeling</span>
+              </div>
 
-          <div class="question-title">
-            I felt free to disagree with the chatbot.
-          </div>
+              <div class="likert-scale">
 
-          <div class="likert-labels">
-            <span class="disagree-label">Strongly disagree</span>
-            <span class="agree-label">Strongly agree</span>
-          </div>
+                <label><input type="radio" name="ang2" value="0">0</label>
+                <label><input type="radio" name="ang2" value="1">1</label>
+                <label><input type="radio" name="ang2" value="2">2</label>
+                <label><input type="radio" name="ang2" value="3">3</label>
+                <label><input type="radio" name="ang2" value="4">4</label>
 
-          <div class="likert-scale">
+              </div>
 
-            <label><input type="radio" name="autonomy_2" value="1">1</label>
-            <label><input type="radio" name="autonomy_2" value="2">2</label>
-            <label><input type="radio" name="autonomy_2" value="3">3</label>
-            <label><input type="radio" name="autonomy_2" value="4">4</label>
-            <label><input type="radio" name="autonomy_2" value="5">5</label>
-            <label><input type="radio" name="autonomy_2" value="6">6</label>
-            <label><input type="radio" name="autonomy_2" value="7">7</label>
+            </div>
 
-          </div>
 
-        </div>
+            <!-- ANG3 -->
 
+            <div class="question-card">
 
-        <!-- Q19 REVERSE -->
+              <div class="question-title">
+                Annoyed
+              </div>
 
-        <div class="question-card randomized-item">
+              <div class="likert-labels">
+                <span>None of this feeling</span>
+                <span>A great deal of this feeling</span>
+              </div>
 
-          <div class="question-title">
-            The chatbot tried to pressure me.
-          </div>
+              <div class="likert-scale">
 
-          <div class="likert-labels">
-            <span class="agree-label">Strongly agree</span>
-            <span class="disagree-label">Strongly disagree</span>
-          </div>
+                <label><input type="radio" name="ang3" value="0">0</label>
+                <label><input type="radio" name="ang3" value="1">1</label>
+                <label><input type="radio" name="ang3" value="2">2</label>
+                <label><input type="radio" name="ang3" value="3">3</label>
+                <label><input type="radio" name="ang3" value="4">4</label>
 
-          <div class="likert-scale">
+              </div>
 
-            <label><input type="radio" name="autonomy_3_reverse" value="1">1</label>
-            <label><input type="radio" name="autonomy_3_reverse" value="2">2</label>
-            <label><input type="radio" name="autonomy_3_reverse" value="3">3</label>
-            <label><input type="radio" name="autonomy_3_reverse" value="4">4</label>
-            <label><input type="radio" name="autonomy_3_reverse" value="5">5</label>
-            <label><input type="radio" name="autonomy_3_reverse" value="6">6</label>
-            <label><input type="radio" name="autonomy_3_reverse" value="7">7</label>
+            </div>
 
-          </div>
 
-        </div>
+            <!-- ANG4 -->
 
+            <div class="question-card">
 
-        <!-- Q20 REVERSE -->
+              <div class="question-title">
+                Aggravated
+              </div>
 
-        <div class="question-card randomized-item">
+              <div class="likert-labels">
+                <span>None of this feeling</span>
+                <span>A great deal of this feeling</span>
+              </div>
 
-          <div class="question-title">
-            The chatbot pushed me toward a particular conclusion.
-          </div>
+              <div class="likert-scale">
 
-          <div class="likert-labels">
-            <span class="agree-label">Strongly agree</span>
-            <span class="disagree-label">Strongly disagree</span>
-          </div>
+                <label><input type="radio" name="ang4" value="0">0</label>
+                <label><input type="radio" name="ang4" value="1">1</label>
+                <label><input type="radio" name="ang4" value="2">2</label>
+                <label><input type="radio" name="ang4" value="3">3</label>
+                <label><input type="radio" name="ang4" value="4">4</label>
 
-          <div class="likert-scale">
+              </div>
 
-            <label><input type="radio" name="autonomy_4_reverse" value="1">1</label>
-            <label><input type="radio" name="autonomy_4_reverse" value="2">2</label>
-            <label><input type="radio" name="autonomy_4_reverse" value="3">3</label>
-            <label><input type="radio" name="autonomy_4_reverse" value="4">4</label>
-            <label><input type="radio" name="autonomy_4_reverse" value="5">5</label>
-            <label><input type="radio" name="autonomy_4_reverse" value="6">6</label>
-            <label><input type="radio" name="autonomy_4_reverse" value="7">7</label>
-
-          </div>
-
-        </div>
-
-
-        <!-- Q21 -->
-
-        <div class="question-card randomized-item">
-
-          <div class="question-title">
-            The chatbot allowed me to reflect on the issue myself.
-          </div>
-
-          <div class="likert-labels">
-            <span class="disagree-label">Strongly disagree</span>
-            <span class="agree-label">Strongly agree</span>
-          </div>
-
-          <div class="likert-scale">
-
-            <label><input type="radio" name="autonomy_5" value="1">1</label>
-            <label><input type="radio" name="autonomy_5" value="2">2</label>
-            <label><input type="radio" name="autonomy_5" value="3">3</label>
-            <label><input type="radio" name="autonomy_5" value="4">4</label>
-            <label><input type="radio" name="autonomy_5" value="5">5</label>
-            <label><input type="radio" name="autonomy_5" value="6">6</label>
-            <label><input type="radio" name="autonomy_5" value="7">7</label>
+            </div>
 
           </div>
 
@@ -787,7 +1002,7 @@
 
         <!-- Q22 -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             The chatbot’s responses were relevant.
@@ -815,7 +1030,7 @@
 
         <!-- Q23 -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             The chatbot’s responses were coherent.
@@ -843,7 +1058,7 @@
 
         <!-- Q24 REVERSE -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             The chatbot’s responses were repetitive.
@@ -871,7 +1086,7 @@
 
         <!-- Q25 REVERSE -->
 
-        <div class="question-card randomized-item">
+        <div class="question-card">
 
           <div class="question-title">
             The chatbot seemed artificial in a way that distracted me.
@@ -891,6 +1106,80 @@
             <label><input type="radio" name="conversation_quality_4_reverse" value="5">5</label>
             <label><input type="radio" name="conversation_quality_4_reverse" value="6">6</label>
             <label><input type="radio" name="conversation_quality_4_reverse" value="7">7</label>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             STRATEGY CHECKS — LAST
+        ========================================== -->
+
+
+        <div class="instruction-card">
+
+          <strong>Strategy Check</strong>
+
+          <p>
+            Please indicate how much you agree or disagree
+            with each statement.
+          </p>
+
+        </div>
+
+
+        <!-- STR1 -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            The chatbot mostly asked me questions.
+          </div>
+
+          <div class="likert-labels">
+            <span class="disagree-label">Strongly disagree</span>
+            <span class="agree-label">Strongly agree</span>
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="str1" value="1">1</label>
+            <label><input type="radio" name="str1" value="2">2</label>
+            <label><input type="radio" name="str1" value="3">3</label>
+            <label><input type="radio" name="str1" value="4">4</label>
+            <label><input type="radio" name="str1" value="5">5</label>
+            <label><input type="radio" name="str1" value="6">6</label>
+            <label><input type="radio" name="str1" value="7">7</label>
+
+          </div>
+
+        </div>
+
+
+        <!-- STR2 -->
+
+        <div class="question-card">
+
+          <div class="question-title">
+            The chatbot mostly told me what to think.
+          </div>
+
+          <div class="likert-labels">
+            <span class="disagree-label">Strongly disagree</span>
+            <span class="agree-label">Strongly agree</span>
+          </div>
+
+          <div class="likert-scale">
+
+            <label><input type="radio" name="str2" value="1">1</label>
+            <label><input type="radio" name="str2" value="2">2</label>
+            <label><input type="radio" name="str2" value="3">3</label>
+            <label><input type="radio" name="str2" value="4">4</label>
+            <label><input type="radio" name="str2" value="5">5</label>
+            <label><input type="radio" name="str2" value="6">6</label>
+            <label><input type="radio" name="str2" value="7">7</label>
 
           </div>
 
@@ -920,11 +1209,12 @@
   </div>
 
 
+
 <script>
 
 /*
 ==========================================
-RANDOMIZE S10 ITEMS
+INITIALIZE PAGE
 ==========================================
 */
 
@@ -932,23 +1222,62 @@ document.addEventListener(
   "DOMContentLoaded",
   function () {
 
-    const container =
+    /*
+    ======================================
+    PETS SLIDERS
+    ======================================
+    */
+
+    const petsSliders =
+      document.querySelectorAll(".pets-slider");
+
+    petsSliders.forEach(
+      function (slider) {
+
+        const valueDisplay =
+          document.getElementById(
+            slider.name + "_value"
+          );
+
+        slider.addEventListener(
+          "input",
+          function () {
+
+            valueDisplay.innerText =
+              slider.value;
+
+          }
+        );
+
+      }
+    );
+
+
+    /*
+    ======================================
+    RANDOMIZE PETS ITEMS
+    ======================================
+    */
+
+    const petsContainer =
       document.getElementById(
-        "questions-container"
+        "pets-items"
       );
 
-    const items =
+    const petsItems =
       Array.from(
-        container.querySelectorAll(
-          ".randomized-item"
+        petsContainer.querySelectorAll(
+          ".pets-item"
         )
       );
 
 
-    // Fisher-Yates shuffle
+    /*
+    Fisher-Yates shuffle
+    */
 
     for (
-      let i = items.length - 1;
+      let i = petsItems.length - 1;
       i > 0;
       i--
     ) {
@@ -959,26 +1288,69 @@ document.addEventListener(
         );
 
       [
-        items[i],
-        items[j]
+        petsItems[i],
+        petsItems[j]
       ] =
       [
-        items[j],
-        items[i]
+        petsItems[j],
+        petsItems[i]
       ];
 
     }
 
 
-    // Reinsert randomized items
-
-    items.forEach(
+    petsItems.forEach(
       function (item) {
 
-        container.appendChild(item);
+        petsContainer.appendChild(item);
 
       }
     );
+
+
+    /*
+    ======================================
+    RANDOMIZE PETS / REACTANCE BLOCK ORDER
+    ======================================
+    */
+
+    const blocks =
+      document.querySelector(
+        "#post-chat-blocks"
+      );
+
+    const petsBlock =
+      document.getElementById(
+        "pets-block"
+      );
+
+    const reactanceBlock =
+      document.getElementById(
+        "reactance-block"
+      );
+
+
+    if (Math.random() < 0.5) {
+
+      blocks.appendChild(
+        petsBlock
+      );
+
+      blocks.appendChild(
+        reactanceBlock
+      );
+
+    } else {
+
+      blocks.appendChild(
+        reactanceBlock
+      );
+
+      blocks.appendChild(
+        petsBlock
+      );
+
+    }
 
   }
 );
@@ -986,7 +1358,7 @@ document.addEventListener(
 
 /*
 ==========================================
-SUBMIT S10
+SUBMIT POST-CHAT MEASURES
 ==========================================
 */
 
@@ -1001,55 +1373,66 @@ async function submitPostChatMeasures() {
 
   const requiredQuestions = [
 
+    // Video perception
+
     "video_provocativeness",
-
     "video_negativity",
-
     "video_credibility",
-
     "video_ai_generated",
-
     "immigration_background",
 
+
+    // Chatbot manipulation checks
+
     "chatbot_understanding",
-
     "chatbot_challenged_claims",
-
     "chatbot_friendly_tone",
-
     "chatbot_empathy",
-
     "conversation_partner",
 
-    "feeling_understood_1",
 
-    "feeling_understood_2",
+    // PETS
 
-    "feeling_understood_3",
+    "pets_1",
+    "pets_2",
+    "pets_3",
+    "pets_4",
+    "pets_5",
+    "pets_6",
+    "pets_7",
+    "pets_8",
+    "pets_9",
+    "pets_10",
 
-    "feeling_understood_4",
 
-    "feeling_understood_5_reverse",
+    // Perceived threat to freedom
 
-    "feeling_understood_6_reverse",
+    "ft1",
+    "ft2",
+    "ft3",
+    "ft4",
 
-    "autonomy_1",
 
-    "autonomy_2",
+    // Anger
 
-    "autonomy_3_reverse",
+    "ang1",
+    "ang2",
+    "ang3",
+    "ang4",
 
-    "autonomy_4_reverse",
 
-    "autonomy_5",
+    // Conversational quality
 
     "conversation_quality_1",
-
     "conversation_quality_2",
-
     "conversation_quality_3_reverse",
+    "conversation_quality_4_reverse",
 
-    "conversation_quality_4_reverse"
+
+    // Strategy checks — last
+
+    "str1",
+    "str2"
 
   ];
 
@@ -1063,6 +1446,39 @@ async function submitPostChatMeasures() {
   for (
     const question of requiredQuestions
   ) {
+
+
+    /*
+    PETS sliders
+    */
+
+    if (
+      question.startsWith("pets_")
+    ) {
+
+      const slider =
+        document.querySelector(
+          `input[name="${question}"]`
+        );
+
+      if (!slider) {
+
+        alert(
+          "Please answer all questions before continuing."
+        );
+
+        return;
+
+      }
+
+      continue;
+
+    }
+
+
+    /*
+    Radio questions
+    */
 
     const checked =
       document.querySelector(
@@ -1112,6 +1528,32 @@ async function submitPostChatMeasures() {
   for (
     const question of requiredQuestions
   ) {
+
+    const input =
+      document.querySelector(
+        `input[name="${question}"]`
+      );
+
+
+    /*
+    PETS sliders
+    */
+
+    if (
+      question.startsWith("pets_")
+    ) {
+
+      responses[question] =
+        input.value;
+
+      continue;
+
+    }
+
+
+    /*
+    Radio questions
+    */
 
     const selected =
       document.querySelector(
@@ -1185,9 +1627,6 @@ async function submitPostChatMeasures() {
     ======================================
     REDIRECT
     ======================================
-    
-    CHANGE THIS FILE NAME IF YOUR NEXT
-    PAGE HAS A DIFFERENT NAME.
     */
 
     window.location.replace(
