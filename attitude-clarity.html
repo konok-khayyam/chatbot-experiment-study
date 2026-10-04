@@ -98,68 +98,15 @@
 
           <div class="likert-scale">
 
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="1">
-              <span>1</span>
-            </label>
-
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="2">
-              <span>2</span>
-            </label>
-
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="3">
-              <span>3</span>
-            </label>
-
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="4">
-              <span>4</span>
-            </label>
-
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="5">
-              <span>5</span>
-            </label>
-
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="6">
-              <span>6</span>
-            </label>
-
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="7">
-              <span>7</span>
-            </label>
-
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="8">
-              <span>8</span>
-            </label>
-
-            <label>
-              <input type="radio"
-                     name="clr1"
-                     value="9">
-              <span>9</span>
-            </label>
+            <label><input type="radio" name="clr1" value="1"><span>1</span></label>
+            <label><input type="radio" name="clr1" value="2"><span>2</span></label>
+            <label><input type="radio" name="clr1" value="3"><span>3</span></label>
+            <label><input type="radio" name="clr1" value="4"><span>4</span></label>
+            <label><input type="radio" name="clr1" value="5"><span>5</span></label>
+            <label><input type="radio" name="clr1" value="6"><span>6</span></label>
+            <label><input type="radio" name="clr1" value="7"><span>7</span></label>
+            <label><input type="radio" name="clr1" value="8"><span>8</span></label>
+            <label><input type="radio" name="clr1" value="9"><span>9</span></label>
 
           </div>
 
@@ -399,6 +346,7 @@
 
         </div>
 
+
       </div>
 
 
@@ -426,7 +374,7 @@
   <script>
 
     // =====================================
-    // RANDOMIZE CLARITY/CORRECTNESS ITEMS
+    // RANDOMIZE S10 ITEMS
     // =====================================
 
     const itemsContainer =
@@ -525,8 +473,9 @@
 
           try {
 
+
             // =====================================
-            // GET SESSION ID
+            // GET EXISTING SESSION ID
             // =====================================
 
             const sessionId =
@@ -545,12 +494,13 @@
 
 
             // =====================================
-            // SEND S10 DATA
+            // SAVE S10 DATA
+            // EXISTING SAVE-CONSENT WEBHOOK
             // =====================================
 
             const response =
               await fetch(
-                "https://n8n.media.tuwien.ac.at/webhook/save-attitude-clarity",
+                "https://n8n.media.tuwien.ac.at/webhook/save-consent",
                 {
 
                   method: "POST",
