@@ -17,6 +17,136 @@
     href="css/style.css"
   >
 
+  <style>
+
+    /* =========================================
+       PETS 0–100 SLIDER
+    ========================================== */
+
+    .pets-slider-wrapper {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .pets-slider-labels {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pets-slider-labels .middle-label {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .pets-slider-container {
+      position: relative;
+      width: 100%;
+      padding: 0 2px;
+      box-sizing: border-box;
+    }
+
+    .pets-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 10px;
+      border-radius: 10px;
+      background: #d9dee5;
+      outline: none;
+      cursor: pointer;
+      margin: 10px 0 16px 0;
+    }
+
+    .pets-slider::-webkit-slider-runnable-track {
+      height: 10px;
+      border-radius: 10px;
+      background: #d9dee5;
+    }
+
+    .pets-slider::-moz-range-track {
+      height: 10px;
+      border-radius: 10px;
+      background: #d9dee5;
+    }
+
+    .pets-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #007aff;
+      border: 3px solid #ffffff;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+      cursor: grab;
+      margin-top: -7px;
+    }
+
+    .pets-slider::-webkit-slider-thumb:active {
+      cursor: grabbing;
+    }
+
+    .pets-slider::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #007aff;
+      border: 3px solid #ffffff;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+      cursor: grab;
+    }
+
+    .pets-slider-scale {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-top: -4px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .pets-slider-response {
+      text-align: center;
+      min-height: 24px;
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .pets-slider-response.unanswered {
+      color: #777;
+      font-weight: 400;
+    }
+
+    .pets-slider-response.answered {
+      color: #222;
+    }
+
+    /* =========================================
+       INSTRUCTION CARD WITHOUT HEADING
+    ========================================== */
+
+    .block-instruction {
+      margin-bottom: 24px;
+    }
+
+    .block-instruction p {
+      margin: 0 0 10px 0;
+    }
+
+    .block-instruction p:last-child {
+      margin-bottom: 0;
+    }
+
+  </style>
+
 </head>
 
 
@@ -69,10 +199,6 @@
       </p>
 
 
-      <!-- =========================================
-           EXISTING QUESTIONS
-      ========================================== -->
-
       <div id="questions-container">
 
 
@@ -80,8 +206,6 @@
              VIDEO PERCEPTION
         ======================================== -->
 
-
-        <!-- Q1: PROVOCATIVENESS -->
 
         <div class="question-card">
 
@@ -109,8 +233,6 @@
         </div>
 
 
-        <!-- Q2: NEGATIVITY -->
-
         <div class="question-card">
 
           <div class="question-title">
@@ -136,8 +258,6 @@
 
         </div>
 
-
-        <!-- Q3: CREDIBILITY -->
 
         <div class="question-card">
 
@@ -165,8 +285,6 @@
         </div>
 
 
-        <!-- Q4: AI GENERATED -->
-
         <div class="question-card">
 
           <div class="question-title">
@@ -192,8 +310,6 @@
 
         </div>
 
-
-        <!-- Q5: IMMIGRATION BACKGROUND -->
 
         <div class="question-card">
 
@@ -232,8 +348,6 @@
         ========================================== -->
 
 
-        <!-- Q6 -->
-
         <div class="question-card">
 
           <div class="question-title">
@@ -259,8 +373,6 @@
 
         </div>
 
-
-        <!-- Q7 -->
 
         <div class="question-card">
 
@@ -288,8 +400,6 @@
         </div>
 
 
-        <!-- Q8 -->
-
         <div class="question-card">
 
           <div class="question-title">
@@ -316,8 +426,6 @@
         </div>
 
 
-        <!-- Q9 -->
-
         <div class="question-card">
 
           <div class="question-title">
@@ -343,8 +451,6 @@
 
         </div>
 
-
-        <!-- Q10 -->
 
         <div class="question-card">
 
@@ -406,10 +512,7 @@
 
 
         <!-- =========================================
-             PETS + REACTANCE BLOCKS
-             
-             The order of these two blocks is
-             randomized by JavaScript.
+             PETS + REACTANCE
         ========================================== -->
 
         <div id="post-chat-blocks">
@@ -424,19 +527,16 @@
             class="post-chat-block"
           >
 
-            <div class="instruction-card">
-
-              <strong>Perceived Empathy of the Chatbot</strong>
+            <div class="instruction-card block-instruction">
 
               <p>
-                For the following questions, please think about
+                For the following statements, please think about
                 the chatbot you just talked to. In these questions,
                 "the system" refers to that chatbot.
               </p>
 
               <p>
-                Please indicate how much you agree or disagree
-                with each statement.
+                To what extent do you agree or disagree with each statement?
               </p>
 
             </div>
@@ -445,7 +545,7 @@
             <div id="pets-items">
 
 
-              <!-- E1 -->
+              <!-- PETS 1 -->
 
               <div class="question-card pets-item">
 
@@ -453,28 +553,59 @@
                   The system considered my mental state.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_1"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_1_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_1"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+
+                  <div class="pets-slider-scale">
+
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+
+                  </div>
+
+
+                  <div
+                    id="pets_1_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- E2 -->
+              <!-- PETS 2 -->
 
               <div class="question-card pets-item">
 
@@ -482,28 +613,54 @@
                   The system seemed emotionally intelligent.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_2"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_2_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_2"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_2_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- E3 -->
+              <!-- PETS 3 -->
 
               <div class="question-card pets-item">
 
@@ -511,28 +668,54 @@
                   The system expressed emotions.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_3"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_3_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_3"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_3_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- E4 -->
+              <!-- PETS 4 -->
 
               <div class="question-card pets-item">
 
@@ -540,28 +723,54 @@
                   The system sympathized with me.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_4"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_4_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_4"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_4_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- E5 -->
+              <!-- PETS 5 -->
 
               <div class="question-card pets-item">
 
@@ -569,28 +778,54 @@
                   The system showed interest in me.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_5"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_5_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_5"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_5_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- E6 -->
+              <!-- PETS 6 -->
 
               <div class="question-card pets-item">
 
@@ -598,28 +833,54 @@
                   The system supported me in coping with an emotional situation.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_6"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_6_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_6"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_6_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- U1 -->
+              <!-- PETS 7 -->
 
               <div class="question-card pets-item">
 
@@ -627,28 +888,54 @@
                   The system understood my goals.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_7"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_7_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_7"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_7_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- U2 -->
+              <!-- PETS 8 -->
 
               <div class="question-card pets-item">
 
@@ -656,28 +943,54 @@
                   The system understood my needs.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_8"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_8_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_8"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_8_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- U3 -->
+              <!-- PETS 9 -->
 
               <div class="question-card pets-item">
 
@@ -685,28 +998,54 @@
                   I trusted the system.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_9"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_9_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_9"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_9_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
 
 
-              <!-- U4 -->
+              <!-- PETS 10 -->
 
               <div class="question-card pets-item">
 
@@ -714,22 +1053,48 @@
                   The system understood my intentions.
                 </div>
 
-                <div class="slider-labels">
-                  <span>Strongly disagree</span>
-                  <span>Strongly agree</span>
-                </div>
+                <div class="pets-slider-wrapper">
 
-                <input
-                  type="range"
-                  name="pets_10"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="pets-slider"
-                >
+                  <div class="pets-slider-labels">
 
-                <div class="slider-value">
-                  <span id="pets_10_value">50</span>
+                    <span>Strongly disagree</span>
+
+                    <span class="middle-label">
+                      50
+                    </span>
+
+                    <span>Strongly agree</span>
+
+                  </div>
+
+                  <div class="pets-slider-container">
+
+                    <input
+                      type="range"
+                      name="pets_10"
+                      min="0"
+                      max="100"
+                      value="50"
+                      class="pets-slider"
+                      data-touched="false"
+                      aria-label="Response from 0 to 100"
+                    >
+
+                  </div>
+
+                  <div class="pets-slider-scale">
+                    <span>0</span>
+                    <span>50</span>
+                    <span>100</span>
+                  </div>
+
+                  <div
+                    id="pets_10_response"
+                    class="pets-slider-response unanswered"
+                  >
+                    Please select a response
+                  </div>
+
                 </div>
 
               </div>
@@ -750,9 +1115,7 @@
             class="post-chat-block"
           >
 
-            <div class="instruction-card">
-
-              <strong>Perceived Threat to Freedom</strong>
+            <div class="instruction-card block-instruction">
 
               <p>
                 Please indicate how much you agree or disagree
@@ -866,13 +1229,9 @@
             </div>
 
 
-            <!-- =====================================
-                 ANGER
-            ====================================== -->
+            <!-- ANGER -->
 
-            <div class="instruction-card">
-
-              <strong>Anger</strong>
+            <div class="instruction-card block-instruction">
 
               <p>
                 While chatting with the chatbot, how much did you feel each of the following?
@@ -1000,8 +1359,6 @@
         ========================================== -->
 
 
-        <!-- Q22 -->
-
         <div class="question-card">
 
           <div class="question-title">
@@ -1027,8 +1384,6 @@
 
         </div>
 
-
-        <!-- Q23 -->
 
         <div class="question-card">
 
@@ -1056,8 +1411,6 @@
         </div>
 
 
-        <!-- Q24 REVERSE -->
-
         <div class="question-card">
 
           <div class="question-title">
@@ -1083,8 +1436,6 @@
 
         </div>
 
-
-        <!-- Q25 REVERSE -->
 
         <div class="question-card">
 
@@ -1117,10 +1468,7 @@
              STRATEGY CHECKS — LAST
         ========================================== -->
 
-
-        <div class="instruction-card">
-
-          <strong>Strategy Check</strong>
+        <div class="instruction-card block-instruction">
 
           <p>
             Please indicate how much you agree or disagree
@@ -1129,8 +1477,6 @@
 
         </div>
 
-
-        <!-- STR1 -->
 
         <div class="question-card">
 
@@ -1157,8 +1503,6 @@
 
         </div>
 
-
-        <!-- STR2 -->
 
         <div class="question-card">
 
@@ -1222,6 +1566,7 @@ document.addEventListener(
   "DOMContentLoaded",
   function () {
 
+
     /*
     ======================================
     PETS SLIDERS
@@ -1231,20 +1576,43 @@ document.addEventListener(
     const petsSliders =
       document.querySelectorAll(".pets-slider");
 
+
     petsSliders.forEach(
       function (slider) {
 
-        const valueDisplay =
+        const responseDisplay =
           document.getElementById(
-            slider.name + "_value"
+            slider.name + "_response"
           );
+
 
         slider.addEventListener(
           "input",
           function () {
 
-            valueDisplay.innerText =
-              slider.value;
+            /*
+            Mark this slider as answered.
+            */
+
+            slider.dataset.touched =
+              "true";
+
+
+            /*
+            Display the actual selected value.
+            */
+
+            responseDisplay.innerText =
+              "Your response: " + slider.value;
+
+
+            responseDisplay.classList.remove(
+              "unanswered"
+            );
+
+            responseDisplay.classList.add(
+              "answered"
+            );
 
           }
         );
@@ -1263,6 +1631,7 @@ document.addEventListener(
       document.getElementById(
         "pets-items"
       );
+
 
     const petsItems =
       Array.from(
@@ -1287,6 +1656,7 @@ document.addEventListener(
           Math.random() * (i + 1)
         );
 
+
       [
         petsItems[i],
         petsItems[j]
@@ -1302,7 +1672,9 @@ document.addEventListener(
     petsItems.forEach(
       function (item) {
 
-        petsContainer.appendChild(item);
+        petsContainer.appendChild(
+          item
+        );
 
       }
     );
@@ -1315,14 +1687,16 @@ document.addEventListener(
     */
 
     const blocks =
-      document.querySelector(
-        "#post-chat-blocks"
+      document.getElementById(
+        "post-chat-blocks"
       );
+
 
     const petsBlock =
       document.getElementById(
         "pets-block"
       );
+
 
     const reactanceBlock =
       document.getElementById(
@@ -1330,7 +1704,9 @@ document.addEventListener(
       );
 
 
-    if (Math.random() < 0.5) {
+    if (
+      Math.random() < 0.5
+    ) {
 
       blocks.appendChild(
         petsBlock
@@ -1373,25 +1749,17 @@ async function submitPostChatMeasures() {
 
   const requiredQuestions = [
 
-    // Video perception
-
     "video_provocativeness",
     "video_negativity",
     "video_credibility",
     "video_ai_generated",
     "immigration_background",
 
-
-    // Chatbot manipulation checks
-
     "chatbot_understanding",
     "chatbot_challenged_claims",
     "chatbot_friendly_tone",
     "chatbot_empathy",
     "conversation_partner",
-
-
-    // PETS
 
     "pets_1",
     "pets_2",
@@ -1404,32 +1772,20 @@ async function submitPostChatMeasures() {
     "pets_9",
     "pets_10",
 
-
-    // Perceived threat to freedom
-
     "ft1",
     "ft2",
     "ft3",
     "ft4",
-
-
-    // Anger
 
     "ang1",
     "ang2",
     "ang3",
     "ang4",
 
-
-    // Conversational quality
-
     "conversation_quality_1",
     "conversation_quality_2",
     "conversation_quality_3_reverse",
     "conversation_quality_4_reverse",
-
-
-    // Strategy checks — last
 
     "str1",
     "str2"
@@ -1449,7 +1805,8 @@ async function submitPostChatMeasures() {
 
 
     /*
-    PETS sliders
+    PETS sliders:
+    require actual participant interaction.
     */
 
     if (
@@ -1461,7 +1818,11 @@ async function submitPostChatMeasures() {
           `input[name="${question}"]`
         );
 
-      if (!slider) {
+
+      if (
+        !slider ||
+        slider.dataset.touched !== "true"
+      ) {
 
         alert(
           "Please answer all questions before continuing."
@@ -1470,6 +1831,7 @@ async function submitPostChatMeasures() {
         return;
 
       }
+
 
       continue;
 
@@ -1510,7 +1872,10 @@ async function submitPostChatMeasures() {
       ".primary-button"
     );
 
-  button.disabled = true;
+
+  button.disabled =
+    true;
+
 
   button.innerText =
     "Saving...";
@@ -1544,7 +1909,7 @@ async function submitPostChatMeasures() {
     ) {
 
       responses[question] =
-        input.value;
+        Number(input.value);
 
       continue;
 
@@ -1569,7 +1934,7 @@ async function submitPostChatMeasures() {
 
   /*
   ========================================
-  SEND TO N8N
+  SEND TO EXISTING N8N WEBHOOK
   ========================================
   */
 
@@ -1642,8 +2007,10 @@ async function submitPostChatMeasures() {
       error
     );
 
+
     button.disabled =
       false;
+
 
     button.innerText =
       "Continue";
