@@ -301,6 +301,7 @@
 
       </div>
 
+
       <!-- RELIGIOSITY -->
 
       <div class="question-card">
@@ -374,6 +375,7 @@
 
       </div>
 
+
       <!-- AI CHATBOT USE -->
 
       <div class="question-card">
@@ -400,6 +402,7 @@
         </div>
 
       </div>
+
 
       <!-- AI FAMILIARITY -->
 
@@ -428,6 +431,7 @@
 
       </div>
 
+
       <!-- GAMING -->
 
       <div class="question-card">
@@ -454,6 +458,7 @@
         </div>
 
       </div>
+
 
       <!-- SOCIAL MEDIA -->
 
@@ -482,6 +487,107 @@
 
       </div>
 
+
+      <!-- ================================================= -->
+      <!-- ISSUE ATTITUDE ITEMS — RANDOMIZED -->
+      <!-- ================================================= -->
+
+      <div class="question-card">
+
+        <div class="question-title">
+          Please indicate how much you agree or disagree with each statement.
+        </div>
+
+        <div id="issue-items">
+
+          <!-- ISS1 -->
+
+          <div class="question-card issue-item">
+
+            <div class="question-title">
+              The UK should expend greater human and financial resources to prevent illegal workers from crossing the border.
+            </div>
+
+            <div class="likert-labels">
+              <span>Strongly disagree</span>
+              <span>Strongly agree</span>
+            </div>
+
+            <div class="likert-scale">
+
+              <label><input type="radio" name="iss1" value="1"><span>1</span></label>
+              <label><input type="radio" name="iss1" value="2"><span>2</span></label>
+              <label><input type="radio" name="iss1" value="3"><span>3</span></label>
+              <label><input type="radio" name="iss1" value="4"><span>4</span></label>
+              <label><input type="radio" name="iss1" value="5"><span>5</span></label>
+              <label><input type="radio" name="iss1" value="6"><span>6</span></label>
+              <label><input type="radio" name="iss1" value="7"><span>7</span></label>
+
+            </div>
+
+          </div>
+
+
+          <!-- ISS2 -->
+
+          <div class="question-card issue-item">
+
+            <div class="question-title">
+              The government should provide universal healthcare to everyone.
+            </div>
+
+            <div class="likert-labels">
+              <span>Strongly disagree</span>
+              <span>Strongly agree</span>
+            </div>
+
+            <div class="likert-scale">
+
+              <label><input type="radio" name="iss2" value="1"><span>1</span></label>
+              <label><input type="radio" name="iss2" value="2"><span>2</span></label>
+              <label><input type="radio" name="iss2" value="3"><span>3</span></label>
+              <label><input type="radio" name="iss2" value="4"><span>4</span></label>
+              <label><input type="radio" name="iss2" value="5"><span>5</span></label>
+              <label><input type="radio" name="iss2" value="6"><span>6</span></label>
+              <label><input type="radio" name="iss2" value="7"><span>7</span></label>
+
+            </div>
+
+          </div>
+
+
+          <!-- ISS3 -->
+
+          <div class="question-card issue-item">
+
+            <div class="question-title">
+              Environmental regulation should be stricter than it is today.
+            </div>
+
+            <div class="likert-labels">
+              <span>Strongly disagree</span>
+              <span>Strongly agree</span>
+            </div>
+
+            <div class="likert-scale">
+
+              <label><input type="radio" name="iss3" value="1"><span>1</span></label>
+              <label><input type="radio" name="iss3" value="2"><span>2</span></label>
+              <label><input type="radio" name="iss3" value="3"><span>3</span></label>
+              <label><input type="radio" name="iss3" value="4"><span>4</span></label>
+              <label><input type="radio" name="iss3" value="5"><span>5</span></label>
+              <label><input type="radio" name="iss3" value="6"><span>6</span></label>
+              <label><input type="radio" name="iss3" value="7"><span>7</span></label>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
       <!-- INTELLECTUAL HUMILITY -->
 
       <div class="instruction-card">
@@ -491,6 +597,7 @@
         with each statement.
 
       </div>
+
 
       <!-- INTELLECTUAL HUMILITY 1 -->
 
@@ -517,6 +624,7 @@
 
       </div>
 
+
       <!-- INTELLECTUAL HUMILITY 2 -->
 
       <div class="question-card">
@@ -541,6 +649,7 @@
         </div>
 
       </div>
+
 
       <!-- INTELLECTUAL HUMILITY 3 -->
 
@@ -567,6 +676,7 @@
 
       </div>
 
+
       <!-- INTELLECTUAL HUMILITY 4 -->
 
       <div class="question-card">
@@ -591,6 +701,7 @@
         </div>
 
       </div>
+
 
       <!-- INTELLECTUAL HUMILITY 5 -->
 
@@ -617,6 +728,7 @@
 
       </div>
 
+
       <!-- INTELLECTUAL HUMILITY 6 -->
 
       <div class="question-card">
@@ -642,12 +754,13 @@
 
       </div>
 
+
       <!-- ATTENTION CHECK -->
 
       <div class="question-card">
 
         <div class="question-title">
-         Please select 'strongly agree' for this item.
+          Please select 'strongly agree' for this item.
         </div>
 
         <div class="likert-labels">
@@ -686,6 +799,7 @@
 
   </div>
 
+
   <script>
 
     // =====================================
@@ -705,6 +819,29 @@
 
 
     // =====================================
+    // RANDOMIZE ISSUE ITEMS
+    // =====================================
+
+    const issueItemsContainer =
+      document.getElementById("issue-items");
+
+    const issueItems =
+      Array.from(
+        issueItemsContainer.querySelectorAll(".issue-item")
+      );
+
+    issueItems.sort(
+      () => Math.random() - 0.5
+    );
+
+    issueItems.forEach(
+      item => {
+        issueItemsContainer.appendChild(item);
+      }
+    );
+
+
+    // =====================================
     // VALIDATION
     // =====================================
 
@@ -716,16 +853,23 @@
         "employment",
         "political_orientation",
         "religiosity",
+
         "ai_usage",
         "ai_familiarity",
         "gaming",
         "social_media",
+
+        "iss1",
+        "iss2",
+        "iss3",
+
         "intellectual_humility_1",
         "intellectual_humility_2",
         "intellectual_humility_3",
         "intellectual_humility_4",
         "intellectual_humility_5",
         "intellectual_humility_6",
+
         "presurvey_attention_check"
 
       ];
@@ -748,26 +892,27 @@
           "education"
         ).value;
 
+
       const backgroundSelected =
-  document.querySelector(
-    'input[name="background"]:checked'
-  );
+        document.querySelector(
+          'input[name="background"]:checked'
+        );
 
 
-     if (
-  !age ||
-  !country ||
-  !education ||
-  !backgroundSelected
-) {
+      if (
+        !age ||
+        !country ||
+        !education ||
+        !backgroundSelected
+      ) {
 
-  alert(
-    "Please answer all required questions before continuing."
-  );
+        alert(
+          "Please answer all required questions before continuing."
+        );
 
-  return false;
+        return false;
 
-}
+      }
 
 
       for (
@@ -822,6 +967,7 @@
 
 
           try {
+
 
             // =====================================
             // GET EXISTING SESSION ID
@@ -1002,6 +1148,23 @@
 
                   ethnic_background:
                     backgroundSelections.join(", "),
+
+                  // NEW: ISSUE ATTITUDE ITEMS
+
+                  iss1:
+                    document.querySelector(
+                      'input[name="iss1"]:checked'
+                    )?.value,
+
+                  iss2:
+                    document.querySelector(
+                      'input[name="iss2"]:checked'
+                    )?.value,
+
+                  iss3:
+                    document.querySelector(
+                      'input[name="iss3"]:checked'
+                    )?.value,
 
                   ai_usage:
                     document.querySelector(
