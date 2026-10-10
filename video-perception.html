@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Perception Questions</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .page-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+
+    .question-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .scale-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .scale-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 44px;
+      cursor: pointer;
+    }
+
+    .scale-option input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #555;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .error-message {
+      display: none;
+      color: #a12622;
+      margin-bottom: 16px;
+    }
+
+    .submit-button {
+      display: block;
+      width: 100%;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #333;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .submit-button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    @media (max-width: 500px) {
+      .page-container {
+        margin: 16px auto;
+        padding: 12px;
+      }
+
+      .question-card {
+        padding: 16px;
+      }
+
+      .scale-option {
+        min-width: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page-container">
+    <h1>Video Perception</h1>
+
+    <p>
+      Please answer the following questions about the video you just watched.
+    </p>
+
+    <form id="videoPerceptionForm">
+      <p id="errorMessage" class="error-message" role="alert">
+        Please answer all four questions before continuing.
+      </p>
+
+      <section class="question-card">
+        <span class="question-title">
+          1. How provocative or emotionally charged did you find this video?
+        </span>
+
+        <div class="scale-options">
+          <label class="scale-option">
+            <input type="radio" name="video_provocativeness" value="1" required>
+            <span>1</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_provocativeness" value="2">
+            <span>2</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_provocativeness" value="3">
+            <span>3</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_provocativeness" value="4">
+            <span>4</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_provocativeness" value="5">
+            <span>5</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_provocativeness" value="6">
+            <span>6</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_provocativeness" value="7">
+            <span>7</span>
+          </label>
+        </div>
+
+        <div class="scale-labels">
+          <span>Not at all</span>
+          <span>Extremely</span>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <span class="question-title">
+          2. How negative did the video feel toward immigrants or immigration?
+        </span>
+
+        <div class="scale-options">
+          <label class="scale-option">
+            <input type="radio" name="video_negativity" value="1" required>
+            <span>1</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_negativity" value="2">
+            <span>2</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_negativity" value="3">
+            <span>3</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_negativity" value="4">
+            <span>4</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_negativity" value="5">
+            <span>5</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_negativity" value="6">
+            <span>6</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_negativity" value="7">
+            <span>7</span>
+          </label>
+        </div>
+
+        <div class="scale-labels">
+          <span>Not at all negative</span>
+          <span>Extremely negative</span>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <span class="question-title">
+          3. How credible or trustworthy did the source seem?
+        </span>
+
+        <div class="scale-options">
+          <label class="scale-option">
+            <input type="radio" name="video_credibility" value="1" required>
+            <span>1</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_credibility" value="2">
+            <span>2</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_credibility" value="3">
+            <span>3</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_credibility" value="4">
+            <span>4</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_credibility" value="5">
+            <span>5</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_credibility" value="6">
+            <span>6</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_credibility" value="7">
+            <span>7</span>
+          </label>
+        </div>
+
+        <div class="scale-labels">
+          <span>Not at all credible</span>
+          <span>Extremely credible</span>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <span class="question-title">
+          4. Did this video feel AI-generated to you?
+        </span>
+
+        <div class="scale-options">
+          <label class="scale-option">
+            <input type="radio" name="video_ai_generated" value="1" required>
+            <span>1</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_ai_generated" value="2">
+            <span>2</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_ai_generated" value="3">
+            <span>3</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_ai_generated" value="4">
+            <span>4</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_ai_generated" value="5">
+            <span>5</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_ai_generated" value="6">
+            <span>6</span>
+          </label>
+          <label class="scale-option">
+            <input type="radio" name="video_ai_generated" value="7">
+            <span>7</span>
+          </label>
+        </div>
+
+        <div class="scale-labels">
+          <span>Definitely not</span>
+          <span>Definitely yes</span>
+        </div>
+      </section>
+
+      <button id="submitButton" class="submit-button" type="submit">
+        Continue
+      </button>
+    </form>
+  </main>
+
+  <script>
+    const SAVE_WEBHOOK =
+      "https://n8n.media.tuwien.ac.at/webhook/save-consent";
+
+    // Change this if your comprehension page has a different filename.
+    const NEXT_PAGE = "comprehension.html";
+
+    const form = document.getElementById("videoPerceptionForm");
+    const errorMessage = document.getElementById("errorMessage");
+    const submitButton = document.getElementById("submitButton");
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      errorMessage.style.display = "none";
+
+      if (!form.checkValidity()) {
+        errorMessage.style.display = "block";
+        form.reportValidity();
+        return;
+      }
+
+      const sessionId = localStorage.getItem("session_id");
+
+      if (!sessionId) {
+        errorMessage.textContent =
+          "Your study session could not be identified. Please return to the study start page.";
+        errorMessage.style.display = "block";
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      const payload = {
+        action: "save_video_perception",
+        session_id: sessionId,
+        video_provocativeness: Number(
+          formData.get("video_provocativeness")
+        ),
+        video_negativity: Number(
+          formData.get("video_negativity")
+        ),
+        video_credibility: Number(
+          formData.get("video_credibility")
+        ),
+        video_ai_generated: Number(
+          formData.get("video_ai_generated")
+        )
+      };
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Saving responses...";
+
+      try {
+        const response = await fetch(SAVE_WEBHOOK, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error("The server returned an unsuccessful response.");
+        }
+
+        window.location.href = NEXT_PAGE;
+
+      } catch (error) {
+        console.error("Could not save video perception responses:", error);
+
+        errorMessage.textContent =
+          "Your responses could not be saved. Please try again.";
+        errorMessage.style.display = "block";
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Continue";
+      }
+    });
+  </script>
+</body>
+</html>
