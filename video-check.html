@@ -135,10 +135,10 @@
           <input
             type="radio"
             name="video_format"
-            value="A social media video"
+            value="A short video about a current issue"
           >
 
-          A social media video
+          A short video about UK immmigration situation
 
         </label>
 
@@ -200,10 +200,10 @@
           <input
             type="radio"
             name="video_goal"
-            value="Describe the immigration situation in the UK"
+            value="Present information or a viewpoint about immigration in the UK"
           >
 
-          Describe the immigration situation in the UK
+          Present information or a viewpoint about immigration in the UK
 
         </label>
 
@@ -273,6 +273,46 @@
 
 
   <script>
+
+    // =====================================
+    // RANDOMIZE ANSWER ORDER
+    // =====================================
+
+    function shuffleAnswerOptions(questionName) {
+
+      const inputs = Array.from(
+        document.querySelectorAll(
+          `input[name="${questionName}"]`
+        )
+      );
+
+      // Fisher-Yates shuffle: unbiased random ordering.
+      for (let i = inputs.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [inputs[i], inputs[j]] = [inputs[j], inputs[i]];
+
+      }
+
+      // Move each complete label so the radio button and
+      // its answer text remain together.
+      inputs.forEach(input => {
+
+        const label = input.closest("label.radio-option");
+
+        label.parentNode.appendChild(label);
+
+      });
+
+    }
+
+
+    // Randomize the answers separately for each question.
+    shuffleAnswerOptions("video_topic");
+    shuffleAnswerOptions("video_format");
+    shuffleAnswerOptions("video_goal");
+
 
     // =====================================
     // CONTINUE BUTTON
