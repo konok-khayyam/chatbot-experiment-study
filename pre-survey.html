@@ -223,6 +223,10 @@
             Select education level
           </option>
 
+          <option>No formal qualifications</option>
+          <option>GCSE</option>
+          <option>A-level</option>
+          <option>Vocational qualification / apprenticeship</option>
           <option>High school</option>
           <option>Bachelor's degree</option>
           <option>Master's degree</option>
@@ -379,7 +383,36 @@
           Prefer not to say
         </label>
 
+        <label class="checkbox-option">
+          <input type="checkbox"
+                 name="background"
+                 value="None of these">
+          None of these
+        </label>
+
       </div>
+
+      <script>
+        // "None of these" is mutually exclusive with the other background options.
+        const backgroundCheckboxes = Array.from(
+          document.querySelectorAll('input[name="background"]')
+        );
+        const noneBackgroundCheckbox = backgroundCheckboxes.find(
+          checkbox => checkbox.value === "None of these"
+        );
+
+        backgroundCheckboxes.forEach(checkbox => {
+          checkbox.addEventListener("change", () => {
+            if (checkbox === noneBackgroundCheckbox && checkbox.checked) {
+              backgroundCheckboxes.forEach(other => {
+                if (other !== noneBackgroundCheckbox) other.checked = false;
+              });
+            } else if (checkbox !== noneBackgroundCheckbox && checkbox.checked) {
+              noneBackgroundCheckbox.checked = false;
+            }
+          });
+        });
+      </script>
 
 
       <!-- AI CHATBOT USE -->
@@ -616,8 +649,8 @@
         </div>
 
         <div class="likert-labels">
-          <span>Strongly disagree</span>
-          <span>Strongly agree</span>
+          <span>Not at all like me</span>
+          <span>Very much like me</span>
         </div>
 
         <div class="likert-scale">
@@ -642,8 +675,8 @@
         </div>
 
         <div class="likert-labels">
-          <span>Strongly disagree</span>
-          <span>Strongly agree</span>
+          <span>Not at all like me</span>
+          <span>Very much like me</span>
         </div>
 
         <div class="likert-scale">
@@ -668,8 +701,8 @@
         </div>
 
         <div class="likert-labels">
-          <span>Strongly disagree</span>
-          <span>Strongly agree</span>
+          <span>Not at all like me</span>
+          <span>Very much like me</span>
         </div>
 
         <div class="likert-scale">
@@ -694,8 +727,8 @@
         </div>
 
         <div class="likert-labels">
-          <span>Strongly disagree</span>
-          <span>Strongly agree</span>
+          <span>Not at all like me</span>
+          <span>Very much like me</span>
         </div>
 
         <div class="likert-scale">
@@ -720,8 +753,8 @@
         </div>
 
         <div class="likert-labels">
-          <span>Strongly disagree</span>
-          <span>Strongly agree</span>
+          <span>Not at all like me</span>
+          <span>Very much like me</span>
         </div>
 
         <div class="likert-scale">
@@ -746,8 +779,8 @@
         </div>
 
         <div class="likert-labels">
-          <span>Strongly disagree</span>
-          <span>Strongly agree</span>
+          <span>Not at all like me</span>
+          <span>Very much like me</span>
         </div>
 
         <div class="likert-scale">
@@ -768,12 +801,12 @@
       <div class="question-card">
 
         <div class="question-title">
-          Please select 'strongly agree' for this item.
+          Please select 'Very much like me' for this item.
         </div>
 
         <div class="likert-labels">
-          <span>Strongly disagree</span>
-          <span>Strongly agree</span>
+          <span>Not at all like me</span>
+          <span>Very much like me</span>
         </div>
 
         <div class="likert-scale">
@@ -783,8 +816,6 @@
           <label><input type="radio" name="presurvey_attention_check" value="3"><span>3</span></label>
           <label><input type="radio" name="presurvey_attention_check" value="4"><span>4</span></label>
           <label><input type="radio" name="presurvey_attention_check" value="5"><span>5</span></label>
-          <label><input type="radio" name="presurvey_attention_check" value="6"><span>6</span></label>
-          <label><input type="radio" name="presurvey_attention_check" value="7"><span>7</span></label>
 
         </div>
 
