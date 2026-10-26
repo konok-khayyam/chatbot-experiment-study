@@ -120,7 +120,7 @@
         <div class="question-card randomized-item">
 
           <div class="question-title">
-            How certain are you that the attitude you expressed toward immigration really reflects your true thoughts and feelings?
+            How certain are you that your attitude toward immigration really reflects your true thoughts and feelings?
           </div>
 
           <div class="likert-labels">
@@ -198,7 +198,7 @@
         <div class="question-card randomized-item">
 
           <div class="question-title">
-            How certain are you that the attitude you just expressed toward immigration is really the attitude you have?
+            How certain are you that your attitude toward immigration is really the attitude you have?
           </div>
 
           <div class="likert-labels">
@@ -389,9 +389,11 @@
         )
       );
 
-    items.sort(
-      () => Math.random() - 0.5
-    );
+    // Fisher-Yates shuffle
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
 
     items.forEach(
       item => {
