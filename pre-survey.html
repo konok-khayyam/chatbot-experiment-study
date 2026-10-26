@@ -117,6 +117,20 @@
                  value="Self-describe">
           Prefer to self-describe
         </label>
+        <div id="gender-self-describe-container" style="display: none; margin-top: 10px;">
+        <label for="gender-self-describe" class="question-title">
+          Please describe your gender:
+        </label>
+      
+        <input
+          type="text"
+          class="survey-input"
+          id="gender-self-describe"
+          placeholder="Enter your gender"
+          maxlength="100"
+          autocomplete="off"
+        />
+      </div>
 
         <label class="radio-option">
           <input type="radio"
@@ -126,6 +140,33 @@
         </label>
 
       </div>
+          <script>
+      const genderRadios = document.querySelectorAll('input[name="gender"]');
+      const genderSelfDescribeContainer = document.getElementById(
+        "gender-self-describe-container"
+      );
+      const genderSelfDescribeInput = document.getElementById(
+        "gender-self-describe"
+      );
+    
+      function updateGenderSelfDescribe() {
+        const selectedGender = document.querySelector(
+          'input[name="gender"]:checked'
+        );
+    
+        const showField = selectedGender?.value === "Self-describe";
+    
+        genderSelfDescribeContainer.style.display = showField ? "block" : "none";
+    
+        if (!showField) {
+          genderSelfDescribeInput.value = "";
+        }
+      }
+    
+      genderRadios.forEach(radio => {
+        radio.addEventListener("change", updateGenderSelfDescribe);
+      });
+    </script>
 
 
       <!-- COUNTRY -->
@@ -1155,10 +1196,23 @@
                       "age"
                     ).value,
 
-                  gender:
-                    document.querySelector(
-                      'input[name="gender"]:checked'
-                    )?.value,
+                       gender: (() => {
+                      const selectedGender = document.querySelector(
+                        'input[name="gender"]:checked'
+                      )?.value;
+                    
+                      if (selectedGender === "Self-describe") {
+                        const description = document.getElementById(
+                          "gender-self-describe"
+                        ).value.trim();
+                    
+                        return description
+                          ? `Self-describe: ${description}`
+                          : "Self-describe";
+                      }
+                    
+                      return selectedGender;
+                    })(),
 
                   country:
                     document.getElementById(
