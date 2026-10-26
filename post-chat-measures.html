@@ -611,84 +611,64 @@ function renderPetsQuestions() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Render PETS questions in randomized order.
+  // Render the PETS items before randomizing the page.
   renderPetsQuestions();
 
-  // Update PETS slider responses.
+  // Update the displayed value when a PETS slider is used.
   document.querySelectorAll(".pets-slider").forEach(function (slider) {
     slider.addEventListener("input", function () {
       slider.dataset.touched = "true";
 
       const display = document.getElementById(slider.name + "_response");
       display.innerText = "Your response: " + slider.value;
+
       display.classList.remove("unanswered");
       display.classList.add("answered");
     });
   });
 
-  // LEVEL 1: Randomize the order of the six question blocks.
+  /*
+   * LEVEL 1: Randomize all six question blocks.
+   * Each block includes its own instruction card, where applicable.
+   */
   const blocksContainer = document.getElementById("randomized-question-blocks");
 
-  const blocks = Array.from(
-    blocksContainer.querySelectorAll(":scope > .randomized-block")
-  );
+  const blocks = Array.from(blocksContainer.children).filter(function (element) {
+    return element.classList.contains("randomized-block");
+  });
 
   shuffle(blocks).forEach(function (block) {
     blocksContainer.appendChild(block);
   });
 
-  // LEVEL 2: Randomize questions inside each block, including nested items.
-  blocksContainer.querySelectorAll(".randomized-block").forEach(function (block) {
-    const items = Array.from(
-      block.querySelectorAll(".randomized-item")
-    );
+  /*
+   * LEVEL 2: Randomize the question items inside every block.
+   * Instruction cards are kept in place at the beginning of their block.
+   * PETS questions are inside their own #pets-items container, so that
+   * container is shuffled separately as well.
+   */
+  blocks.forEach(function (block) {
+    const petsItemsContainer = block.querySelector("#pets-items");
 
-    if (items.length > 1) {
-      const parent = items[0].parentElement;
-
-      // Only shuffle items that share the same parent container.
-      const itemGroups = new Map();
-
-      items.forEach(function (item) {
-        if (!itemGroups.has(item.parentElement)) {
-          itemGroups.set(item.parentElement, []);
+    if (petsItemsContainer) {
+      const petsItems = Array.from(petsItemsContainer.children).filter(
+        function (element) {
+          return element.classList.contains("randomized-item");
         }
-        itemGroups.get(item.parentElement).push(item);
-      });
+      );
 
-      itemGroups.forEach(function (group, parentElement) {
-        shuffle(group).forEach(function (item) {
-          parentElement.appendChild(item);
-        });
+      shuffle(petsItems).forEach(function (item) {
+        petsItemsContainer.appendChild(item);
       });
     }
-  });
-});
-  /*
-   * LEVEL 1: Randomize the order of the six blocks.
-   * Each block's instructions remain attached to its items.
-   */
-  const blocksContainer = document.getElementById("randomized-question-blocks");
 
-  const blocks = Array.from(
-    blocksContainer.querySelectorAll(":scope > .randomized-block")
-  );
-
-  shuffle(blocks).forEach(function (block) {
-    blocksContainer.appendChild(block);
-  });
-
-  /*
-   * LEVEL 2: Randomize the items within each block.
-   * Instructions are not included in the shuffle.
-   * PETS items have already been randomized during rendering.
-   */
-  blocksContainer.querySelectorAll(".randomized-block").forEach(function (block) {
-    const items = Array.from(
-      block.querySelectorAll(":scope > .randomized-item")
+    const questionItems = Array.from(block.children).filter(
+      function (element) {
+        return element.classList.contains("randomized-item");
+      }
     );
 
-    shuffle(items).forEach(function (item) {
+    shuffle(questionItems).forEach(function (item) {
       block.appendChild(item);
     });
   });
